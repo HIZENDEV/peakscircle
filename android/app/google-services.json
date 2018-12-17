@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "401561273858",
+    "firebase_url": "https://peaks-circle.firebaseio.com",
+    "project_id": "peaks-circle",
+    "storage_bucket": "peaks-circle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401561273858:android:69d4c6a2d298ea5d",
+        "android_client_info": {
+          "package_name": "com.peakscircle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401561273858-p5emkth3aogc9kqcc6r6029drf459a0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFVH8nmgTCDw4zOou8HRUItFGJsRL0aJg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -26,7 +26,6 @@ project.xcworkspace
 #
 build/
 .idea
-.gradle
 local.properties
 *.iml
 
@@ -39,7 +38,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #

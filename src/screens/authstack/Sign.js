@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
-import { googleLogin, onLoginOrRegister } from '@methods/Auth';
+import { googleLogin } from '@methods/Auth';
 
 export default class Sign extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class Sign extends React.Component {
           }}
         >
           <TouchableOpacity
-          onPress={onLoginOrRegister}
+            onPress={googleLogin}
             style={{
               backgroundColor: "#fff",
               flexDirection: "row",

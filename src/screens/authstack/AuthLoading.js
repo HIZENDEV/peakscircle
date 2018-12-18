@@ -9,27 +9,9 @@ export default class AuthLoading extends React.Component {
     this._bootstrapAsync();
   }
 
-  componentDidMount() {
-    var user = firebase.auth().currentUser;
-    if (user) {
-      console.warn('true with currentUser method')
-    } else {
-      console.warn('false with currentUser method')
-    }
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.warn('true with onAuthStateChanged method')
-      } else {
-        console.warn('false with onAuthStateChanged method')
-      }
-    });
-  }
-
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
-    setTimeout(() => {
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
-  }, 2000);
+    const user = await firebase.auth().currentUser;
+    this.props.navigation.navigate(user ? 'App' : 'Auth');
   };
 
     render() {

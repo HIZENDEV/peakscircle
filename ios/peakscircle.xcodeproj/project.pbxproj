@@ -39,7 +39,7 @@
 		2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */; };
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
-		2D9BDED121C16A360087806A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D9BDED021C16A350087806A /* GoogleService-Info.plist */; };
+		2D17ABDE21C90662004551FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D17ABDD21C90661004551FA /* GoogleService-Info.plist */; };
 		2D9BE0E021C3A9FB0087806A /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9BE0DF21C3A94D0087806A /* libRNGoogleSignin.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* peakscircleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* peakscircleTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
@@ -411,7 +411,7 @@
 		2D02E47B1E0B4A5D006451C7 /* peakscircle-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "peakscircle-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* peakscircle-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "peakscircle-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D9BDED021C16A350087806A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "peakscircle/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2D17ABDD21C90661004551FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "peakscircle/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D9BE0DA21C3A94C0087806A /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		2F0B3EF62C20423F8CE68633 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		35723BD660BE4CF98D626339 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -589,7 +589,7 @@
 		13B07FAE1A68108700A75B9A /* peakscircle */ = {
 			isa = PBXGroup;
 			children = (
-				2D9BDED021C16A350087806A /* GoogleService-Info.plist */,
+				2D17ABDD21C90661004551FA /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1327,7 +1327,6 @@
 				10B084228AE84DEAB31331FD /* FontAwesome5_Regular.ttf in Resources */,
 				B227FFEF117845018C20BABF /* FontAwesome5_Solid.ttf in Resources */,
 				AA41E2051F924686A278BF34 /* Foundation.ttf in Resources */,
-				2D9BDED121C16A360087806A /* GoogleService-Info.plist in Resources */,
 				F528865462A640AF914C0CAB /* Ionicons.ttf in Resources */,
 				A2A2ACC2A30C441C853847AD /* MaterialCommunityIcons.ttf in Resources */,
 				2309A92B7884402EB788BAB9 /* MaterialIcons.ttf in Resources */,
@@ -1336,6 +1335,7 @@
 				5EA0477C55BA4739A4AC9E54 /* Zocial.ttf in Resources */,
 				331E6C0B023C4BF5B1FD4174 /* Poppins-Bold.ttf in Resources */,
 				6B65C83BE5EF46EE83B06190 /* Poppins-ExtraBold.ttf in Resources */,
+				2D17ABDE21C90662004551FA /* GoogleService-Info.plist in Resources */,
 				8F8175D78AD248A7AFB6D060 /* Poppins-Light.ttf in Resources */,
 				99E5BA1600304863A504A60C /* Poppins-Medium.ttf in Resources */,
 				04A6A38B01594A549C1D4030 /* Poppins-SemiBold.ttf in Resources */,
@@ -1519,7 +1519,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/peakscircle.app/peakscircle";
 			};
@@ -1544,7 +1544,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/peakscircle.app/peakscircle";
 			};
@@ -1571,7 +1571,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.peakscircle;
+				PRODUCT_BUNDLE_IDENTIFIER = org.peakscircle;
 				PRODUCT_NAME = peakscircle;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1597,7 +1597,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.peakscircle;
+				PRODUCT_BUNDLE_IDENTIFIER = org.peakscircle;
 				PRODUCT_NAME = peakscircle;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

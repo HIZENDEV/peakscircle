@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>401561273858-7g6pj3uact9qa20hj7dm912gf2lb2cvr.apps.googleusercontent.com</string>
+	<string>401561273858-u5f3pv7stffcjpnl7qs9o1931ogg1ste.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.401561273858-7g6pj3uact9qa20hj7dm912gf2lb2cvr</string>
+	<string>com.googleusercontent.apps.401561273858-u5f3pv7stffcjpnl7qs9o1931ogg1ste</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCtVTNYKAtoaIsY6aaUNzuahsXDjzZSD3U</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.peaks.circle</string>
+	<string>org.peakscircle</string>
 	<key>PROJECT_ID</key>
 	<string>peaks-circle</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:401561273858:ios:fa8da553695f15af</string>
+	<string>1:401561273858:ios:23d2ca449944dc24</string>
 	<key>DATABASE_URL</key>
 	<string>https://peaks-circle.firebaseio.com</string>
 </dict>

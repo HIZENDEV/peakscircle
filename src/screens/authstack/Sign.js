@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
-import { googleLogin } from '@methods/Auth';
+import { signIn, signOut } from '@services/Auth';
 
 export default class Sign extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class Sign extends React.Component {
           }}
         >
           <TouchableOpacity
-            onPress={googleLogin}
+            onPress={signIn}
             style={{
               backgroundColor: "#fff",
               flexDirection: "row",
@@ -63,6 +63,7 @@ export default class Sign extends React.Component {
             <Text>Sign in as employee</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={signOut}
             style={{
               backgroundColor: "#fff",
               flexDirection: "row",

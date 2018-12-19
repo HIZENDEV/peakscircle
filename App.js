@@ -45,10 +45,10 @@ const AppStack = createBottomTabNavigator({
   }
 )
 
-const Authstack = createStackNavigator({ 
-  Sign: Sign 
-}, { 
-  headerMode: 'none' 
+const Authstack = createStackNavigator({
+  Sign: Sign
+}, {
+  headerMode: 'none'
 })
 
 const SwitchNavigator = createSwitchNavigator({
@@ -58,5 +58,7 @@ const SwitchNavigator = createSwitchNavigator({
 }, {
   initialRouteName: 'AppLoading'
 })
+
+
 
 export default createAppContainer(SwitchNavigator);

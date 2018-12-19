@@ -1,12 +1,21 @@
 import React from "react";
 import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
-import { signIn, signOut } from '@services/Auth';
+import * as auth from '@services/Auth';
 
 export default class Sign extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isSigninInProgress: false
+    }
+  }
+
+  _signIn = async () => {
+    try {
+      await auth.signIn()
+      this.props.navigation.navigate('App')
+    } catch (e) {
+      alert('Something goes wrong!')
     }
   }
 
@@ -25,7 +34,7 @@ export default class Sign extends React.Component {
           }}
         >
           <TouchableOpacity
-            onPress={signIn}
+            onPress={this._signIn}
             style={{
               backgroundColor: "#fff",
               flexDirection: "row",
@@ -63,7 +72,7 @@ export default class Sign extends React.Component {
             <Text>Sign in as employee</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={signOut}
+            onPress={() => auth.signIn(true)}
             style={{
               backgroundColor: "#fff",
               flexDirection: "row",

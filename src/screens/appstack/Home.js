@@ -1,8 +1,15 @@
 import React from 'react'
 import {View, Button} from 'react-native'
+import Header from '@components/Header'
 import * as auth from '@services/Auth'
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: 'Home'
+    }
+  }
 
   _signOut = async () => {
     try {
@@ -15,13 +22,14 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <React.Fragment>
+        <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
         <Button
           onPress={this._signOut}
           title="Sign Out"
-          color="#841584"
+          color="#000"
         />
-      </View>
+      </React.Fragment>
     );
   }
 }

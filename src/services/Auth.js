@@ -38,6 +38,4 @@ export async function signOut() {
   });
 }
 
-
-
-// export const signOut = withNavigation(googleLogout);
+export const currentUser = firebase.auth().currentUser || null

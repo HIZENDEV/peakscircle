@@ -1,12 +1,35 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Button} from 'react-native'
+import Header from '@components/Header'
+import * as auth from '@services/Auth'
 
 export default class Events extends React.Component {
-    render() {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>Events</Text>
-        </View>
-      );
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: 'Events'
     }
   }
+
+  _signOut = async () => {
+    try {
+      await auth.signOut()
+      this.props.navigation.navigate('Auth')
+    } catch (e) {
+      alert('Something goes wrong!')
+    }
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
+        <Button
+          onPress={this._signOut}
+          title="Sign Out"
+          color="#841584"
+        />
+      </React.Fragment>
+    );
+  }
+}

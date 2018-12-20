@@ -1,4 +1,5 @@
 import React from 'react';
+import {YellowBox} from 'react-native'
 import { createBottomTabNavigator, createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -10,6 +11,9 @@ import Profile from '@appstack/Profile.js'
 // Authstack screens
 import Sign from '@authstack/Sign.js'
 import AuthLoading from '@authstack/AuthLoading.js'
+
+// ignore specific yellowbox warnings
+YellowBox.ignoreWarnings(["Require cycle:", "Remote debugger"]);
 
 const AppStack = createBottomTabNavigator({
   Home: Home,
@@ -33,6 +37,7 @@ const AppStack = createBottomTabNavigator({
       return <Icon name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
     }
   }),
+  initialRouteName: 'Home',
   tabBarOptions: {
     style: {
       backgroundColor: '#ffffff',

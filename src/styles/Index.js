@@ -11,8 +11,12 @@ export const header = StyleSheet.create({
   },
   title: {
     fontFamily: theme.BOLD,
-    fontSize: 21
-  }
+    fontSize: 21,
+    color: theme.PRIMARY
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
 })
 
 export const userInfo = StyleSheet.create({
@@ -31,13 +35,15 @@ export const userInfo = StyleSheet.create({
   displayName: {
     fontFamily: theme.BOLD,
     fontSize: 15,
-    paddingTop: 11
+    paddingTop: 11,
+    color: theme.PRIMARY
   },
   email: {
     fontFamily: theme.MEDIUM,
     fontSize: 12,
     color: theme.GREY,
-    paddingBottom: 7.5
+    paddingBottom: 7.5,
+    color: theme.PRIMARY
   },
   social: {
     flexDirection: 'row',

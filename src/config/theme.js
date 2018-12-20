@@ -6,7 +6,7 @@ export default {
   PINK: '#EC4467',
   GREY: '#707070',
   WHITE: '#FFFFFF',
-  PRIMARY: '#2A2A2A',
+  PRIMARY: '#000000',
   BACKGROUND: '#FFFFFF',
 
   // Fonts

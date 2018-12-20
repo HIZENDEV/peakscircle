@@ -23,7 +23,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
+        <Header screen={this.state.screen} back={this.props.navigation.goBack()} settings={this._signOut} />
         <Button
           onPress={this._signOut}
           title="Sign Out"

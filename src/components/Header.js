@@ -12,7 +12,7 @@ export default class Header extends React.Component {
           <Icon name={'chevron-left'} size={25} style={styles.icons}/>
         </TouchableOpacity>
           <Text style={styles.title}>{this.props.screen}</Text>
-        <TouchableOpacity style={styles.settings}>
+        <TouchableOpacity style={styles.settings} onPress={() => this.props.settings}>
           <Icon name={'settings'} size={25} style={styles.icons}/>
         </TouchableOpacity>
       </View>

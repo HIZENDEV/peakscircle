@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {SafeAreaView} from 'react-native'
 import Header from '@components/Header'
 import UserInfo from '@components/UserInfo'
 import * as auth from '@services/Auth'
@@ -13,10 +13,10 @@ export default class Profile extends React.Component {
   }
     render() {
       return (
-        <React.Fragment>
+        <SafeAreaView>
           <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
           <UserInfo user={auth.currentUser} />
-        </React.Fragment>
+        </SafeAreaView>
       );
     }
   }

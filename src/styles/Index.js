@@ -6,7 +6,7 @@ export const header = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: '4%',
-    paddingTop: 60,
+    paddingTop: 0,
     backgroundColor: theme.BACKGROUND
   },
   title: {

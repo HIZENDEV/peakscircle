@@ -23,12 +23,7 @@ export default class Threads extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
-        <Button
-          onPress={this._signOut}
-          title="Sign Out"
-          color="#841584"
-        />
+        <Header search={true} />
       </SafeAreaView>
     );
   }

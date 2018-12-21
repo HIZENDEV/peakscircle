@@ -1,6 +1,7 @@
 import React from 'react'
 import {SafeAreaView, Button} from 'react-native'
 import Header from '@components/Header'
+import Title from '@components/Title'
 import * as auth from '@services/Auth'
 
 export default class Home extends React.Component {
@@ -11,24 +12,13 @@ export default class Home extends React.Component {
     }
   }
 
-  _signOut = async () => {
-    try {
-      await auth.signOut()
-      this.props.navigation.navigate('Auth')
-    } catch (e) {
-      alert('Something goes wrong!')
-    }
-  }
-
   render() {
     return (
       <SafeAreaView>
-        <Header screen={this.state.screen} back={this.props.navigation.goBack()} settings={this._signOut} />
-        <Button
-          onPress={this._signOut}
-          title="Sign Out"
-          color="#000"
-        />
+        <Header user={auth.currentUser} upcoming={2} />
+        <Title name={'Events'} action={true} />
+        <Title name={'Threads'} action={true} />
+        <Title name={'Survey'} action={true} />
       </SafeAreaView>
     );
   }

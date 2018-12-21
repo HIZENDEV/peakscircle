@@ -17,6 +17,61 @@ export const header = StyleSheet.create({
   icons: {
     color: theme.PRIMARY
   },
+  searchSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  searchIcon: {
+      padding: 8,
+  },
+  input: {
+      flex: 1,
+      paddingTop: 8,
+      paddingRight: 8,
+      paddingBottom: 8,
+      paddingLeft: 0,
+      backgroundColor: '#fff',
+      color: '#424242',
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingHorizontal: '4%',
+    paddingTop: 10,
+    backgroundColor: theme.BACKGROUND
+  },
+  rightText: {
+    marginLeft: 5
+  },
+  profilePic: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  welcome: {
+    fontFamily: theme.BOLD,
+    fontSize: 19,
+    paddingTop: 11,
+    color: theme.PRIMARY
+  },
+  upcoming: {
+    marginTop: -4,
+    fontFamily: theme.MEDIUM,
+    fontSize: 12,
+    color: theme.GREY,
+    paddingBottom: 7.5,
+  },
 })
 
 export const userInfo = StyleSheet.create({
@@ -89,4 +144,26 @@ export const userInfo = StyleSheet.create({
     height: 30,
     backgroundColor: theme.DRIBBBLE
   },
+})
+
+export const title = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 22,
+    backgroundColor: theme.BACKGROUND
+  },
+  title: {
+    fontFamily: theme.BOLD,
+    fontSize: 21,
+    color: theme.PRIMARY,
+  },
+  action: {
+
+  },
+  icons: {
+
+  }
 })

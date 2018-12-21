@@ -10,11 +10,15 @@ export default class Profile extends React.Component {
     this.state = {
       screen: 'Profile'
     }
+    this.back = this.props.navigation.goBack()
   }
+
+
+
     render() {
       return (
         <SafeAreaView>
-          <Header screen={this.state.screen} back={this.props.navigation.goBack()} />
+          <Header screen={this.state.screen} back={this.back} />
           <UserInfo user={auth.currentUser} />
         </SafeAreaView>
       );

@@ -1,5 +1,5 @@
 import React from 'react'
-import {SafeAreaView, Button} from 'react-native'
+import {SafeAreaView} from 'react-native'
 import Header from '@components/Header'
 import Title from '@components/Title'
 import * as auth from '@services/Auth'

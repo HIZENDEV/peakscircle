@@ -24,7 +24,8 @@ export const header = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     borderRadius: 5,
-    backgroundColor: theme.BACKGROUND,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -33,6 +34,7 @@ export const header = StyleSheet.create({
   },
   searchIcon: {
       padding: 8,
+      color: theme.WHITE
   },
   input: {
       flex: 1,
@@ -40,8 +42,8 @@ export const header = StyleSheet.create({
       paddingRight: 8,
       paddingBottom: 8,
       paddingLeft: 0,
-      backgroundColor: '#fff',
-      color: '#424242',
+      backgroundColor: theme.LIGHT_BLUE,
+      color: theme.PRIMARY,
   },
   headerLeft: {
     flexDirection: 'row',
@@ -69,7 +71,7 @@ export const header = StyleSheet.create({
     marginTop: -4,
     fontFamily: theme.MEDIUM,
     fontSize: 12,
-    color: theme.GREY,
+    color: theme.LIGHT_BLUE,
     paddingBottom: 7.5,
   },
 })
@@ -96,9 +98,8 @@ export const userInfo = StyleSheet.create({
   email: {
     fontFamily: theme.MEDIUM,
     fontSize: 12,
-    color: theme.GREY,
     paddingBottom: 7.5,
-    color: theme.PRIMARY
+    color: theme.LIGHT_BLUE
   },
   social: {
     flexDirection: 'row',
@@ -164,6 +165,20 @@ export const title = StyleSheet.create({
 
   },
   icons: {
+    color: theme.PRIMARY
+  }
+})
 
+export const loading = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: theme.DEVICE_WIDTH,
+    height: theme.DEVICE_HEIGHT,
+    backgroundColor: '#343363'
+  },
+  lottie: {
+    width: theme.DEVICE_WIDTH /3,
+    height: theme.DEVICE_WIDTH /3,
   }
 })

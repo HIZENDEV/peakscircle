@@ -6,8 +6,11 @@ export default {
   PINK: '#EC4467',
   GREY: '#707070',
   WHITE: '#FFFFFF',
-  PRIMARY: '#000000',
-  BACKGROUND: '#FFFFFF',
+  LIGHT_BLUE: '#6B6A88',
+  WHITE: '#FFFFFF',
+  PRIMARY: '#FFFFFF',
+  CONTAINER: '#444671',
+  BACKGROUND: '#323160',
 
   // Fonts
   REGULAR: 'Poppins-Regular',

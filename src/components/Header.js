@@ -16,12 +16,12 @@ export default class Header extends React.Component {
       {/* SearchBar header */}
       return (
         <View style={styles.header}>
-          <StatusBar backgroundColor="#fff" barStyle="dark-content"/>
+          <StatusBar backgroundColor="#323160" barStyle="light-content"/>
             <View style={styles.searchSection}>
               <Icon name={'magnify'} size={24} style={styles.searchIcon}/>
               <TextInput
                 style={styles.input}
-                placeholderTextColor="#707070"
+                placeholderTextColor="#FFFFFF"
                 placeholder="Search for an event or a place"
                 onChangeText={(searchString) => {this.setState({searchString})}}
                 underlineColorAndroid="transparent" />
@@ -34,7 +34,7 @@ export default class Header extends React.Component {
       const firstName = nameArr.slice(0, -1).join(" ")
       return (
         <View style={styles.headerLeft}>
-          <StatusBar backgroundColor="#fff" barStyle="dark-content"/>
+          <StatusBar backgroundColor="#343363" barStyle="light-content"/>
           <Image source={{uri: this.props.user.photoURL}} style={styles.profilePic} />
           <View style={styles.rightText}>
             <Text style={styles.welcome}>{this.props.user.displayName ? 'Welcome ' + firstName + '!': 'Welcome user'}</Text>
@@ -46,7 +46,7 @@ export default class Header extends React.Component {
       {/* Default header */}
       return (
         <View style={styles.header}>
-          <StatusBar backgroundColor="#fff" barStyle="dark-content"/>
+          <StatusBar backgroundColor="#323160" barStyle="light-content"/>
           <TouchableOpacity style={styles.back} onPress={() => this.props.back}>
             <Icon name={'chevron-left'} size={25} style={styles.icons}/>
           </TouchableOpacity>

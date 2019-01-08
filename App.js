@@ -51,17 +51,17 @@ const AppStack = createBottomTabNavigator({
       } else if (routeName === 'Threads') {
         iconName = `eye`;
       }
-      return <Icon name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
+      return <Icon name={iconName} size={horizontal ? 20 : 25} color='#DEDEEB' />;
     }
   }),
   initialRouteName: 'Home',
   tabBarOptions: {
     style: {
-      backgroundColor: '#ffffff',
+      backgroundColor: '#343363',
       borderTopWidth: 0
     },
-    activeTintColor: '#000',
-    inactiveTintColor: '#a0a0a0',
+    activeTintColor: '#DEDEEB',
+    inactiveTintColor: '#494A66',
     showLabel: false,
     }
   }

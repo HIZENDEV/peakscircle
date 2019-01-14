@@ -1,17 +1,6 @@
 import React from 'react';
 import {YellowBox} from 'react-native'
 import {
-  createStore,
-  applyMiddleware,
-  combineReducers
-} from 'redux'
-import {
-  reduxifyNavigator,
-  createReactNavigationReduxMiddleware,
-  createNavigationReducer
-} from 'react-navigation-redux-helpers'
-import { Provider, connect } from 'react-redux'
-import {
   createBottomTabNavigator,
   createStackNavigator,
   createSwitchNavigator,
@@ -81,36 +70,4 @@ const SwitchNavigator = createSwitchNavigator({
   initialRouteName: 'AppLoading'
 })
 
-const navReducer = createNavigationReducer(SwitchNavigator)
-const appReducer = combineReducers({
-  nav: navReducer
-})
-
-const middleware = createReactNavigationReduxMiddleware(
-  "root",
-  state => state.nav
-)
-
-const App = reduxifyNavigator(SwitchNavigator, 'root')
-const mapStateToProps = (state) => ({
-  state: state.nav
-})
-
-const AppWithNavigationState = connect(mapStateToProps)(App)
-
-const store = createStore(
-  appReducer,
-  applyMiddleware(middleware),
-)
-
-export default class Root extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <AppWithNavigationState/>
-      </Provider>
-    )
-  }
-}
-
-// export default createAppContainer(SwitchNavigator);
+export default createAppContainer(SwitchNavigator);

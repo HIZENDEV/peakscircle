@@ -1,40 +1,32 @@
-import React from 'react'
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {compactList as styles} from '@styles/Index'
+import React from "react";
+import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
+import { compactList as styles } from "@styles/Index";
 
-export default class Header extends React.Component {
+export default class CompactList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      items: [
-        {
-          key: 0,
-          title: 'California Burger',
-          subscribersCount : 6,
-          picUrl: 'https://www.confessionnal.ca/wp-content/uploads/2018/04/603267744.jpg'
-        },{
-          key: 1,
-          title: 'Friendly Football',
-          subscribersCount : 2,
-          picUrl: 'http://www.ccsubluedevils.com/sports/msoc/2017-18/photos/0003/DSC_9792_releases.jpg'
-        }
-      ]
-    }
+      items: []
+    };
+  }
+
+  componentWillMount() {
+    let items = Object.values(this.props.events);
+    console.log(items);
+    this.setState({ items: items })
   }
 
   render() {
     return (
-      <FlatList
-        data={[{key: 'a'}, {key: 'b'}]}
-        renderItem={({item}) =>
-        <View>
-            <Image/>
-            <Text></Text>
+      <FlatList data={this.state.items} renderItem={({ item }) => (
+        <View style={styles.container}>
+          <Image style={styles.image} source={{ uri: `${item.picUrl}` }} />
+          <Text style={styles.title}>{item.title}</Text>
         </View>
-        }
+      )}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal={false}
       />
-    )
+      )
   }
-
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoogleSignin } from 'react-native-google-signin';
 import firebase from 'react-native-firebase';
+import { userStore } from "@store/index";
 
 export async function signIn(callback) {
   try {
@@ -19,8 +20,17 @@ export async function signIn(callback) {
     const currentUser = await firebase.auth().signInWithCredential(credential);
     // Get the current user information
     const user = firebase.auth().currentUser;
-
-    console.log(currentUser.user);
+    await userStore.setUser(user);
+    await firebase
+      .database()
+      .ref("users/" + user.uid)
+      .set({
+        displayName: user.displayName || null,
+        email: user.email || null,
+        photoURL: user.photoURL || null,
+        phoneNumber: user.phoneNumber || null
+      });
+    console.log(currentUser.user, userStore.user);
   } catch (e) {
     console.error(e);
   }
@@ -38,4 +48,4 @@ export async function signOut() {
   });
 }
 
-export const currentUser = firebase.auth().currentUser || null
+export const currentUser = firebase.auth().currentUser

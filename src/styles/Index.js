@@ -1,12 +1,15 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform, NativeModules } from "react-native";
 import theme from "@config/theme";
+
+const { StatusBarManager } = NativeModules;
+const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 export const header = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
-    paddingTop: 0,
+    paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   title: {
@@ -50,7 +53,7 @@ export const header = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     paddingHorizontal: "4%",
-    paddingTop: 10,
+    paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   rightText: {
@@ -73,6 +76,9 @@ export const header = StyleSheet.create({
     fontSize: 12,
     color: theme.LIGHT_BLUE,
     paddingBottom: 7.5
+  },
+  centeredDefault: {
+    backgroundColor: "red"
   }
 });
 
@@ -231,33 +237,36 @@ export const sign = StyleSheet.create({
 });
 
 export const compactList = StyleSheet.create({
-         container: {
-           justifyContent: "flex-end",
-           margin: "5%",
-           width: theme.DEVICE_WIDTH * (90 / 100),
-           height: theme.DEVICE_HEIGHT / 7,
-           borderRadius: 7,
-           backgroundColor: theme.BACKGROUND,
+  list: {
+    backgroundColor: theme.BACKGROUND
+  },
+  container: {
+    justifyContent: "flex-end",
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_HEIGHT / 7,
+    borderRadius: 7,
+    backgroundColor: theme.WHITE,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 4
-         },
-         image: {
-           position: 'absolute',
-           width: theme.DEVICE_WIDTH * (90 / 100),
-           height: theme.DEVICE_HEIGHT / 7,
-           borderRadius: 7,
-           resizeMode: "cover",
-           backgroundColor: "blue"
-         },
-         title: {
-           padding: 10,
-           position: "absolute",
-           textAlign: "left",
-           fontSize: 18,
-           fontFamily: theme.BOLD,
-           color: theme.WHITE
-         }
-       });
+  },
+  image: {
+    position: "absolute",
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_HEIGHT / 7,
+    borderRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.LIGHT_BLUE
+  },
+  title: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "left",
+    fontSize: 18,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  }
+});

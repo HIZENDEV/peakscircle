@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
+import { View, Text, Image, FlatList } from "react-native";
 import { compactList as styles } from "@styles/Index";
 
 export default class CompactList extends React.Component {
@@ -12,7 +12,6 @@ export default class CompactList extends React.Component {
 
   componentWillMount() {
     let items = Object.values(this.props.events);
-    console.log(items);
     this.setState({ items: items })
   }
 
@@ -25,7 +24,8 @@ export default class CompactList extends React.Component {
         </View>
       )}
         keyExtractor={(item, index) => index.toString()}
-        horizontal={false}
+        horizontal={true}
+        style={styles.list}
       />
       )
   }

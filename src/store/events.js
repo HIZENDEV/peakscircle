@@ -11,10 +11,6 @@ class EventStore {
   @computed get currentEvents() {
     return this.events.current || {};
   }
-  // @computed get nextEvents() {
-  //   Object.values(this.events);
-  //   return this.events || {};
-  // }
   nextEvents() {
     const array = Object.values(this.events);
     console.log(array);
@@ -26,7 +22,7 @@ class EventStore {
       .once("value");
     this.events = events.val();
     this.loading = false
-    console.log('autorun: ', this.events, 'loading: ', this.loading);
+    console.log('events: ', this.events, 'loading: ', this.loading);
   });
 
   @action

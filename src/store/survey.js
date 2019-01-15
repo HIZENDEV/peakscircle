@@ -1,4 +1,4 @@
-import { autorun, observable, computed, action } from "mobx"
+import { autorun, observable} from "mobx"
 import firebase from 'react-native-firebase'
 
 class surveyStore {
@@ -12,7 +12,7 @@ class surveyStore {
       .once("value");
     this.polls = survey.val();
     this.loading = false
-    console.log("autorun: ", this.polls, "loading: ", this.polls);
+    console.log("survey: ", this.polls, "loading: ", this.loading);
   });
 
 }

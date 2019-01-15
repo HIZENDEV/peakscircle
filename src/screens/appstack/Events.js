@@ -1,5 +1,5 @@
 import React from 'react'
-import {SafeAreaView, View} from 'react-native'
+import {ScrollView, View} from 'react-native'
 import Loading from '@components/Loading'
 import Header from '@components/Header'
 import * as auth from '@services/Auth'
@@ -31,9 +31,9 @@ export default class Events extends React.Component {
 
   render() {
     return <View>
-        {this.state.user ? <SafeAreaView>
+        {this.state.user ? <ScrollView>
             <Header search={true} />
-          </SafeAreaView> : <Loading fullscreen={true} />}
+          </ScrollView> : <Loading fullscreen={true} />}
       </View>;
   }
 }

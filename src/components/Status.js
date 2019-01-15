@@ -16,7 +16,7 @@ export default class Status extends React.Component {
     const backgroundColor = this.props.backgroundColor
     return (
       <View style={{height: STATUSBAR_HEIGHT, backgroundColor }}>
-        <StatusBar translucent backgroundColor={backgroundColor} barStyle={this.props.barStyle}/>
+        <StatusBar translucent={false} backgroundColor={backgroundColor} barStyle={this.props.barStyle}/>
       </View>
     );
   }

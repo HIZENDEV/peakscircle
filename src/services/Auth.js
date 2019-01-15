@@ -30,7 +30,6 @@ export async function signIn(callback) {
         photoURL: user.photoURL || null,
         phoneNumber: user.phoneNumber || null
       });
-    console.log(currentUser.user, userStore.user);
   } catch (e) {
     console.error(e);
   }

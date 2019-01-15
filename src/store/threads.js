@@ -1,4 +1,4 @@
-import { autorun, observable, computed, action } from "mobx"
+import { autorun, observable } from "mobx"
 import firebase from 'react-native-firebase'
 
 class threadStore {
@@ -12,9 +12,8 @@ class threadStore {
       .once("value");
     this.threads = threads.val();
     this.loading = false;
-    console.log("autorun: ", this.threads, "loading: ", this.loading);
+    console.log("threads: ", this.threads, "loading: ", this.loading);
   });
-
 }
 
 export default new threadStore()

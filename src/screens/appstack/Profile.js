@@ -1,5 +1,5 @@
 import React from 'react'
-import {SafeAreaView, View} from 'react-native'
+import {ScrollView, View} from 'react-native'
 import Loading from '@components/Loading'
 import Header from '@components/Header'
 import UserInfo from '@components/UserInfo'
@@ -21,10 +21,10 @@ export default class Profile extends React.Component {
 
   render() {
     return <View>
-        {this.state.user ? <SafeAreaView>
+        {this.state.user ? <ScrollView>
             <Header screen={this.state.screen} back={this.back} />
         <UserInfo user={this.state.user} />
-          </SafeAreaView> : <Loading fullscreen={true} />}
+          </ScrollView> : <Loading fullscreen={true} />}
       </View>;
   }
 }

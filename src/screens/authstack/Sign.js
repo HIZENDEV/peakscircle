@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { sign as styles } from "@styles/Index";
 import * as auth from "@services/Auth";
+import Status from '@components/Status'
 
 export default class Sign extends React.Component {
   constructor(props) {
@@ -23,10 +24,10 @@ export default class Sign extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <StatusBar barStyle="light-content" />
+        <Status backgroundColor={'#FFC55C'} barStyle={'light-content'} />
         <Image
-          source={require("@assets/intro_x3.png")}
-          style={{ width: "100%" }}
+          source={require("@assets/intro.png")}
+          style={styles.top}
         />
         <View style={styles.container}>
           <TouchableOpacity onPress={this._signIn} style={styles.signInButton}>

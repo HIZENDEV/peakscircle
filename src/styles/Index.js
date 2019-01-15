@@ -9,7 +9,14 @@ export const header = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
-    paddingTop: STATUSBAR_HEIGHT * 2,
+    // paddingTop: STATUSBAR_HEIGHT * 2,
+    backgroundColor: theme.BACKGROUND
+  },
+  headerSimple: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: "4%",
+    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   title: {
@@ -52,17 +59,18 @@ export const header = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    paddingVertical: 20,
     paddingHorizontal: "4%",
-    paddingTop: STATUSBAR_HEIGHT * 2,
+    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   rightText: {
     marginLeft: 5
   },
   profilePic: {
-    width: 40,
-    height: 40,
-    borderRadius: 20
+    width: 50,
+    height: 50,
+    borderRadius: 25
   },
   welcome: {
     fontFamily: theme.BOLD,
@@ -194,6 +202,12 @@ export const sign = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1
+  },
+  top: {
+    backgroundColor: theme.BACKGROUND,
+    width: theme.DEVICE_WIDTH,
+    resizeMode: 'cover',
+    height: 270
   },
   signInButton: {
     flexDirection: "row",

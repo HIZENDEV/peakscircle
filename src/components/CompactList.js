@@ -25,6 +25,7 @@ export default class CompactList extends React.Component {
       )}
         keyExtractor={(item, index) => index.toString()}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         style={styles.list}
       />
       )

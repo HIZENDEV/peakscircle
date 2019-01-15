@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button, Text } from "react-native";
 import Loading from '@components/Loading'
 import Header from '@components/Header'
 import CompactList from "@components/CompactList";

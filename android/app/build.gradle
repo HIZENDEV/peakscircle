@@ -139,6 +139,12 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'org.webkit:android-jsc:r236355'
+    }
+}
+
 dependencies {
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-google-signin')

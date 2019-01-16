@@ -5,12 +5,18 @@ class EventStore {
   @observable events = {};
   @observable loading = true;
 
-  @computed get pastEvents() {
-    return this.events.past || {};
+  picRequest = async (eventKey) => {
+    const subscribers = await firebase
+      .database()
+      .ref("events/" + eventKey + "subscribers")
+      .limitToLast(2)
+      .once("value")
+    subscribers = subscribers.val()
+    console.log(subscribers)
+    return subscribers
+    // const picUrl = await firebase.database().ref("users/" + user + "subscribers").once("value")
   }
-  @computed get currentEvents() {
-    return this.events.current || {};
-  }
+
   nextEvents() {
     const array = Object.values(this.events);
     console.log(array);

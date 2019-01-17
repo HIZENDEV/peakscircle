@@ -313,6 +313,7 @@ export const compactList = StyleSheet.create({
     color: theme.LIGHT_BLUE
   }
 })
+
 export const eventsList = StyleSheet.create({
   list: {
     backgroundColor: theme.BACKGROUND
@@ -450,4 +451,86 @@ export const event = StyleSheet.create({
     color: theme.WHITE,
     paddingRight: 4,
   }
+})
+
+export const archivesList = StyleSheet.create({
+  list: {
+    backgroundColor: theme.BACKGROUND,
+    paddingTop: theme.DEVICE_WIDTH * (5 / 100),
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
+  }
+})
+
+export const archive = StyleSheet.create({
+  container: {
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    marginBottom: theme.DEVICE_WIDTH * (1 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  placement: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'flex-start',
+  },
+  left: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'flex-start',
+  },
+  right: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'center',
+  },
+  image: {
+    width: (theme.DEVICE_WIDTH * (90 / 100)) * (1 / 4),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderTopLeftRadius: 7,
+    borderBottomLeftRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.PRIMARY,
+    marginRight: 8
+  },
+  title: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
+    textAlign: "left",
+    fontSize: 17,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  date: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
+    textAlign: "left",
+    fontSize: 10,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  opinion: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
+    paddingBottom: 8,
+    textAlign: "left",
+    fontSize: 30,
+    fontFamily: theme.BOLD,
+    color: theme.STAR,
+    
+  },
+  icons: {
+    padding: 10,
+    color: theme.WHITE
+  },
 })

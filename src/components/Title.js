@@ -16,7 +16,7 @@ export default class Title extends React.Component {
         <View style={styles.container}>
           <Text style={styles.title}>{this.props.name}</Text>
           <View style={styles.iconsAlign}>
-            <TouchableOpacity style={[styles.action, styles.add]} onPress={this.props.add}>
+            <TouchableOpacity style={[styles.action, styles.add]} onPress={this.props.action}>
               <Icon name={'plus'} size={24} style={styles.icons} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.action} onPress={this.props.action}>

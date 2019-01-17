@@ -4,6 +4,7 @@ import Loading from '@components/Loading'
 import Header from '@components/Header'
 import Title from '@components/Title'
 import EventsList from '@components/EventsList'
+import ArchivesList from '@components/ArchivesList'
 import * as auth from '@services/Auth'
 import store from "@store/index";
 import { observer } from "mobx-react";
@@ -40,7 +41,7 @@ export default class Events extends React.Component {
               <Title name={"Discover"} add={true} action={() => this.navigate("Events")} />
               <EventsList events={store.eventStore.events} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
-              <EventsList events={store.eventStore.events} />
+              <ArchivesList archives={store.eventStore.events} />
             </ScrollView>
         </React.Fragment>
       )

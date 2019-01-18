@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, FlatList, RefreshControl } from "react-native";
 import { compactList as styles } from "@styles/Index";
+import { nextEvents } from '@services/Events'
 
 export default class CompactList extends React.Component {
   constructor(props) {
@@ -12,8 +13,17 @@ export default class CompactList extends React.Component {
   }
 
   componentWillMount() {
-    let items = Object.values(this.props.events);
-    this.setState({ items: items })
+    if (this.props.type === 'events') {
+      this.setState({ items: nextEvents(this.props.items) })
+    }
+    if (this.props.type === 'threads') {
+      let items = Object.values(this.props.items)
+      this.setState({ items: items })
+    }
+    if (this.props.type === 'survey') {
+      let items = Object.values(this.props.items)
+      this.setState({ items: items })
+    }
   }
 
   async refreshData() {

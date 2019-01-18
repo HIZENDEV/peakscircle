@@ -18,6 +18,12 @@ class Database {
     url = await url.val()
     return url
   }
+  eventsRequest = async () => {
+    const request = await firebase.database().ref("events/").orderByChild("duration").once("value")
+    const events = Object.keys(request.val())
+    return events
+  }
 }
+
 
 export default new Database()

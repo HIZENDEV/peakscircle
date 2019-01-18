@@ -4,7 +4,6 @@ import { event as styles } from "@styles/Index"
 import Database from '@services/Database'
 import Loading from '@components/Loading'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import store from "@store/index";
 import { observer } from "mobx-react";
 import moment from 'moment'
 
@@ -90,7 +89,7 @@ export default class Event extends React.Component {
 
               <View style={styles.bottomBlock}>
                 <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText}>Join</Text>
+                  <Text style={styles.buttonText}>Subscribe</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.buttonIcon}>

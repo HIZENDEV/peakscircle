@@ -35,12 +35,16 @@ export default class Home extends React.Component {
         <React.Fragment>
           <Header user={store.userStore.user} upcoming={2} />
           <ScrollView style={{ backgroundColor: '#323160'}}>
+            {/* Events */}
             <Title name={"Events"} action={() => this.navigate("Events")} />
-            <CompactList events={store.eventStore.events} />
+            <CompactList items={store.eventStore.events} type={'events'} />
+            {/* Threads */}
             <Title name={"Threads"} action={() => this.navigate("Threads")} />
-            <CompactList events={store.threadStore.threads} />
+            <CompactList items={store.threadStore.threads} type={'threads'} />
+            {/* Survey */}
             <Title name={"Survey"} action={() => this.navigate("Profile")} />
-            <CompactList events={store.surveyStore.polls} />
+            <CompactList items={store.surveyStore.polls} type={'survey'} />
+
             {/* <Button onPress={() => store.userStore.increment()} title="mosre" />
             <Text>{store.userStore.counter}</Text>
             <Button onPress={() => store.userStore.decrement()} title="less" /> */}

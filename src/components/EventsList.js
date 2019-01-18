@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, RefreshControl, View, Text } from "react-native";
 import { eventsList as styles } from "@styles/Index";
 import Event from "@components/Event";
+import { nextEvents } from '@services/Events'
 
 export default class EventsList extends React.Component {
   constructor(props) {
@@ -13,11 +14,7 @@ export default class EventsList extends React.Component {
   }
 
   componentWillMount() {
-    let items = []
-    for (const key in this.props.events) {
-      items.push({...this.props.events[key], key})
-    }
-    this.setState({ items: items })
+    this.setState({ items: nextEvents(this.props.events) })
   }
 
   async refreshData() {

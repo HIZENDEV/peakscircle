@@ -41,7 +41,7 @@ export default class Events extends React.Component {
               <Title name={"Discover"} add={true} action={() => this.navigate("Events")} />
               <EventsList events={store.eventStore.events} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
-              <ArchivesList archives={store.eventStore.events} />
+              <ArchivesList events={store.eventStore.events} />
             </ScrollView>
         </React.Fragment>
       )

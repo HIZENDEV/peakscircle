@@ -334,7 +334,7 @@ export const event = StyleSheet.create({
     alignItems: 'flex-start',
     margin: theme.DEVICE_WIDTH * (5 / 100),
     width: theme.DEVICE_WIDTH * (90 / 100),
-    height: (theme.DEVICE_WIDTH * (65 / 100) - theme.DEVICE_WIDTH * (15 / 100)) + (28*5) + 120,
+    height: (theme.DEVICE_WIDTH * (65 / 100) - theme.DEVICE_WIDTH * (15 / 100)) + (28 * 5) + 120,
     marginTop: theme.DEVICE_WIDTH * (20 / 100),
     paddingHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     borderRadius: 7,
@@ -379,10 +379,10 @@ export const event = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.PINK,
-    width: 74,
-    height: 30,
-    borderRadius: 15,
-    marginLeft: (theme.DEVICE_WIDTH * (80 / 100)) * (1 / 3) + 24,
+    width: 118,
+    height: 32,
+    borderRadius: 3,
+    marginLeft: (theme.DEVICE_WIDTH * (80 / 100)) * (1 / 3.06),
     marginBottom: 10,
   },
   buttonText: {
@@ -456,7 +456,7 @@ export const event = StyleSheet.create({
 export const archivesList = StyleSheet.create({
   list: {
     backgroundColor: theme.BACKGROUND,
-    paddingTop: theme.DEVICE_WIDTH * (5 / 100),
+    paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
   },
   error: {
     padding: 10,
@@ -531,6 +531,131 @@ export const archive = StyleSheet.create({
   },
   icons: {
     padding: 10,
+    color: theme.WHITE
+  },
+})
+
+export const incommingList = StyleSheet.create({
+  list: {
+    backgroundColor: theme.BACKGROUND,
+    paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
+  }
+})
+
+export const incomming = StyleSheet.create({
+  container: {
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    marginBottom: theme.DEVICE_WIDTH * (1 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  placement: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'flex-end',
+  },
+  left: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'flex-start',
+  },
+  right: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'center',
+    backgroundColor: theme.PINK,
+    width: 86,
+    height: 26,
+    borderRadius: 3,
+    marginRight: 8,
+    marginBottom: 12,
+  },
+  buttonText: {
+    fontFamily: theme.BOLD,
+    color: theme.WHITE,
+    fontSize: 12
+  },
+  image: {
+    width: (theme.DEVICE_WIDTH * (90 / 100)) * (1 / 4),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderTopLeftRadius: 7,
+    borderBottomLeftRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.PRIMARY,
+    marginRight: 8
+  },
+  title: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
+    textAlign: "left",
+    fontSize: 17,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  date: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
+    textAlign: "left",
+    fontSize: 10,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  opinion: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
+    paddingBottom: 8,
+    textAlign: "left",
+    fontSize: 30,
+    fontFamily: theme.BOLD,
+    color: theme.STAR,
+
+  },
+  icons: {
+    padding: 10,
+    color: theme.WHITE
+  },
+  bubbleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  bubbleImage: {
+    backgroundColor: theme.BACKGROUND,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderColor: theme.WHITE,
+    borderWidth: 1,
+    marginRight: -12,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubble: {
+    backgroundColor: theme.PINK,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    borderColor: theme.WHITE,
+    borderWidth: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubbleText: {
+    textAlign: "center",
+    fontSize: 14,
+    fontFamily: theme.BOLD,
     color: theme.WHITE
   },
 })

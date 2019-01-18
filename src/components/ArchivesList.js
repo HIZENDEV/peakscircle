@@ -1,22 +1,19 @@
 import React from "react";
-import { FlatList, RefreshControl, View, Text } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { archivesList as styles } from "@styles/Index";
 import Archive from "@components/Archive";
+import { previousEvents, userPreviousEvents } from "@services/Events";
 
 export default class ArchivesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-    };
+    }
   }
 
   componentWillMount() {
-    let items = []
-    for (const key in this.props.archives) {
-      items.push({...this.props.archives[key], key})
-    }
-    this.setState({ items: items })
+    this.props.user ? this.setState({ items: userPreviousEvents(this.props.events) }) : this.setState({ items: previousEvents(this.props.events) })
   }
 
   render() {

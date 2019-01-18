@@ -2,6 +2,7 @@ import { autorun, observable, computed, action } from "mobx"
 import firebase from 'react-native-firebase'
 
 class EventStore {
+  @observable initialState = {};
   @observable events = {};
   @observable loading = true;
 
@@ -13,8 +14,26 @@ class EventStore {
     const events = await firebase
       .database()
       .ref("events")
+      
       .once("value");
-    this.events = events.val();
+    this.initialState = events.val();
+
+    let sortable = []
+    let tempKey = []
+    for (const event in this.initialState) {
+      sortable.push(this.initialState[event])
+    }
+    for (const key in this.initialState) {
+      tempKey.push(key)
+    }
+    for (let i = 0; i < sortable.length; i++) {
+      sortable[i].key = tempKey[i]
+    }
+    sortable.sort(function (a, b) {
+      return a.startDate - b.startDate
+    })
+    const temp = Object.assign({}, sortable)
+    this.events = temp
     this.loading = false
     console.log('events: ', this.events, 'loading: ', this.loading);
   });

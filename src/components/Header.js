@@ -17,7 +17,7 @@ export default class Header extends React.Component {
       {/* SearchBar header */}
       return (
         <View style={styles.header}>
-          <Status backgroundColor="#5E8D48" barStyle="light-content" />
+          <Status backgroundColor="#323160" barStyle="light-content" />
             <View style={styles.searchSection}>
               <Icon name={'magnify'} size={24} style={styles.searchIcon}/>
               <TextInput
@@ -35,7 +35,7 @@ export default class Header extends React.Component {
       const firstName = nameArr.slice(0, -1).join(" ")
       return (
         <View style={styles.headerLeft}>
-          <Status backgroundColor="#5E8D48" barStyle="light-content" />
+          <Status backgroundColor="#323160" barStyle="light-content" />
           <Image source={{uri: this.props.user.photoURL}} style={styles.profilePic} />
           <View style={styles.rightText}>
             <Text style={styles.welcome}>{this.props.user.displayName ? 'Welcome ' + firstName + '!': 'Welcome user'}</Text>
@@ -46,9 +46,8 @@ export default class Header extends React.Component {
     } else {
       {/* Default header */}
       return (
-      <View style={styles.header}>
-          <Status backgroundColor="#5E8D48" barStyle="light-content" />
-          <View style={styles.centeredDefault}>
+        <View style={styles.headerSimple}>
+          <Status backgroundColor="#323160" barStyle="light-content" />
             <TouchableOpacity style={styles.back} onPress={() => this.props.back}>
               <Icon name={"chevron-left"} size={25} style={styles.icons} />
             </TouchableOpacity>
@@ -56,7 +55,6 @@ export default class Header extends React.Component {
             <TouchableOpacity style={styles.settings} onPress={() => this.props.settings}>
               <Icon name={"settings"} size={25} style={styles.icons} />
             </TouchableOpacity>
-          </View>
         </View>
         );
     }

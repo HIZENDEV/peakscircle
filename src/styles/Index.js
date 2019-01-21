@@ -9,7 +9,14 @@ export const header = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
-    paddingTop: STATUSBAR_HEIGHT * 2,
+    // paddingTop: STATUSBAR_HEIGHT * 2,
+    backgroundColor: theme.BACKGROUND
+  },
+  headerSimple: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: "4%",
+    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   title: {
@@ -26,6 +33,7 @@ export const header = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+    marginBottom: 30,
     borderRadius: 5,
     backgroundColor: theme.LIGHT_BLUE,
     color: theme.WHITE,
@@ -45,6 +53,7 @@ export const header = StyleSheet.create({
     paddingRight: 8,
     paddingBottom: 8,
     paddingLeft: 0,
+    borderRadius: 5,
     backgroundColor: theme.LIGHT_BLUE,
     color: theme.PRIMARY
   },
@@ -52,17 +61,18 @@ export const header = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    paddingVertical: 20,
     paddingHorizontal: "4%",
-    paddingTop: STATUSBAR_HEIGHT * 2,
+    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   rightText: {
     marginLeft: 5
   },
   profilePic: {
-    width: 40,
-    height: 40,
-    borderRadius: 20
+    width: 50,
+    height: 50,
+    borderRadius: 25
   },
   welcome: {
     fontFamily: theme.BOLD,
@@ -80,7 +90,7 @@ export const header = StyleSheet.create({
   centeredDefault: {
     backgroundColor: "red"
   }
-});
+})
 
 export const userInfo = StyleSheet.create({
   container: {
@@ -151,7 +161,7 @@ export const userInfo = StyleSheet.create({
     height: 30,
     backgroundColor: theme.DRIBBBLE
   }
-});
+})
 
 export const title = StyleSheet.create({
   container: {
@@ -162,16 +172,29 @@ export const title = StyleSheet.create({
     paddingHorizontal: 22,
     backgroundColor: theme.BACKGROUND
   },
+  iconsAlign: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   title: {
-    fontFamily: theme.BOLD,
+    fontFamily: theme.EXTRA,
     fontSize: 21,
     color: theme.PRIMARY
   },
   action: {},
   icons: {
     color: theme.PRIMARY
+  },
+  add:{
+    marginRight: 20
+  },
+  actionText: {
+    color: theme.LIGHT_BLUE,
+    fontFamily: theme.BOLD,
+    fontSize: 13
   }
-});
+})
 
 export const loading = StyleSheet.create({
   container: {
@@ -185,7 +208,7 @@ export const loading = StyleSheet.create({
     width: theme.DEVICE_WIDTH / 3,
     height: theme.DEVICE_WIDTH / 3
   }
-});
+})
 
 export const sign = StyleSheet.create({
   container: {
@@ -194,6 +217,12 @@ export const sign = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1
+  },
+  top: {
+    backgroundColor: theme.BACKGROUND,
+    width: theme.DEVICE_WIDTH,
+    resizeMode: 'cover',
+    height: 270
   },
   signInButton: {
     flexDirection: "row",
@@ -234,7 +263,7 @@ export const sign = StyleSheet.create({
     alignItems: "center",
     height: "10%"
   }
-});
+})
 
 export const compactList = StyleSheet.create({
   list: {
@@ -253,6 +282,12 @@ export const compactList = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4
   },
+  empty: {
+    justifyContent: "flex-end",
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_HEIGHT / 7,
+  },
   image: {
     position: "absolute",
     width: theme.DEVICE_WIDTH * (90 / 100),
@@ -268,5 +303,359 @@ export const compactList = StyleSheet.create({
     fontSize: 18,
     fontFamily: theme.BOLD,
     color: theme.WHITE
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
   }
-});
+})
+
+export const eventsList = StyleSheet.create({
+  list: {
+    backgroundColor: theme.BACKGROUND
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
+  }
+})
+
+export const event = StyleSheet.create({
+  container: {
+    justifyContent: "flex-start",
+    alignItems: 'flex-start',
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: (theme.DEVICE_WIDTH * (65 / 100) - theme.DEVICE_WIDTH * (15 / 100)) + (28 * 5) + 120,
+    marginTop: theme.DEVICE_WIDTH * (20 / 100),
+    paddingHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  image: {
+    marginTop: -theme.DEVICE_WIDTH * (15 / 100),
+    width: theme.DEVICE_WIDTH * (80 / 100),
+    height: theme.DEVICE_WIDTH * (65 / 100),
+    borderRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.PRIMARY,
+  },
+  block: {
+    width: theme.DEVICE_WIDTH * (80 / 100),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginVertical: 4
+  },
+  stretchedBlock: {
+    width: theme.DEVICE_WIDTH * (80 / 100),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+  },
+  bottomBlock: {
+    width: theme.DEVICE_WIDTH * (80 / 100),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.PINK,
+    width: 118,
+    height: 32,
+    borderRadius: 3,
+    marginLeft: (theme.DEVICE_WIDTH * (80 / 100)) * (1 / 3.06),
+    marginBottom: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: theme.PRIMARY,
+    fontFamily: theme.BOLD
+  },
+  bubbleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubbleImage: {
+    backgroundColor: theme.BACKGROUND,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    borderColor: theme.WHITE,
+    borderWidth: 2,
+    marginRight: -14,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubble: {
+    backgroundColor: theme.PINK,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    borderColor: theme.WHITE,
+    borderWidth: 2,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubbleText: {
+    textAlign: "center",
+    fontSize: 14,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  title: {
+    textAlign: "left",
+    fontSize: 18,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  info: {
+    height: 30,
+    padding: 8,
+    textAlign: "left",
+    fontSize: 13,
+    fontFamily: theme.MEDIUM,
+    color: theme.WHITE
+  },
+  description: {
+    height: 56,
+    marginVertical: 10,
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.WHITE
+  },
+  icons: {
+    color: theme.WHITE
+  },
+  buttonIconInner: {
+    color: theme.WHITE,
+    paddingRight: 4,
+  }
+})
+
+export const archivesList = StyleSheet.create({
+  list: {
+    backgroundColor: theme.BACKGROUND,
+    paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
+  }
+})
+
+export const archive = StyleSheet.create({
+  container: {
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    marginBottom: theme.DEVICE_WIDTH * (1 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  placement: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'flex-start',
+  },
+  left: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'flex-start',
+  },
+  right: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'center',
+  },
+  image: {
+    width: (theme.DEVICE_WIDTH * (90 / 100)) * (1 / 4),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderTopLeftRadius: 7,
+    borderBottomLeftRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.PRIMARY,
+    marginRight: 8
+  },
+  title: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
+    textAlign: "left",
+    fontSize: 17,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  date: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
+    textAlign: "left",
+    fontSize: 10,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  opinion: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
+    paddingBottom: 8,
+    textAlign: "left",
+    fontSize: 30,
+    fontFamily: theme.BOLD,
+    color: theme.STAR,
+    
+  },
+  icons: {
+    padding: 10,
+    color: theme.WHITE
+  },
+})
+
+export const incommingList = StyleSheet.create({
+  list: {
+    backgroundColor: theme.BACKGROUND,
+    paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
+  },
+  error: {
+    padding: 10,
+    position: "absolute",
+    textAlign: "center",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE
+  }
+})
+
+export const incomming = StyleSheet.create({
+  container: {
+    margin: theme.DEVICE_WIDTH * (5 / 100),
+    marginBottom: theme.DEVICE_WIDTH * (1 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  placement: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'flex-end',
+  },
+  left: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'flex-start',
+  },
+  right: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'center',
+    backgroundColor: theme.PINK,
+    width: 86,
+    height: 26,
+    borderRadius: 3,
+    marginRight: 8,
+    marginBottom: 12,
+  },
+  buttonText: {
+    fontFamily: theme.BOLD,
+    color: theme.WHITE,
+    fontSize: 12
+  },
+  image: {
+    width: (theme.DEVICE_WIDTH * (90 / 100)) * (1 / 4),
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    borderTopLeftRadius: 7,
+    borderBottomLeftRadius: 7,
+    resizeMode: "cover",
+    backgroundColor: theme.PRIMARY,
+    marginRight: 8
+  },
+  title: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
+    textAlign: "left",
+    fontSize: 17,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  date: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
+    textAlign: "left",
+    fontSize: 10,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+  opinion: {
+    height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
+    paddingBottom: 8,
+    textAlign: "left",
+    fontSize: 30,
+    fontFamily: theme.BOLD,
+    color: theme.STAR,
+
+  },
+  icons: {
+    padding: 10,
+    color: theme.WHITE
+  },
+  bubbleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  bubbleImage: {
+    backgroundColor: theme.BACKGROUND,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderColor: theme.WHITE,
+    borderWidth: 1,
+    marginRight: -12,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubble: {
+    backgroundColor: theme.PINK,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    borderColor: theme.WHITE,
+    borderWidth: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  bubbleText: {
+    textAlign: "center",
+    fontSize: 14,
+    fontFamily: theme.BOLD,
+    color: theme.WHITE
+  },
+})

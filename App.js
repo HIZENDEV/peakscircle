@@ -20,6 +20,7 @@ import AuthLoading from '@authstack/AuthLoading.js'
 
 // ignore specific yellowbox warnings
 YellowBox.ignoreWarnings(["Require cycle:", "Remote debugger"]);
+YellowBox.ignoreWarnings(['unknown call: "relay:check"']);
 
 const AppStack = createBottomTabNavigator({
   Home: Home,

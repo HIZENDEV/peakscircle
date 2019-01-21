@@ -9,8 +9,9 @@
     "ios": "open ios/peakscircle,xcworkspace"
   },
   "dependencies": {
+    "jsc-android": "236355.x.x",
     "lottie-react-native": "^2.5.11",
-    "mobx": "^5.8.0",
+    "mobx": "^4.8.0",
     "mobx-react": "^5.4.3",
     "moment": "^2.23.0",
     "react": "16.6.1",
@@ -19,6 +20,9 @@
     "react-native-gesture-handler": "^1.0.10",
     "react-native-google-signin": "^1.0.2",
     "react-native-linear-gradient": "^2.5.3",
+    "react-native-modal": "^7.0.2",
+    "react-native-stars": "^1.1.5",
+    "react-native-user-avatar": "^1.0.3",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.7"
   },

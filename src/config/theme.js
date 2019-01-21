@@ -4,6 +4,7 @@ export default {
   // Colors
   BLUE: '#6BC5E2',
   PINK: '#EC4467',
+  STAR: '#FFA837',
   GREY: '#707070',
   WHITE: '#FFFFFF',
   LIGHT_BLUE: '#6B6A88',

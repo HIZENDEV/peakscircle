@@ -1,7 +1,6 @@
-import React from 'react'
 import { GoogleSignin } from 'react-native-google-signin';
 import firebase from 'react-native-firebase';
-import { userStore } from "@store/index";
+import store from "@store/index";
 
 export async function signIn(callback) {
   try {
@@ -20,7 +19,7 @@ export async function signIn(callback) {
     const currentUser = await firebase.auth().signInWithCredential(credential);
     // Get the current user information
     const user = firebase.auth().currentUser;
-    await userStore.setUser(user);
+    await store.userStore.setUser(user);
     await firebase
       .database()
       .ref("users/" + user.uid)

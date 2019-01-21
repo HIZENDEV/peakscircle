@@ -6,6 +6,7 @@ import Title from '@components/Title'
 import store from "@store/index";
 import { observer } from 'mobx-react'
 import { ScrollView } from 'react-native-gesture-handler';
+import Notification from '@services/Notification'
 
 @observer
 export default class Home extends React.Component {
@@ -21,8 +22,15 @@ export default class Home extends React.Component {
     this.setState({ user: store.userStore.user });
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    Notification.checkPermission();
+    Notification.createNotificationListeners()
+  }
 
+  componentWillUnmount() {
+    Notification.notificationListener();
+    Notification.notificationOpenedListener();
+  }
 
   navigate(route) {
     this.props.navigation.navigate(route);

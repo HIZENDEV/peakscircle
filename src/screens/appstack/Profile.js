@@ -18,18 +18,31 @@ export default class Profile extends React.Component {
     this.back = this.props.navigation.goBack();
   }
   componentWillMount() {
-    this.setState({ user: store.userStore.user });
+    const user = this.props.navigation.getParam('user', null)
+    if (user){
+      this.setState({ user: user });
+    } else {
+      this.setState({ user: store.userStore.user });
+    }
   }
+
   render() {
+    
+    let { navigation } = this.props
+    let user = navigation.getParam('user', null)
+    console.warn(this.props, user)
     if (!store.surveyStore.loading && !store.threadStore.loading && !store.userStore.loading && !store.eventStore.loading) {
-      return (<ScrollView>
-        <Header screen={this.state.screen} back={this.back} />
-        <UserInfo user={this.state.user} />
-        <Title name={"Incoming events"} />
-        <IncommingList events={store.eventStore.events} user={true} />
-        <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
-        <ArchivesList events={store.eventStore.events} user={true} />
-      </ScrollView>);
+      return (
+        <React.Fragment>
+          <Header screen={this.state.screen} back={this.back} />
+          <UserInfo user={user !== null ? user : this.state.user} />
+          <ScrollView>
+            <Title name={"Incoming events"} />
+            <IncommingList events={store.eventStore.events} user={user !== null ? user.uid : this.state.user.uid} />
+            <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
+            <ArchivesList events={store.eventStore.events} user={user !== null ? user.uid : this.state.user.uid} />
+          </ScrollView>
+        </React.Fragment>);
     }
     else {
       return <Loading fullscreen={true} />;

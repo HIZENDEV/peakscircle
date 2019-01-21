@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Home from '@appstack/Home.js'
 import Events from '@appstack/Events.js'
 import Threads from '@appstack/Threads.js'
+import Mates from '@appstack/Mates.js'
 import Profile from '@appstack/Profile.js'
 // Authstack screens
 import Sign from '@authstack/Sign.js'
@@ -25,7 +26,8 @@ YellowBox.ignoreWarnings(['unknown call: "relay:check"']);
 const AppStack = createBottomTabNavigator({
   Home: Home,
   Events: Events,
-  Threads: Threads,
+  //Threads: Threads,
+  Mates: Mates,
   Profile: Profile,
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -40,6 +42,8 @@ const AppStack = createBottomTabNavigator({
         iconName = `map-marker`;
       } else if (routeName === 'Threads') {
         iconName = `eye`;
+      } else if (routeName === 'Mates') {
+        iconName = `account-multiple`;
       }
       return <Icon name={iconName} size={horizontal ? 20 : 25} color='#DEDEEB' />;
     }

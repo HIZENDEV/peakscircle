@@ -13,7 +13,7 @@ export default class ArchivesList extends React.Component {
   }
 
   componentWillMount() {
-    this.props.user ? this.setState({ items: userPreviousEvents(this.props.events) }) : this.setState({ items: previousEvents(this.props.events) })
+    this.props.user ? this.setState({ items: userPreviousEvents(this.props.events, this.props.user) }) : this.setState({ items: previousEvents(this.props.events) })
   }
 
   render() {

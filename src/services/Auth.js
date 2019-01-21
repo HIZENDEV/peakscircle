@@ -24,6 +24,7 @@ export async function signIn(callback) {
       .database()
       .ref("users/" + user.uid)
       .set({
+        uid: user.uid || null,
         displayName: user.displayName || null,
         email: user.email || null,
         photoURL: user.photoURL || null,

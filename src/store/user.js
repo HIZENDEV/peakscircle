@@ -3,6 +3,7 @@ import firebase from "react-native-firebase"
 
 class UserStore {
   @observable user = {};
+  @observable mates = {};
   @observable loading = true;
   @observable counter = 0;
 
@@ -12,6 +13,16 @@ class UserStore {
     this.loading = false
     console.log("user: ", this.user, "loading: ", this.loading);
   });
+
+
+  getAllUsers = async () => {
+    this.loading = true
+    let users = await firebase.database().ref("users").once("value")
+    this.mates = await users.val()
+    console.log(this.mates)
+    this.loading = false
+    return this.mates
+  }
 
   constructor() {}
 

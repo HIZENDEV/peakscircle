@@ -13,7 +13,7 @@ export default class IncommingList extends React.Component {
   }
 
   componentWillMount() {
-    this.props.user ? this.setState({ items: userNextEvents(this.props.events) }) : this.setState({ items: nextEvents(this.props.events) })
+    this.props.user ? this.setState({ items: userNextEvents(this.props.events, this.props.user) }) : this.setState({ items: nextEvents(this.props.events) })
   }
 
   render() {

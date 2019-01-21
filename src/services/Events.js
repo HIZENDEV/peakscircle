@@ -51,9 +51,9 @@ export const previousEvents = (events) => {
   return items
 }
 
-export const userNextEvents = (events) => {
+export const userNextEvents = (events, uid) => {
   let items = []
-  const user = store.userStore.user.uid
+  const user = uid
   const next = nextEvents(events)
 
   next.forEach(event => {
@@ -66,9 +66,9 @@ export const userNextEvents = (events) => {
   return items
 }
 
-export const userPreviousEvents = (events) => {
+export const userPreviousEvents = (events, uid) => {
   let items = []
-  const user = store.userStore.user.uid
+  const user = uid
   const previous = previousEvents(events)
 
   previous.forEach(event => {

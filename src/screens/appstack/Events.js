@@ -36,12 +36,12 @@ export default class Events extends React.Component {
       if (!store.userStore.loading && !store.eventStore.loading) {
       return (
         <React.Fragment>
-          <Header search={true} />
-            <ScrollView>
+          <Header search={'Search for an event or a place'} />
+            <ScrollView style={{ backgroundColor: '#323160' }} >
               <Title name={"Discover"} add={true} action={() => this.navigate("Events")} />
               <EventsList events={store.eventStore.events} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
-              <ArchivesList events={store.eventStore.events} />
+              <ArchivesList events={store.eventStore.events} navigation={this.props.navigation} />
             </ScrollView>
         </React.Fragment>
       )

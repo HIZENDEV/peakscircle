@@ -17,7 +17,7 @@ export default class MatesList extends React.Component {
   render() {
     return (
       <FlatList data={this.state.items} renderItem={({ item }) => (
-        <TouchableOpacity style={styles.container} onPress={() => this.props.navigation.navigate('Profile', {user: item})} >
+        <TouchableOpacity style={styles.container} onPress={() => this.props.navigation.navigate('User', {user: item})} >
           <Image style={styles.image} source={{ uri: `${item.photoURL}` }} />
           <View style={styles.right}>
             <Text style={styles.displayName}>{item.displayName}</Text>

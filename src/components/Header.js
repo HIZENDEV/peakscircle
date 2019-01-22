@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, TextInput, NativeModules, Platform } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
 import Status from './Status'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { header as styles } from '@styles/Index'
@@ -23,7 +23,7 @@ export default class Header extends React.Component {
               <TextInput
                 style={styles.input}
                 placeholderTextColor="#FFFFFF"
-                placeholder="Search for an event or a place"
+                placeholder={this.props.search}
                 onChangeText={(searchString) => {this.setState({searchString})}}
                 underlineColorAndroid="transparent" />
           </View>
@@ -43,20 +43,31 @@ export default class Header extends React.Component {
           </View>
         </View>
       )
-    } else {
-      {/* Default header */}
+    } else if (this.props.screen) {
+      {/* Named header */}
       return (
         <View style={styles.headerSimple}>
           <Status backgroundColor="#323160" barStyle="light-content" />
-            <TouchableOpacity style={styles.back} onPress={() => this.props.back}>
+            <TouchableOpacity style={styles.back} onPress={this.props.back}>
               <Icon name={"chevron-left"} size={25} style={styles.icons} />
             </TouchableOpacity>
             <Text style={styles.title}>{this.props.screen}</Text>
-            <TouchableOpacity style={styles.settings} onPress={() => this.props.settings}>
+            <TouchableOpacity style={styles.settings} onPress={this.props.settings}>
               <Icon name={"settings"} size={25} style={styles.icons} />
             </TouchableOpacity>
         </View>
         );
+    } else {
+      {/* Default header */ }
+      return (
+        <View style={styles.headerSimple}>
+          <Status backgroundColor="#323160" barStyle="light-content" />
+          <TouchableOpacity style={styles.back} onPress={this.props.back}>
+            <Icon name={"chevron-left"} size={25} style={styles.icons} />
+            <Text style={styles.backText}>back</Text>
+          </TouchableOpacity>
+        </View>
+      );
     }
   }
 

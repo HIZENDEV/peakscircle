@@ -18,14 +18,13 @@ export default class Mates extends React.Component {
   async componentWillMount() {
     await store.userStore.getAllUsers()
     this.setState({ user: Object.values(store.userStore.mates) });
-    console.warn(this.props.navigation)
   }
   render() {
     if (!store.userStore.loading) {
       return (
         <React.Fragment>
-          <Header search={true} />
-          <ScrollView style={{ backgroundColor: '#323160' }}>
+          <Header search={'Search for a user'} />
+          <ScrollView style={{ backgroundColor: '#323160' }} >
             <MatesList items={store.userStore.mates} navigation={this.props.navigation} />
           </ScrollView>
         </React.Fragment>)

@@ -40,6 +40,7 @@ export async function signOut() {
   // Sign-out successful.
     GoogleSignin.revokeAccess();
     console.log('access has been revoked, the user is signed out')
+    return true
   }).catch(function(error) {
   // An error happened.
     alert('Something goes wrong!!!')

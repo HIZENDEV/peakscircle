@@ -1,5 +1,4 @@
 import moment from 'moment'
-import store from "@store/index";
 
 export const nextEvents = (events) => {
   let AllItems = Object.values(events)
@@ -13,8 +12,7 @@ export const nextEvents = (events) => {
       items.push(event)
     }
   })
-
-  return items
+  return items.length < 1 ? null : items
 }
 
 export const currentEvent = (events) => {
@@ -30,8 +28,7 @@ export const currentEvent = (events) => {
       items.push(event)
     }
   })
-
-  return items
+  return items.length < 1 ? null : items
 }
 
 export const previousEvents = (events) => {
@@ -47,8 +44,7 @@ export const previousEvents = (events) => {
       items.push(event)
     }
   })
-
-  return items
+  return items.length < 1 ? null : items
 }
 
 export const userNextEvents = (events, uid) => {
@@ -57,13 +53,13 @@ export const userNextEvents = (events, uid) => {
   const next = nextEvents(events)
 
   next.forEach(event => {
-    for (var uid in event.subscribers) {
-      if (uid === user) {
+    for (var userId in event.subscribers) {
+      if (userId === user) {
         items.push(event)
       }
     }
   })
-  return items
+  return items.length < 1 ? null : items
 }
 
 export const userPreviousEvents = (events, uid) => {
@@ -72,11 +68,11 @@ export const userPreviousEvents = (events, uid) => {
   const previous = previousEvents(events)
 
   previous.forEach(event => {
-    for (var uid in event.subscribers) {
-      if (uid === user ) {
+    for (let userId in event.subscribers) {
+      if (userId === user ) {
         items.push(event)
       }
     }
   })
-  return items
+  return items.length < 1 ? null : items
 }

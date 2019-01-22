@@ -31,8 +31,8 @@ export default class Threads extends React.Component {
 
   render() {
     return <View>
-        {this.state.user ? <ScrollView>
-            <Header search={true} />
+        {this.state.user ? <ScrollView style={{ backgroundColor: '#323160' }} >
+        <Header search={'Search for an event or a place'} />
           </ScrollView> : <Loading fullscreen={true} />}
       </View>;
   }

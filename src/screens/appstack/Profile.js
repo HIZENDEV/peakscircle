@@ -13,10 +13,11 @@ export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      screen: "Profile"
-    };
-    this.back = this.props.navigation.goBack();
+      screen: "Profile",
+      updated: false,
+    };    
   }
+
   componentWillMount() {
     const user = this.props.navigation.getParam('user', null)
     if (user){
@@ -26,21 +27,46 @@ export default class Profile extends React.Component {
     }
   }
 
-  render() {
-    
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.navigation.getParam('user', null) !== this.props.navigation.getParam('user', null)) {
+      this.setState({updated: true})
+      this.forceUpdate()
+    }
+  }
+
+  _renderIncomming = () => {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
-    console.warn(this.props, user)
+    if (this.state.updated) {
+      return <IncommingList events={store.eventStore.events} user={user.uid} />
+    } else {
+      return <IncommingList events={store.eventStore.events} user={this.state.user.uid} />
+    }
+  }
+  
+  _renderArchives = () => {
+    let { navigation } = this.props
+    let user = navigation.getParam('user', null)
+    if (this.state.updated) {
+      return <ArchivesList events={store.eventStore.events} user={user.uid} navigation={this.props.navigation} />
+    } else {
+      return <ArchivesList events={store.eventStore.events} user={this.state.user.uid} navigation={this.props.navigation} />
+    }
+  }
+
+  render() {
+    let { navigation } = this.props
+    let user = navigation.getParam('user', null)
     if (!store.surveyStore.loading && !store.threadStore.loading && !store.userStore.loading && !store.eventStore.loading) {
       return (
         <React.Fragment>
-          <Header screen={this.state.screen} back={this.back} />
+          <Header screen={this.state.screen} back={() => this.props.navigation.goBack()} settings={() => this.props.navigation.navigate('Settings')}/>
           <UserInfo user={user !== null ? user : this.state.user} />
-          <ScrollView>
+          <ScrollView style={{ backgroundColor: '#323160' }} >
             <Title name={"Incoming events"} />
-            <IncommingList events={store.eventStore.events} user={user !== null ? user.uid : this.state.user.uid} />
+            {this._renderIncomming()}
             <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
-            <ArchivesList events={store.eventStore.events} user={user !== null ? user.uid : this.state.user.uid} />
+            {this._renderArchives()}
           </ScrollView>
         </React.Fragment>);
     }

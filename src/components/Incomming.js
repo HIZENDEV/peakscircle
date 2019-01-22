@@ -72,6 +72,7 @@ export default class Incommig extends React.Component {
                 {bubbleImg}
               </View>
             </TouchableOpacity>
+            
             <TouchableOpacity style={styles.right}>
               <Text style={styles.buttonText}>Subscribe</Text>
             </TouchableOpacity>

@@ -20,13 +20,12 @@ export default class Archive extends React.Component {
   }
 
   render() {
-    
       return (
         <View style={styles.container}>
           {!this.state.loading ? (
             <View style={styles.placement}>
 
-              <TouchableOpacity style={styles.left}>
+              <TouchableOpacity style={styles.left} onPress={() => this.props.navigation.navigate('Event', { eventInfo: this.props.archiveInfo })} >
                 <Image style={styles.image} source={{ uri: `${this.props.archiveInfo.picUrl}` }} />
                 <View style={styles.info}>
                   <Text style={styles.title}>{this.props.archiveInfo.title}</Text>
@@ -35,7 +34,7 @@ export default class Archive extends React.Component {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.right}>
+              <TouchableOpacity style={styles.right} onPress={() => this.props.navigation.navigate('Event', { eventInfo: this.props.archiveInfo })} >
                 <Icon name={'image-multiple'} size={24} style={styles.icons} />
               </TouchableOpacity>
 

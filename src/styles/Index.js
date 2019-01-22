@@ -89,7 +89,16 @@ export const header = StyleSheet.create({
   },
   centeredDefault: {
     backgroundColor: "red"
-  }
+  },
+  back: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  backText: {
+    padding: 10,
+    color: theme.PRIMARY
+  },
 })
 
 export const userInfo = StyleSheet.create({
@@ -116,6 +125,110 @@ export const userInfo = StyleSheet.create({
     fontSize: 12,
     paddingBottom: 7.5,
     color: theme.LIGHT_BLUE
+  },
+  social: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  icons: {
+    color: theme.WHITE
+  },
+  linkedin: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 3.5,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    backgroundColor: theme.LINKEDIN
+  },
+  instagram: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 3.5,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    backgroundColor: theme.INSTAGRAM
+  },
+  twitter: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 3.5,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    backgroundColor: theme.TWITTER
+  },
+  dribbble: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 3.5,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    backgroundColor: theme.DRIBBBLE
+  }
+})
+
+export const eventInfo = StyleSheet.create({
+  container: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    backgroundColor: theme.BACKGROUND,
+  },
+  content: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+  },
+  cover: {
+    width: theme.DEVICE_WIDTH,
+    height: theme.DEVICE_WIDTH / 2,
+    resizeMode: 'cover',
+  },
+  title: {
+    fontFamily: theme.BOLD,
+    fontSize: 24,
+    paddingTop: 11,
+    color: theme.PRIMARY
+  },
+  date: {
+    fontFamily: theme.BOLD,
+    fontSize: 15,
+    color: theme.LIGHT_BLUE
+  },
+  opinion: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  opinionCount: {
+    marginLeft: 4,
+    textAlign: "left",
+    fontSize: 12,
+    fontFamily: theme.MEDIUM,
+    color: theme.LIGHT_BLUE,
+  },
+  opinionIcons: {
+    marginLeft: 10,
+    color: theme.LIGHT_BLUE,
+  },
+  stars: {
+    textAlign: "left",
+    fontSize: 30,
+    fontFamily: theme.BOLD,
+    color: theme.STAR,
+  },
+  description: {
+    fontFamily: theme.MEDIUM,
+    fontSize: 14,
+    paddingBottom: 7.5,
+    color: theme.PRIMARY,
+    opacity: .7
   },
   social: {
     flexDirection: "row",
@@ -458,9 +571,14 @@ export const archivesList = StyleSheet.create({
     backgroundColor: theme.BACKGROUND,
     paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
   },
+  empty: {
+    justifyContent: 'center',
+    width: theme.DEVICE_WIDTH,
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    backgroundColor: theme.BACKGROUND
+  },
   error: {
     padding: 10,
-    position: "absolute",
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
@@ -509,7 +627,7 @@ export const archive = StyleSheet.create({
   title: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
     textAlign: "left",
-    fontSize: 17,
+    fontSize: 16,
     fontFamily: theme.BOLD,
     color: theme.WHITE
   },
@@ -540,9 +658,14 @@ export const incommingList = StyleSheet.create({
     backgroundColor: theme.BACKGROUND,
     paddingBottom: theme.DEVICE_WIDTH * (10 / 100),
   },
+  empty: {
+    justifyContent: 'center',
+    width: theme.DEVICE_WIDTH,
+    height: theme.DEVICE_WIDTH * (22 / 100),
+    backgroundColor: theme.BACKGROUND,
+  },
   error: {
     padding: 10,
-    position: "absolute",
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
@@ -568,6 +691,7 @@ export const incomming = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-between",
     alignItems: 'flex-end',
+    width: theme.DEVICE_WIDTH * (90 / 100)
   },
   left: {
     flexDirection: 'row',
@@ -602,7 +726,7 @@ export const incomming = StyleSheet.create({
   title: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 3),
     textAlign: "left",
-    fontSize: 17,
+    fontSize: 16,
     fontFamily: theme.BOLD,
     color: theme.WHITE
   },
@@ -657,7 +781,7 @@ export const incomming = StyleSheet.create({
     fontSize: 14,
     fontFamily: theme.BOLD,
     color: theme.WHITE
-  },
+  }
 })
 
 export const test_matesList = StyleSheet.create({
@@ -768,5 +892,62 @@ export const matesList = StyleSheet.create({
     fontSize: 12,
     fontFamily: theme.MEDIUM,
     color: theme.LIGHT_BLUE
+  }
+})
+
+export const memories = StyleSheet.create({
+  content: {
+    backgroundColor: theme.WHITE
+  },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 22,
+    backgroundColor: theme.BACKGROUND
+  },
+  title: {
+    fontFamily: theme.EXTRA,
+    fontSize: 21,
+    color: theme.PRIMARY
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
+  image: {
+    borderRadius: 7,
+    backgroundColor: theme.BACKGROUND,
+  },
+  cover: {
+    resizeMode: 'cover',
+    borderRadius: 7,
+    margin: theme.DEVICE_WIDTH * (1 / 100),
+    width: theme.DEVICE_WIDTH * (28 / 100),
+    height: theme.DEVICE_WIDTH * (28 / 100),
+  },
+  list: {
+    backgroundColor: theme.BACKGROUND
+  },
+  empty: {
+
+  },
+  error: {
+    color: theme.LIGHT_BLUE,
+    fontSize: 14,
+  }
+
+})
+
+export const image = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#000'
+  },
+  image: {
+    resizeMode: 'contain',
+    width: theme.DEVICE_WIDTH,
+    height: theme.DEVICE_WIDTH,
   }
 })

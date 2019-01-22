@@ -15,6 +15,11 @@ import Events from '@appstack/Events.js'
 import Threads from '@appstack/Threads.js'
 import Mates from '@appstack/Mates.js'
 import Profile from '@appstack/Profile.js'
+// Blankstack screens
+import User from '@blankstack/User.js'
+import Event from '@blankstack/Event.js'
+import Image from '@blankstack/Image.js'
+import Settings from '@blankstack/Settings.js'
 // Authstack screens
 import Sign from '@authstack/Sign.js'
 import AuthLoading from '@authstack/AuthLoading.js'
@@ -23,12 +28,40 @@ import AuthLoading from '@authstack/AuthLoading.js'
 YellowBox.ignoreWarnings(["Require cycle:", "Remote debugger"]);
 YellowBox.ignoreWarnings(['unknown call: "relay:check"']);
 
+const EventsStack =  createStackNavigator({
+  Events: { screen: Events },
+  Event: { screen: Event },
+  Image: { screen: Image,
+    navigationOptions: ({ navigation }) => ({
+
+    }),
+  },
+}, {
+    initialRoute: 'Events',
+    headerMode: 'none'
+})
+
+const ProfileStack = createStackNavigator({
+  Profile: { screen: Profile },
+  Settings: { screen: Settings }
+}, {
+    initialRoute: 'Profile',
+    headerMode: 'none'
+  })
+
+const UserStack = createStackNavigator({
+  Mates: { screen: Mates },
+  User: { screen: User }
+}, {
+    initialRoute: 'Mates',
+    headerMode: 'none'
+})
+
 const AppStack = createBottomTabNavigator({
   Home: Home,
-  Events: Events,
-  //Threads: Threads,
-  Mates: Mates,
-  Profile: Profile,
+  Events: { screen: EventsStack },
+  Mates: { screen: UserStack },
+  Profile: { screen: ProfileStack },
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {

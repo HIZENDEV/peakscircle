@@ -9,14 +9,12 @@ export const header = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
-    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   headerSimple: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
-    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   title: {
@@ -63,7 +61,6 @@ export const header = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 20,
     paddingHorizontal: "4%",
-    // paddingTop: STATUSBAR_HEIGHT * 2,
     backgroundColor: theme.BACKGROUND
   },
   rightText: {
@@ -949,5 +946,135 @@ export const image = StyleSheet.create({
     resizeMode: 'contain',
     width: theme.DEVICE_WIDTH,
     height: theme.DEVICE_WIDTH,
+  }
+})
+
+export const settings = StyleSheet.create({
+  container: {
+    backgroundColor: theme.BACKGROUND,
+  },
+  list: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    elevation: 4
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10
+  },
+  title: {
+    color: theme.PRIMARY,
+    fontFamily: theme.BOLD,
+    fontSize: 18
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
+  switch: {
+
+  },
+  logout: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 7,
+    backgroundColor: theme.LIGHT_BLUE,
+    elevation: 4
+  }
+})
+
+export const create = StyleSheet.create({
+  fieldSection: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+  },
+  fieldInRow: {
+    width: theme.DEVICE_WIDTH * (50 / 100) - theme.DEVICE_WIDTH * (7.5 / 100),
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldIcon: {
+    padding: 8,
+    color: theme.PINK
+  },
+  input: {
+    flex: 1,
+    paddingTop: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    paddingLeft: 0,
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.PRIMARY
+  },
+  fieldImage: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    height: theme.DEVICE_HEIGHT * (16 / 100),
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldLocation: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  placeholder: {
+    color: theme.PRIMARY
   }
 })

@@ -23,14 +23,9 @@ export default class Events extends React.Component {
     })
   }
   
-  _signOut = async () => {
-    try {
-      await auth.signOut();
-      this.props.navigation.navigate("Auth");
-    } catch (e) {
-      alert("Something goes wrong!");
-    }
-  };
+  navigate(route) {
+    this.props.navigation.navigate(route);
+  }
 
   render() {
       if (!store.userStore.loading && !store.eventStore.loading) {
@@ -38,7 +33,10 @@ export default class Events extends React.Component {
         <React.Fragment>
           <Header search={'Search for an event or a place'} />
             <ScrollView style={{ backgroundColor: '#323160' }} >
-              <Title name={"Discover"} add={true} action={() => this.navigate("Events")} />
+              <Title name={"Discover"}
+                add={true} 
+                action={true}
+                navigation={this.props.navigation}  />
               <EventsList events={store.eventStore.events} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
               <ArchivesList events={store.eventStore.events} navigation={this.props.navigation} />

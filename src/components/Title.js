@@ -16,10 +16,10 @@ export default class Title extends React.Component {
         <View style={styles.container}>
           <Text style={styles.title}>{this.props.name}</Text>
           <View style={styles.iconsAlign}>
-            <TouchableOpacity style={[styles.action, styles.add]} onPress={this.props.action}>
+            <TouchableOpacity style={[styles.action, styles.add]} onPress={() => this.props.navigation.navigate("Create")}>
               <Icon name={'plus'} size={24} style={styles.icons} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.action} onPress={this.props.action}>
+            <TouchableOpacity style={styles.action} onPress={() => this.props.navigation.navigate("Event")}>
               <Icon name={'filter-variant'} size={24} style={styles.icons}/>
             </TouchableOpacity>
           </View>

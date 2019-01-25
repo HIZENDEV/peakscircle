@@ -7,6 +7,7 @@ import store from "@store/index";
 import { observer } from 'mobx-react'
 import { ScrollView } from 'react-native-gesture-handler';
 import Notification from '@services/Notification'
+import { userNextEvents, nextEvents } from "@services/Events"
 
 @observer
 export default class Home extends React.Component {
@@ -39,9 +40,10 @@ export default class Home extends React.Component {
   render() {
 
     if (!store.surveyStore.loading && !store.threadStore.loading && !store.userStore.loading && !store.eventStore.loading) {
+      const upcomming = userNextEvents(store.eventStore.events, store.userStore.user.uid)
       return (
         <React.Fragment>
-          <Header user={store.userStore.user} upcoming={2} />
+          <Header user={store.userStore.user} upcoming={upcomming.length} />
           <ScrollView style={{ backgroundColor: '#323160'}}>
             {/* Events */}
             <Title name={"Events"} action={() => this.navigate("Events")} />

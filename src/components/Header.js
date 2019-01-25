@@ -39,11 +39,11 @@ export default class Header extends React.Component {
           <Image source={{uri: this.props.user.photoURL}} style={styles.profilePic} />
           <View style={styles.rightText}>
             <Text style={styles.welcome}>{this.props.user.displayName ? 'Welcome ' + firstName + '!': 'Welcome user'}</Text>
-            <Text style={styles.upcoming}>{this.props.upcoming ? 'You have '+ this.props.upcoming +' upcoming events' : 'You have no upcoming events'}</Text>
+            <Text style={styles.upcoming}>{this.props.upcoming > 0 ? 'You have '+ this.props.upcoming +' upcoming events' : 'You have no upcoming events'}</Text>
           </View>
         </View>
       )
-    } else if (this.props.screen) {
+    } else if (this.props.settings) {
       {/* Named header */}
       return (
         <View style={styles.headerSimple}>
@@ -57,6 +57,18 @@ export default class Header extends React.Component {
             </TouchableOpacity>
         </View>
         );
+    } else if (this.props.screen) {
+      {/* Named header */ }
+      return (
+        <View style={styles.headerSimple}>
+          <Status backgroundColor="#323160" barStyle="light-content" />
+          <TouchableOpacity style={styles.back} onPress={this.props.back}>
+            <Icon name={"chevron-left"} size={25} style={styles.icons} />
+            <Text style={styles.backText}>back</Text>
+          </TouchableOpacity>
+          <Text style={styles.title}>{this.props.screen}</Text>
+        </View>
+      );
     } else {
       {/* Default header */ }
       return (

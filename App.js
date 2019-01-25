@@ -18,6 +18,7 @@ import Profile from '@appstack/Profile.js'
 // Blankstack screens
 import User from '@blankstack/User.js'
 import Event from '@blankstack/Event.js'
+import Create from '@blankstack/Create.js'
 import Image from '@blankstack/Image.js'
 import Settings from '@blankstack/Settings.js'
 // Authstack screens
@@ -30,6 +31,7 @@ YellowBox.ignoreWarnings(['unknown call: "relay:check"']);
 
 const EventsStack =  createStackNavigator({
   Events: { screen: Events },
+  Create: { screen: Create },
   Event: { screen: Event },
   Image: { screen: Image,
     navigationOptions: ({ navigation }) => ({

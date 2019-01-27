@@ -13,15 +13,31 @@ class Database {
     })
     return url
   }
+
   revealUrl = async (userId) => {
     let url = await firebase.database().ref("users/" + userId + "/photoURL").once("value")
     url = await url.val()
     return url
   }
+
   eventsRequest = async () => {
     const request = await firebase.database().ref("events/").orderByChild("duration").once("value")
     const events = Object.keys(request.val())
     return events
+  }
+
+  pushEvent = async (event) => {
+    firebase.database().ref('events').push({
+      description: event.description,
+      duration: event.duration,
+      location: event.location,
+      picUrl: event.picUrl,
+      startDate: event.startDate,
+      submitter: event.submitter,
+      subscribersLimit: event.maxSubs,
+      title: event.title,
+    })
+    return true
   }
 }
 

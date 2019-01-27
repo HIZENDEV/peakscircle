@@ -15,7 +15,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "401561273858-5mqo0i9bs32vham7569cnn2pk4lsna2m.apps.googleusercontent.com",
+          "client_id": "401561273858-nlsmjuinvf6pn5dsnt38stlvj5tluuvb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peakscircle",
+            "certificate_hash": "d334a10dd529250a76dc21868f047a8f4a0d0934"
+          }
+        },
+        {
+          "client_id": "401561273858-cm90jqiuittus83o7p9954olqok1n5ku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peakscircle",
+            "certificate_hash": "2d1078082e60184d79e21af13dc69c4565080bd8"
+          }
+        },
+        {
+          "client_id": "401561273858-7oap6cmae69f0j9runjmltofmp30i4f5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,8 +45,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401561273858-j4eteq6ailob1s7a29jsr6ek1ngi9kod.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401561273858-tp9c60s9e2o9fn85ru5cg48lt3qjgmnj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.peaks.circle"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2

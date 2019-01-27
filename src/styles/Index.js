@@ -1041,6 +1041,23 @@ export const create = StyleSheet.create({
     backgroundColor: theme.LIGHT_BLUE,
     color: theme.PRIMARY
   },
+  inputDate: {
+    flex: 1,
+    paddingTop: 2,
+    paddingRight: 1,
+    paddingBottom: 2.1,
+    borderRadius: 5,
+    backgroundColor: theme.LIGHT_BLUE
+  },
+  inputTag: {
+    flex: 1,
+    paddingTop: 2,
+    paddingRight: 1,
+    paddingBottom: 2.1,
+    borderRadius: 5,
+    width: theme.DEVICE_WIDTH - theme.DEVICE_WIDTH * (20 / 100),
+    backgroundColor: theme.LIGHT_BLUE
+  },
   fieldImage: {
     marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     marginVertical: theme.DEVICE_WIDTH * (4 / 100),
@@ -1058,6 +1075,14 @@ export const create = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4
   },
+  fieldCover: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (5 / 100),
+    height: theme.DEVICE_HEIGHT * (16 / 100),
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    resizeMode: 'cover',
+    borderRadius: 5,
+  },
   fieldLocation: {
     marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     marginVertical: theme.DEVICE_WIDTH * (4 / 100),
@@ -1074,7 +1099,33 @@ export const create = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4
   },
+  submitButton: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    paddingTop: 12,
+    paddingBottom: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.PINK,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  submitText: {
+    color: theme.PRIMARY,
+    fontFamily: theme.BOLD,
+  },
   placeholder: {
     color: theme.PRIMARY
-  }
+  },
+  active: {
+    backgroundColor: theme.PINK
+  },
+  disable: {
+    backgroundColor: theme.CONTAINER
+  },
 })

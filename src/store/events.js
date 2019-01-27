@@ -1,5 +1,6 @@
 import { autorun, observable, computed, action } from "mobx"
 import firebase from 'react-native-firebase'
+import Database from "@services/Database";
 
 class EventStore {
   @observable initialState = {};
@@ -39,31 +40,11 @@ class EventStore {
   });
 
   @action
-  addEvent = eventInfo => {
-    firebase
-      .database()
-      .ref("events/")
-      .post(
-        {
-          title: eventInfo.title,
-          description: eventInfo.description,
-          duration: eventInfo.duration,
-          location: eventInfo.location,
-          submitter: eventInfo.submitter,
-          subscribers: eventInfo.subscribers,
-          startDate: eventInfo.startDate,
-          subscribersCount: eventInfo.subscribersCount,
-          subscribersLimit: eventInfo.subscribersLimit,
-          picUrl: eventInfo.picUrl
-        },
-        function(error) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Event added successfully!");
-          }
-        }
-      );
+  addEvent = async (event) => {
+    const result = await Database.pushEvent(event)
+    if (result) {
+      console.log(result)
+    }
   };
 
   @action

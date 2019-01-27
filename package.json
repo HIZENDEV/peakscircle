@@ -17,13 +17,17 @@
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-native-app-intro-slider": "^1.0.1",
+    "react-native-datepicker": "^1.7.2",
     "react-native-firebase": "^5.1.1",
     "react-native-gesture-handler": "^1.0.10",
     "react-native-google-signin": "^1.0.2",
     "react-native-image-grid": "^1.0.0",
+    "react-native-image-picker": "^0.28.0",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-modal": "^7.0.2",
+    "react-native-open-maps": "^0.3.3",
     "react-native-stars": "^1.1.5",
+    "react-native-tags": "^2.0.0",
     "react-native-user-avatar": "^1.0.3",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.7"
@@ -43,14 +47,6 @@
   "rnpm": {
     "assets": [
       "./assets/fonts/"
-    ]
-  },
-  "babel": {
-    "plugins": [
-      "@babel/plugin-proposal-decorators"
-    ],
-    "presets": [
-      "react-app"
     ]
   }
 }

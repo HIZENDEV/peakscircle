@@ -21,9 +21,10 @@ export default class Event extends React.Component {
   }
 
   eventDate(timestamp, duration) {
-    const startDate = moment.unix(timestamp)
-    const endDate = moment.unix(timestamp).add(duration, 'minutes').format("HH:mm")
-    return moment.unix(timestamp).format("DD MMM. HH:mm") + ' - ' + endDate
+    const startDate = moment(timestamp).toISOString()
+    console.log(startDate)
+    const endDate = startDate.add(duration, 'minutes').format("HH:mm")
+    return startDate + ' - ' + endDate
   }
 
   async getSubscribersPic(key) {

@@ -13,10 +13,15 @@ export default class Sign extends React.Component {
   }
 
   _signIn = async () => {
+      if (this.state.isSigninInProgress) {
+        return false
+      }
     try {
+      this.setState({ isSigninInProgress: true })
       await auth.signIn();
       this.props.navigation.navigate("App");
     } catch (e) {
+      this.setState({ isSigninInProgress: false })
       alert("Something goes wrong!");
     }
   };

@@ -1,5 +1,6 @@
-import firebase from 'react-native-firebase';
-import store from "@store/index";
+import firebase from 'react-native-firebase'
+import store from "@store/index"
+import RNFetchBlob from 'rn-fetch-blob'
 
 class Database {
   PicRequest = async (eventKey) => {
@@ -38,6 +39,43 @@ class Database {
       title: event.title,
     })
     return true
+  }
+
+  uploadPic = async (base64) => {
+    console.log(base64)
+    const image = base64
+    const Blob = RNFetchBlob.polyfill.Blob
+    const fs = RNFetchBlob.fs
+    window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+    window.Blob = Blob
+  
+    let uploadBlob = null
+    const nameArray = image.split('/')
+    const filename = nameArray[nameArray.length - 1]
+    const imageRef = firebase.storage().ref('events/cover').child(filename)
+    let mime = 'image/jpg'
+    console.log(imageRef)
+    fs.readFile(image, 'base64')
+      .then((data) => {
+        return Blob.build(data, { type: `${mime};BASE64` })
+      })
+      .then((blob) => {
+        uploadBlob = blob
+        console.log(blob)
+        return imageRef.put(blob, { contentType: mime })
+      })
+      .then(() => {
+        uploadBlob.close()
+        return imageRef.getDownloadURL()
+      })
+      .then((url) => {
+        console.log(url)
+        return url
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
   }
 }
 

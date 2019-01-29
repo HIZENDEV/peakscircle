@@ -448,7 +448,7 @@ export const event = StyleSheet.create({
     marginTop: theme.DEVICE_WIDTH * (20 / 100),
     paddingHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -461,7 +461,7 @@ export const event = StyleSheet.create({
     height: theme.DEVICE_WIDTH * (65 / 100),
     borderRadius: 7,
     resizeMode: "cover",
-    backgroundColor: theme.PRIMARY,
+    backgroundColor: theme.LIGHT_BLUE,
   },
   block: {
     width: theme.DEVICE_WIDTH * (80 / 100),
@@ -590,7 +590,7 @@ export const archive = StyleSheet.create({
     width: theme.DEVICE_WIDTH * (90 / 100),
     height: theme.DEVICE_WIDTH * (22 / 100),
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -677,7 +677,7 @@ export const incomming = StyleSheet.create({
     width: theme.DEVICE_WIDTH * (90 / 100),
     height: theme.DEVICE_WIDTH * (22 / 100),
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -845,7 +845,7 @@ export const matesList = StyleSheet.create({
     width: theme.DEVICE_WIDTH * (90 / 100),
     height: theme.DEVICE_HEIGHT / 9,
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -957,7 +957,7 @@ export const settings = StyleSheet.create({
     marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     marginVertical: theme.DEVICE_WIDTH * (4 / 100),
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     elevation: 4
   },
   row: {
@@ -984,7 +984,7 @@ export const settings = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 7,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.CONTAINER,
     elevation: 4
   }
 })
@@ -1016,7 +1016,7 @@ export const create = StyleSheet.create({
   fieldInRow: {
     width: theme.DEVICE_WIDTH * (50 / 100) - theme.DEVICE_WIDTH * (7.5 / 100),
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     borderRadius: 5,
     backgroundColor: theme.LIGHT_BLUE,
@@ -1026,6 +1026,11 @@ export const create = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 6,
     elevation: 4
+  },
+  fieldDate: {
+    color: theme.PRIMARY,
+    paddingVertical: 12 
+    
   },
   fieldIcon: {
     padding: 8,

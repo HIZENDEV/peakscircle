@@ -25,7 +25,7 @@ export const currentEvent = (events) => {
     const endDate = startDate.add(event.duration, 'minutes')
 
     if (startDate.isBefore(now) && endDate.isAfter(now)) {
-      items.push(event)
+      items.unshift(event)
     }
   })
   return items.length < 1 ? null : items
@@ -41,7 +41,7 @@ export const previousEvents = (events) => {
     const endDate = startDate.add(event.duration, 'minutes')
 
     if (endDate.isBefore(now)) {
-      items.push(event)
+      items.unshift(event)
     }
   })
   return items.length < 1 ? null : items
@@ -70,7 +70,7 @@ export const userPreviousEvents = (events, uid) => {
   previous.forEach(event => {
     for (let userId in event.subscribers) {
       if (userId === user ) {
-        items.push(event)
+        items.unshift(event)
       }
     }
   })

@@ -21,10 +21,9 @@ export default class Event extends React.Component {
   }
 
   eventDate(timestamp, duration) {
-    const startDate = moment(timestamp).toISOString()
-    console.log(startDate)
-    const endDate = startDate.add(duration, 'minutes').format("HH:mm")
-    return startDate + ' - ' + endDate
+    const startDate = moment.unix(timestamp).format('DD MMM HH:mm')
+    const endDate = moment.unix(timestamp).add(duration, 'minutes').format('HH:mm')
+    return (`Du ${startDate} à ${endDate}`)
   }
 
   async getSubscribersPic(key) {
@@ -58,7 +57,7 @@ export default class Event extends React.Component {
      const bubble = (
         <View style={styles.bubblContainer}>
           <View style={styles.bubble}>
-            <Text style={styles.bubbleText}>{this.props.eventInfo.subscribersCount}</Text>
+            <Text style={styles.bubbleText}>{this.props.eventInfo.subscribersCount || 0}</Text>
           </View>
         </View>
       )

@@ -3,7 +3,7 @@ import { ScrollView, TouchableOpacity, Text, View, TextInput, Image } from 'reac
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { create as styles } from '@styles/Index'
 import Header from '@components/Header'
-import DatePicker from 'react-native-datepicker'
+import DateTimePicker from 'react-native-modal-datetime-picker'
 import Database from '@services/Database'
 import openMap from 'react-native-open-maps'
 import ImagePicker from 'react-native-image-picker'
@@ -19,20 +19,28 @@ const options = {
   },
 }
 
-
-
 @observer
 export default class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isDateTimePickerVisible: false,
+      active: true,
       screen: "Create",
-      location: "21 rue François Garcin, 69003 Lyon",
-      picUrl: "https://ugurseyman.info/wp-content/uploads/2018/07/34-wallpaper-samsung-c9-pro-terbaru.png",
     }
   }
 
-  _submit() {
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true })
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false })
+
+  _handleDatePicked = (date) => {
+    const timestamp = moment(date).format('X')
+    this.setState({ startDate: timestamp })
+    this._hideDateTimePicker()
+  }
+
+  _submit = async () => {
     // this.setState({ active: !this.state.active })
     if (
       this.state.name &&
@@ -43,23 +51,20 @@ export default class Create extends React.Component {
       this.state.picUrl &&
       store.userStore.user.uid
     ) {
-      alert('Voilà')
-      const date = moment(this.state.startDate, 'DD MMM hh: mm').toISOString()
-      const end = date.add(this.state.duration, 'minutes').format("hh: mm")
-
-      const ts = moment(this.state.startDate, 'DD MMM hh: mm').valueOf()
-      console.log(moment(date).format("M/D/YYYY H:mm"), end)
-      const event = {
+      let event = {
         title: this.state.name,
         description: this.state.description,
         location: this.state.location,
-        startDate: ts,
+        startDate: this.state.startDate,
         duration: this.state.duration,
-        picUrl: this.state.picUrl,
         submitter: store.userStore.user.uid,
         maxSubs: this.state.maxSubs || null
       }
-      store.eventStore.addEvent(event)
+      const url = await Database.uploadPic(this.state.picUrl.base64)
+      console.log(url)
+      event.picUrl = url
+      await store.eventStore.addEvent(event)
+      alert('Event created!')
     } else {
       alert('You should fill all fields')
     }
@@ -75,8 +80,8 @@ export default class Create extends React.Component {
       } else {
         const source = { uri: 'data:image/jpeg;base64,' + response.data, base64: response.data }
         this.setState({
-          imgUrl: source,
-          active: false
+          picUrl: source,
+          active: true,
         });
       }
     });
@@ -87,15 +92,6 @@ export default class Create extends React.Component {
   }
 
   render() {
-    const active = () => {
-      if (this.state.acite) {
-        return { backgroundColor: '#EC4467' }
-      } else {
-        return { backgroundColor: '#444671' }
-      }
-    }
-
-    const today = moment().format('YYYY-MM-DD')
     return (
       <React.Fragment>
         <Header back={() => this.props.navigation.goBack()} screen={this.state.screen} />
@@ -121,44 +117,29 @@ export default class Create extends React.Component {
               onChangeText={(description) => { this.setState({ description }) }}
               underlineColorAndroid="transparent" />
           </View>
-          {/* Location */}
-          <TouchableOpacity style={styles.fieldLocation} onPress={() => this._fakeLocation()}>
+          <View style={styles.fieldSection}>
             <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
-            <Text style={styles.placeholder}>Location</Text>
-          </TouchableOpacity>
+            <TextInput
+              style={styles.input}
+              placeholderTextColor="#FFFFFF"
+              placeholder={'Location'}
+              onChangeText={(location) => { this.setState({ location }) }}
+              underlineColorAndroid="transparent" />
+          </View>
+          {/*
+            <TouchableOpacity style={styles.fieldLocation} onPress={() => this._fakeLocation()}>
+              <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
+              <Text style={styles.placeholder}>Location</Text>
+            </TouchableOpacity>
+            */}
           {/* Date & Duration */}
           <View style={styles.fieldRow}>
-            <View style={styles.fieldInRow}>
+            <TouchableOpacity onPress={this._showDateTimePicker} style={styles.fieldInRow}>
               <Icon name={'calendar'} size={24} style={styles.fieldIcon} />
-              <DatePicker
-                style={styles.inputDate}
-                date={this.state.startDate}
-                mode="datetime"
-                is24Hour={true}
-                placeholder="Date"
-                format="DD MMM hh:mm"
-                minDate={today}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                showIcon={false}
-                customStyles={{
-                  dateInput: {
-                    borderWidth: 0,
-                    marginLeft: -36,
-                    textAlign: 'left'
-                  },
-                  dateText: {
-                    color: '#fff',
-                    textAlign: 'left'
-                  },
-                  placeholderText: {
-                    color: '#fff',
-                    textAlign: 'left'
-                  }
-                }}
-                onDateChange={(startDate) => { this.setState({ startDate }) }}
-              />
-            </View>
+              <Text style={styles.fieldDate}>
+                { this.state.startDate ? moment.unix(this.state.startDate).format('DD MMM HH:mm') : 'Select Date' }
+              </Text>
+            </TouchableOpacity>
             <View style={styles.fieldInRow}>
               <Icon name={'clock-outline'} size={24} style={styles.fieldIcon} />
               <TextInput
@@ -183,9 +164,9 @@ export default class Create extends React.Component {
               underlineColorAndroid="transparent" />
           </View>
           {/* Image input */}
-          {this.state.imgUrl ? (
+          {this.state.picUrl ? (
             <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
-              <Image style={styles.fieldCover} source={{ uri: `${this.state.imgUrl.uri}` }} />
+              <Image style={styles.fieldCover} source={{ uri: `${this.state.picUrl.uri}` }} />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
@@ -193,10 +174,19 @@ export default class Create extends React.Component {
               <Text style={styles.placeholder}>Open Picture Directory</Text>
             </TouchableOpacity>
           )}
-          <TouchableOpacity style={[styles.submitButton, this.state.active ? styles.active : styles.disable ]} onPress={() => this._submit()}>
+          <TouchableOpacity
+            style={[styles.submitButton, this.state.active ? styles.active : styles.disable ]}
+            onPress={() => this._submit()}>
             <Text style={styles.submitText}>SUBMIT EVENT</Text>
           </TouchableOpacity>
-          
+          <DateTimePicker
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this._handleDatePicked}
+            onCancel={this._hideDateTimePicker}
+            is24Hour={true}
+            mode={'datetime'}
+            minimumDate={new Date()}
+          />
         </ScrollView>
       </React.Fragment>
     )

@@ -43,7 +43,7 @@ export default class Home extends React.Component {
       const upcomming = userNextEvents(store.eventStore.events, store.userStore.user.uid)
       return (
         <React.Fragment>
-          <Header user={store.userStore.user} upcoming={upcomming.length} />
+          <Header user={store.userStore.user} upcoming={upcomming ? upcomming.length : 0} />
           <ScrollView style={{ backgroundColor: '#323160'}}>
             {/* Events */}
             <Title name={"Events"} action={() => this.navigate("Events")} />
@@ -54,10 +54,6 @@ export default class Home extends React.Component {
             {/* Survey */}
             <Title name={"Survey"} action={() => this.navigate("Profile")} />
             <CompactList items={store.surveyStore.polls} type={'survey'} />
-
-            {/* <Button onPress={() => store.userStore.increment()} title="mosre" />
-            <Text>{store.userStore.counter}</Text>
-            <Button onPress={() => store.userStore.decrement()} title="less" /> */}
           </ScrollView>
         </React.Fragment>)
     } else {

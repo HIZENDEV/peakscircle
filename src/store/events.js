@@ -1,4 +1,4 @@
-import { autorun, observable, computed, action } from "mobx"
+import { autorun, observable, computed, action, runInAction } from "mobx"
 import firebase from 'react-native-firebase'
 import Database from "@services/Database";
 
@@ -41,11 +41,15 @@ class EventStore {
 
   @action
   addEvent = async (event) => {
+    this.loading = true
     const result = await Database.pushEvent(event)
-    if (result) {
-      console.log(result)
-    }
-  };
+    runInAction(() => {
+      this.loading = false
+      if (result) {
+        console.log(result)
+      }
+    })
+  }
 
   @action
   updateEvent = eventInfo => {

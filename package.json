@@ -24,12 +24,14 @@
     "react-native-image-picker": "^0.28.0",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-modal": "^7.0.2",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-open-maps": "^0.3.3",
     "react-native-stars": "^1.1.5",
     "react-native-tags": "^2.0.0",
     "react-native-user-avatar": "^1.0.3",
     "react-native-vector-icons": "^6.1.0",
-    "react-navigation": "^3.0.7"
+    "react-navigation": "^3.0.7",
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.2.3",

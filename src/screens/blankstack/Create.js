@@ -1,12 +1,16 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity, Text, View, TextInput, Image } from 'react-native'
+import { ScrollView, TouchableOpacity, Text, View, TextInput, Image, Picker } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { create as styles } from '@styles/Index'
+import Title from '@components/Title'
 import Header from '@components/Header'
+import Loading from '@components/Loading'
 import DateTimePicker from 'react-native-modal-datetime-picker'
+import Modal from 'react-native-modalbox'
 import Database from '@services/Database'
 import openMap from 'react-native-open-maps'
 import ImagePicker from 'react-native-image-picker'
+
 import store from "@store/index"
 import moment from 'moment'
 import { observer } from "mobx-react"
@@ -24,9 +28,28 @@ export default class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3,
       isDateTimePickerVisible: false,
       active: true,
+      durationType: 'minutes',
       screen: "Create",
+    }
+  }
+
+  _onClose = () => {
+    switch (this.state.durationType) {
+      case 'days':
+        this.setState({ timer: this.state.duration * 1440 })
+        break
+      case 'hours':
+        this.setState({ timer: this.state.duration * 60 })
+        break
+      default:
+        this.setState({ timer: this.state.duration })
+        break
     }
   }
 
@@ -41,48 +64,46 @@ export default class Create extends React.Component {
   }
 
   _submit = async () => {
-    // this.setState({ active: !this.state.active })
     if (
       this.state.name &&
       this.state.description &&
       this.state.location &&
       this.state.startDate &&
-      this.state.duration &&
-      this.state.picUrl &&
-      store.userStore.user.uid
+      this.state.timer &&
+      this.state.picUri
     ) {
+      this.setState({ loading: true })
       let event = {
         title: this.state.name,
         description: this.state.description,
         location: this.state.location,
         startDate: this.state.startDate,
-        duration: this.state.duration,
+        duration: this.state.timer,
         submitter: store.userStore.user.uid,
         maxSubs: this.state.maxSubs || null
       }
-      const url = await Database.uploadPic(this.state.picUrl.base64)
-      console.log(url)
-      event.picUrl = url
-      await store.eventStore.addEvent(event)
-      alert('Event created!')
+      const name = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2)
+      await Database.uploadPic(this.state.picUri, name).then(async function(result) {
+        event.picUrl = result
+        await store.eventStore.addEvent(event)
+      })
+      this.setState({ loading: false })
     } else {
       alert('You should fill all fields')
     }
   }
 
-  _selectCover() {
-    ImagePicker.showImagePicker(options, (response) => {
+  _selectCover = () => {
+    ImagePicker.launchImageLibrary(options, (response) => {
       console.log('Response = ', response);
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+      if (response.error) {
+        console.warn('ImagePicker Error: ', response.error);
       } else {
-        const source = { uri: 'data:image/jpeg;base64,' + response.data, base64: response.data }
         this.setState({
-          picUrl: source,
+          picUrl: { base64: `data:image/jpeg;base64${response.data}`},
+          picUri: response.uri,
           active: true,
-        });
+        })
       }
     });
   }
@@ -92,103 +113,136 @@ export default class Create extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <Header back={() => this.props.navigation.goBack()} screen={this.state.screen} />
-        <ScrollView style={{ backgroundColor: '#323160' }} >
-          {/* Title */}
-          <View style={styles.fieldSection}>
-            <Icon name={'pencil'} size={24} style={styles.fieldIcon} />
-            <TextInput
-              style={styles.input}
-              maxLength={17}
-              placeholderTextColor="#FFFFFF"
-              placeholder={'Event name'}
-              onChangeText={(name) => { this.setState({ name }) }}
-              underlineColorAndroid="transparent" />
-          </View>
-          {/* Description */}
-          <View style={styles.fieldSection}>
-            <Icon name={'pencil'} size={24} style={styles.fieldIcon} />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#FFFFFF"
-              placeholder={'Event Description'}
-              onChangeText={(description) => { this.setState({ description }) }}
-              underlineColorAndroid="transparent" />
-          </View>
-          <View style={styles.fieldSection}>
-            <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#FFFFFF"
-              placeholder={'Location'}
-              onChangeText={(location) => { this.setState({ location }) }}
-              underlineColorAndroid="transparent" />
-          </View>
-          {/*
-            <TouchableOpacity style={styles.fieldLocation} onPress={() => this._fakeLocation()}>
-              <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
-              <Text style={styles.placeholder}>Location</Text>
-            </TouchableOpacity>
-            */}
-          {/* Date & Duration */}
-          <View style={styles.fieldRow}>
-            <TouchableOpacity onPress={this._showDateTimePicker} style={styles.fieldInRow}>
-              <Icon name={'calendar'} size={24} style={styles.fieldIcon} />
-              <Text style={styles.fieldDate}>
-                { this.state.startDate ? moment.unix(this.state.startDate).format('DD MMM HH:mm') : 'Select Date' }
-              </Text>
-            </TouchableOpacity>
-            <View style={styles.fieldInRow}>
-              <Icon name={'clock-outline'} size={24} style={styles.fieldIcon} />
+    console.log(this.state.durationType)
+    if (this.state.loading) {
+      return <Loading fullscreen={true} />
+    } else {
+      return (
+        <React.Fragment>
+          <Header back={() => this.props.navigation.goBack()} screen={this.state.screen} />
+          <ScrollView style={{ backgroundColor: '#323160' }} >
+            <Title name={'Basic details'} />
+            {/* Title */}
+            <View style={styles.fieldSection}>
+              <Icon name={'pencil'} size={24} style={styles.fieldIcon} />
               <TextInput
                 style={styles.input}
-                keyboardType={'numeric'}
+                maxLength={17}
                 placeholderTextColor="#FFFFFF"
-                placeholder={'Duration (min)'}
-                onChangeText={(duration) => { this.setState({ duration }) }}
+                placeholder={'Event name'}
+                onChangeText={(name) => { this.setState({ name }) }}
                 underlineColorAndroid="transparent" />
             </View>
-          </View>
-          {/* Tags */}
-          {/* Maximum subscription */}
-          <View style={styles.fieldSection}>
-            <Icon name={'heart'} size={24} style={styles.fieldIcon} />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#FFFFFF"
-              placeholder={'Maximum subscription'}
-              onChangeText={(maxSub) => { this.setState({ maxSub }) }}
-              keyboardType={'numeric'}
-              underlineColorAndroid="transparent" />
-          </View>
-          {/* Image input */}
-          {this.state.picUrl ? (
-            <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
-              <Image style={styles.fieldCover} source={{ uri: `${this.state.picUrl.uri}` }} />
+            {/* Description */}
+            <View style={styles.fieldSection}>
+              <Icon name={'pencil'} size={24} style={styles.fieldIcon} />
+              <TextInput
+                style={styles.input}
+                maxLength={148}
+                placeholderTextColor="#FFFFFF"
+                placeholder={'Event Description'}
+                onChangeText={(description) => { this.setState({ description }) }}
+                underlineColorAndroid="transparent" />
+            </View>
+            <View style={styles.fieldSection}>
+              <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#FFFFFF"
+                placeholder={'Location'}
+                onChangeText={(location) => { this.setState({ location }) }}
+                underlineColorAndroid="transparent" />
+            </View>
+            {/*
+              <TouchableOpacity style={styles.fieldLocation} onPress={() => this._fakeLocation()}>
+                <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
+                <Text style={styles.placeholder}>Location</Text>
+              </TouchableOpacity>
+              */}
+            {/* Date & Duration */}
+            <View style={styles.fieldRow}>
+              <TouchableOpacity onPress={this._showDateTimePicker} style={styles.fieldInRow}>
+                <Icon name={'calendar'} size={24} style={styles.fieldIcon} />
+                <Text style={styles.fieldDate}>
+                  { this.state.startDate ? moment.unix(this.state.startDate).format('DD MMM HH:mm') : 'Select Date' }
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.fieldInRow} onPress={() => this.refs.modal.open()}>
+                <Icon name={'clock-outline'} size={24} style={styles.fieldIcon} />
+                <Text style={styles.fieldDate}>
+                  { this.state.duration ? this.state.duration + this.state.durationType : 'Duration' }
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {/* Tags */}
+            {/* Maximum subscription */}
+            <View style={styles.fieldSection}>
+              <Icon name={'heart'} size={24} style={styles.fieldIcon} />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#FFFFFF"
+                placeholder={'Maximum subscription'}
+                onChangeText={(maxSub) => { this.setState({ maxSub }) }}
+                keyboardType={'numeric'}
+                underlineColorAndroid="transparent" />
+            </View>
+            {/* Image input */}
+            <Title name={'Event cover'} />
+            {this.state.picUrl ? (
+              <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
+                <Image style={styles.fieldCover} source={{ uri: `${this.state.picUrl.base64}` }} />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
+                <Icon name={'image-multiple'} size={24} style={styles.fieldIcon} />
+                <Text style={styles.placeholder}>Open Picture Directory</Text>
+              </TouchableOpacity>
+            )}
+            <TouchableOpacity
+              style={[styles.submitButton, this.state.active ? styles.active : styles.disable ]}
+              onPress={() => this._submit()}>
+              <Text style={styles.submitText}>SUBMIT EVENT</Text>
             </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={styles.fieldImage} onPress={() => this._selectCover()}>
-              <Icon name={'image-multiple'} size={24} style={styles.fieldIcon} />
-              <Text style={styles.placeholder}>Open Picture Directory</Text>
+            <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this._handleDatePicked}
+              onCancel={this._hideDateTimePicker}
+              is24Hour={true}
+              mode={'datetime'}
+              minimumDate={new Date()}/>
+          </ScrollView>
+          <Modal
+            ref={"modal"}
+            style={styles.modal}
+            position={"top"}
+            onClosed={() => this._onClose()}>
+            <View style={styles.modalContainer}>
+              <TextInput
+                style={styles.modalInput}
+                keyboardType={'numeric'}
+                placeholderTextColor="#FFFFFF"
+                placeholder={'Duration'}
+                onChangeText={(duration) => { this.setState({ duration }) }}
+                underlineColorAndroid="transparent" />
+              <View style={styles.modalPicker}>
+                <Picker
+                  style={styles.modalPickerInner}
+                  selectedValue={this.state.durationType}
+                  onValueChange={(itemValue, itemIndex) =>
+                    this.setState({durationType: itemValue})
+                  }>
+                  <Picker.Item label="Minutes" value="minutes" />
+                  <Picker.Item label="Hours" value="hours" />
+                  <Picker.Item label="Days" value="days" />
+                </Picker>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.modalSubmit} onPress={() => this.refs.modal.close()}>
+              <Text style={styles.modalBtnTxt}>SUBMIT DURATION</Text>
             </TouchableOpacity>
-          )}
-          <TouchableOpacity
-            style={[styles.submitButton, this.state.active ? styles.active : styles.disable ]}
-            onPress={() => this._submit()}>
-            <Text style={styles.submitText}>SUBMIT EVENT</Text>
-          </TouchableOpacity>
-          <DateTimePicker
-            isVisible={this.state.isDateTimePickerVisible}
-            onConfirm={this._handleDatePicked}
-            onCancel={this._hideDateTimePicker}
-            is24Hour={true}
-            mode={'datetime'}
-            minimumDate={new Date()}
-          />
-        </ScrollView>
-      </React.Fragment>
-    )
+          </Modal>
+        </React.Fragment>
+      )
+    }
   }
 }

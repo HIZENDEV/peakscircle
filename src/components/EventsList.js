@@ -27,7 +27,7 @@ export default class EventsList extends React.Component {
   render() {
     return (
       <FlatList data={this.state.items} renderItem={({ item }) => (
-        <Event eventInfo={item} />
+        <Event eventInfo={item} user={this.props.uid} />
       )}
         refreshControl={
           <RefreshControl refreshing={this.state.refreshing} onRefresh={this.refreshData} />

@@ -560,7 +560,12 @@ export const event = StyleSheet.create({
   buttonIconInner: {
     color: theme.WHITE,
     paddingRight: 4,
-  }
+  },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200
+  },
 })
 
 export const archivesList = StyleSheet.create({
@@ -1133,4 +1138,86 @@ export const create = StyleSheet.create({
   disable: {
     backgroundColor: theme.CONTAINER
   },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200
+  },
+  modalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.BACKGROUND,
+    width: theme.DEVICE_WIDTH,
+    height: 155
+  },
+  modalInput: {
+    width: theme.DEVICE_WIDTH * (30 / 100),
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.PRIMARY,
+    paddingHorizontal: 20,
+    textAlign: 'right',
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
+    height: 50,
+  },
+  modalPicker: {
+    width: theme.DEVICE_WIDTH * (60 / 100),
+    height: 50,
+    backgroundColor: theme.CONTAINER,
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
+    color: theme.PRIMARY
+  },
+  modalPickerInner: {
+    flex: 1,
+    color: theme.PRIMARY
+  },
+  modalSubmit:{
+    width: theme.DEVICE_WIDTH,
+    height: 45,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.PINK,
+  },
+  modalBtnTxt: {
+    color: theme.PRIMARY,
+    fontFamily: theme.BOLD,
+  }
+})
+
+export const subscribersList = StyleSheet.create({
+  headerSimple: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: "4%",
+    backgroundColor: theme.BACKGROUND
+  },
+  title: {
+    fontFamily: theme.BOLD,
+    fontSize: 21,
+    color: theme.PRIMARY
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
+  back: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  backText: {
+    padding: 10,
+    color: theme.PRIMARY
+  },
+  list: {
+  },
+  container: {
+  },
+  image: {
+  },
+  name: {
+  },
+
 })

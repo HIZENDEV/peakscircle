@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity } from "react-native"
 import { event as styles } from "@styles/Index"
 import Database from '@services/Database'
 import Loading from '@components/Loading'
+import SubscribersList from '@components/SubscribersList'
+import Modal from 'react-native-modalbox'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { observer } from "mobx-react";
 import moment from 'moment'
@@ -12,13 +14,25 @@ export default class Event extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false
+      loading: false,
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      subscribersCount: this.props.eventInfo.subscribersCount
     }
   }
-
-  componentDidMount() {
-    this.getSubscribersPic(this.props.eventInfo.key)
+  async componentDidMount() {
+    await this.getSubscribers(this.props.eventInfo.key)
+    this.isUserSubscribed()
   }
+
+  async toggleSubscribe(user) {
+    if (this.state.isSubscribed) {
+      await Database.subscribeUser(user, event)
+    } else {
+      await Database.unsubscribeUser(user, event)
+    }
+  } 
 
   eventDate(timestamp, duration) {
     const startDate = moment.unix(timestamp).format('DD MMM HH:mm')
@@ -26,40 +40,53 @@ export default class Event extends React.Component {
     return (`Du ${startDate} à ${endDate}`)
   }
 
-  async getSubscribersPic(key) {
-    if (this.props.eventInfo.subscribersCount >= 3) {
+  isUserSubscribed() {
+    if (this.state.subscribers) {
+      this.state.subscribers.forEach(user => {
+        if (user === this.props.user)
+          this.setState({ isSubscribed: true })
+        else
+          this.setState({ isSubscribed: false })
+      })
+    }
+  }
+
+  async getSubscribers(key) {
+    if (this.state.subscribersCount >= 1) {
       this.setState({ loading: true })
-      const usersPic = await Database.PicRequest(key)
+      const subscribersList = await Database.requestSubscribers(key, false)
+      const temp = await Database.requestSubscribersProfile(subscribersList)
+      const subscribers = Object.values(temp)
       this.setState({
-        usersPic,
+        subscribersList,
+        subscribers,
         loading: false
       })
-      console.log(this.state.usersPic.toString())
     }
   }
 
   render() {
+    const usersPreview = [
+      this.state.subscribers ? this.state.subscribers[0].photoURL : null,
+      this.state.subscribers ? this.state.subscribers[1].photoURL : null,
+    ]
     
     const bubbleImg = (
-        <View style={styles.bubbleContainer}>
-          <View style={styles.bubbleImage}>
-
-          </View>
-          <View style={styles.bubbleImage}>
-            <Text style={styles.bubbleText}>B</Text>
-          </View>
-          <View style={styles.bubble}>
-            <Text style={styles.bubbleText}>+{this.props.eventInfo.subscribersCount - 2}</Text>
-          </View>
-        </View>
+        <TouchableOpacity style={styles.bubbleContainer} onPress={() => this.refs.modal.open()}>
+            <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[0]}` }} />
+            <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[1]}` }} />
+            <View style={styles.bubble}>
+              <Text style={styles.bubbleText}>+{this.state.subscribersCount - 2}</Text>
+            </View>
+        </TouchableOpacity>
       )
 
      const bubble = (
-        <View style={styles.bubblContainer}>
+        <TouchableOpacity style={styles.bubblContainer} onPress={() => this.refs.modal.open()}>
           <View style={styles.bubble}>
-            <Text style={styles.bubbleText}>{this.props.eventInfo.subscribersCount || 0}</Text>
+            <Text style={styles.bubbleText}>{this.state.subscribersCount || 0}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       )
  
       return (
@@ -67,10 +94,9 @@ export default class Event extends React.Component {
           {!this.state.loading ? (
             <View>
               <Image style={styles.image} source={{ uri: `${this.props.eventInfo.picUrl}` }} />
-
               <View style={styles.stretchedBlock}>
                 <Text style={styles.title}>{this.props.eventInfo.title}</Text>
-                {this.props.eventInfo.subscribersCount >= 3 ? bubbleImg : bubble }
+                {this.state.subscribersCount >= 3 ? bubbleImg : bubble }
               </View>
 
               <View style={styles.block}>
@@ -92,10 +118,16 @@ export default class Event extends React.Component {
                   <Text style={styles.buttonText}>Subscribe</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonIcon}>
+                <TouchableOpacity style={styles.buttonIcon} onPress={() => this.toggleSubscribe(this.props.user)}>
                   <Icon name={'account-plus'} size={28} style={styles.buttonIconInner} />
                 </TouchableOpacity>
               </View>
+              <Modal
+                ref={"modal"}
+                style={styles.modal}
+                position={"top"}>
+                <SubscribersList items={this.state.subscribers} back={() => this.refs.modal.close()} />
+              </Modal>
             </View>
             ) : (
               <Loading fullscreen={false} />
@@ -105,7 +137,6 @@ export default class Event extends React.Component {
       )
   }
 }
-
 
 
 

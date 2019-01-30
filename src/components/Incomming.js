@@ -16,14 +16,14 @@ export default class Incommig extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.getSubscribersPic(this.props.nextInfo.key)
+  async componentDidMount() {
+    await this.getSubscribersPic(this.props.nextInfo.key)
   }
 
   async getSubscribersPic(key) {
     if (this.props.nextInfo.subscribersCount >= 3) {
       this.setState({ loading: true })
-      const usersPic = await Database.PicRequest(key)
+      const usersPic = await Database.PicRequest(key, true)
       this.setState({
         usersPic,
         loading: false

@@ -1,19 +1,20 @@
 import firebase from 'react-native-firebase'
+import { Platform } from 'react-native'
 import store from "@store/index"
 import RNFetchBlob from 'rn-fetch-blob'
 
 class Database {
-  PicRequest = async (eventKey) => {
-    const subscribers = await firebase.database().ref("events/" + eventKey + "/subscribers").limitToLast(2).once("value")
-    const users = Object.keys(subscribers.val())
-    let url = []
-    users.forEach(user => {
-      this.revealUrl(user).then((result) => {
-        url.push(result)
-      })
-    })
-    return url
+  requestSubscribers = async (eventKey, PicRequest) => {
+    const subscribers = await firebase.database().ref("events/" + eventKey + "/subscribers").once("value")
+    const users = subscribers.val()
+    return users
   }
+
+  requestSubscribersProfile = async (userId) => {
+    const users = await firebase.database().ref("users").once("value")
+    const list = users.val()
+    return list
+  } 
 
   revealUrl = async (userId) => {
     let url = await firebase.database().ref("users/" + userId + "/photoURL").once("value")
@@ -41,42 +42,43 @@ class Database {
     return true
   }
 
-  uploadPic = async (base64) => {
-    console.log(base64)
-    const image = base64
+  uploadPic = (uri, imageName, mime = 'image/jpg') => {
     const Blob = RNFetchBlob.polyfill.Blob
     const fs = RNFetchBlob.fs
     window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
     window.Blob = Blob
-  
-    let uploadBlob = null
-    const nameArray = image.split('/')
-    const filename = nameArray[nameArray.length - 1]
-    const imageRef = firebase.storage().ref('events/cover').child(filename)
-    let mime = 'image/jpg'
-    console.log(imageRef)
-    fs.readFile(image, 'base64')
-      .then((data) => {
-        return Blob.build(data, { type: `${mime};BASE64` })
-      })
-      .then((blob) => {
-        uploadBlob = blob
-        console.log(blob)
-        return imageRef.put(blob, { contentType: mime })
-      })
-      .then(() => {
-        uploadBlob.close()
-        return imageRef.getDownloadURL()
-      })
-      .then((url) => {
-        console.log(url)
-        return url
-      })
-      .catch((error) => {
-        console.log(error)
-        return null
-      })
+
+    return new Promise((resolve, reject) => {
+      const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+        let uploadBlob = null
+        const imageRef = firebase.storage().ref('events/cover').child(imageName)
+        fs.readFile(uploadUri, 'base64')
+        .then((data) => {
+          return Blob.build(data, { type: `${mime};BASE64` })
+        })
+        .then((blob) => {
+          uploadBlob = blob
+          return imageRef.put(blob._ref, { contentType: mime })
+        })
+        .then(() => {
+          uploadBlob.close()
+          console.log(imageRef.getDownloadURL())
+          return imageRef.getDownloadURL()
+        })
+        .then((url) => {
+          resolve(url)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
+
+  subscribeUser = (user, event) => {
+  }
+  unsubscribeUser = (user, event) => {
+  }
+
 }
 
 

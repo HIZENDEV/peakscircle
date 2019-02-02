@@ -38,9 +38,15 @@ export default class Profile extends React.Component {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
     if (this.state.updated) {
-      return <IncommingList events={store.eventStore.events} user={user.uid} />
+      return <IncommingList
+        events={store.eventStore.events}
+        user={user.uid}
+        name={user.displayName} />
     } else {
-      return <IncommingList events={store.eventStore.events} user={this.state.user.uid} />
+      return <IncommingList
+        events={store.eventStore.events}
+        user={this.state.user.uid}
+        name={this.state.user.displayName} />
     }
   }
   
@@ -48,9 +54,17 @@ export default class Profile extends React.Component {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
     if (this.state.updated) {
-      return <ArchivesList events={store.eventStore.events} user={user.uid} navigation={this.props.navigation} />
+      return <ArchivesList
+        events={store.eventStore.events}
+        user={user.uid}
+        navigation={this.props.navigation}
+        name={user.displayName} />
     } else {
-      return <ArchivesList events={store.eventStore.events} user={this.state.user.uid} navigation={this.props.navigation} />
+      return <ArchivesList
+        events={store.eventStore.events}
+        user={this.state.user.uid}
+        navigation={this.props.navigation}
+        name={this.state.user.displayName} />
     }
   }
 

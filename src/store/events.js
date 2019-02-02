@@ -36,13 +36,25 @@ class EventStore {
     const temp = Object.assign({}, sortable)
     this.events = temp
     this.loading = false
-    console.log('events: ', this.events, 'loading: ', this.loading);
-  });
+    console.log('events: ', this.events, 'loading: ', this.loading)
+  })
 
   @action
   addEvent = async (event) => {
     this.loading = true
     const result = await Database.pushEvent(event)
+    runInAction(() => {
+      this.loading = false
+      if (result) {
+        console.log(result)
+      }
+    })
+  }
+
+  @action
+  addMemories = async (photoURL, eventId) => {
+    this.loading = true
+    const result = await Database.pushMemories(photoURL, eventId)
     runInAction(() => {
       this.loading = false
       if (result) {

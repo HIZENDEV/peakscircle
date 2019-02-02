@@ -6,12 +6,14 @@ const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 export const header = StyleSheet.create({
   header: {
+    paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT * 2 : 0,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
     backgroundColor: theme.BACKGROUND
   },
   headerSimple: {
+    paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT * 2 : 0,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: "4%",
@@ -56,6 +58,7 @@ export const header = StyleSheet.create({
     color: theme.PRIMARY
   },
   headerLeft: {
+    paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT * 2 : 0,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -1214,10 +1217,32 @@ export const subscribersList = StyleSheet.create({
   list: {
   },
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
   },
   image: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    marginRight: 20,
+    marginVertical: 10,
   },
   name: {
+    color: theme.PRIMARY,
+    fontSize: 18
   },
-
+  list: {
+    backgroundColor: theme.BACKGROUND,
+    paddingTop: 20
+  },
+  empty: {
+    marginTop: theme.DEVICE_HEIGHT / 2.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  error: {
+    color: theme.PRIMARY,
+    fontSize: 18
+  }
 })

@@ -42,6 +42,6 @@ export default class IncommingList extends React.Component {
 
 const _renderEmpty = (props) => (
   <View style={styles.empty}>
-    <Text style={styles.error}>{props + 'has no incomming events yet' || 'You have no incomming events yet'}</Text>
+    <Text style={styles.error}>{props + ' has no incomming events yet' || 'You have no incomming events yet'}</Text>
   </View>
 )

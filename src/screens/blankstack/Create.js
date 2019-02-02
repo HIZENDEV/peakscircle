@@ -88,6 +88,7 @@ export default class Create extends React.Component {
         await store.eventStore.addEvent(event)
       })
       this.setState({ loading: false })
+      this.props.navigation.goBack()
     } else {
       alert('You should fill all fields')
     }
@@ -97,7 +98,7 @@ export default class Create extends React.Component {
     ImagePicker.launchImageLibrary(options, (response) => {
       console.log('Response = ', response);
       if (response.error) {
-        console.warn('ImagePicker Error: ', response.error);
+        console.log('ImagePicker Error: ', response.error);
       } else {
         this.setState({
           picUrl: { base64: `data:image/jpeg;base64${response.data}`},
@@ -113,7 +114,6 @@ export default class Create extends React.Component {
   }
 
   render() {
-    console.log(this.state.durationType)
     if (this.state.loading) {
       return <Loading fullscreen={true} />
     } else {
@@ -153,6 +153,7 @@ export default class Create extends React.Component {
                 onChangeText={(location) => { this.setState({ location }) }}
                 underlineColorAndroid="transparent" />
             </View>
+
             {/*
               <TouchableOpacity style={styles.fieldLocation} onPress={() => this._fakeLocation()}>
                 <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />

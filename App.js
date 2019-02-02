@@ -8,7 +8,7 @@ import {
 } from 'react-navigation';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import FlashMessage from "react-native-flash-message"
 // Appstack screens
 import Home from '@appstack/Home.js'
 import Events from '@appstack/Events.js'
@@ -21,6 +21,7 @@ import Event from '@blankstack/Event.js'
 import Create from '@blankstack/Create.js'
 import Image from '@blankstack/Image.js'
 import Settings from '@blankstack/Settings.js'
+import Subscribers from '@blankstack/Subscribers.js'
 // Authstack screens
 import Sign from '@authstack/Sign.js'
 import AuthLoading from '@authstack/AuthLoading.js'
@@ -33,9 +34,10 @@ const EventsStack =  createStackNavigator({
   Events: { screen: Events },
   Create: { screen: Create },
   Event: { screen: Event },
+  User: { screen: User },
+  Subscribers: { screen: Subscribers },
   Image: { screen: Image,
     navigationOptions: ({ navigation }) => ({
-
     }),
   },
 }, {
@@ -110,4 +112,15 @@ const SwitchNavigator = createSwitchNavigator({
   initialRouteName: 'AppLoading'
 })
 
-export default createAppContainer(SwitchNavigator);
+const AppContainer = createAppContainer(SwitchNavigator)
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <AppContainer/>
+        <FlashMessage ref="myLocalFlashMessage" />
+      </React.Fragment>
+    )
+  }
+}

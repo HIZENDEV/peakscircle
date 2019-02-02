@@ -3,8 +3,6 @@ import { View, Text, Image, TouchableOpacity } from "react-native"
 import { event as styles } from "@styles/Index"
 import Database from '@services/Database'
 import Loading from '@components/Loading'
-import SubscribersList from '@components/SubscribersList'
-import Modal from 'react-native-modalbox'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { observer } from "mobx-react";
 import moment from 'moment'
@@ -15,9 +13,6 @@ export default class Event extends React.Component {
     super(props)
     this.state = {
       loading: false,
-      isOpen: false,
-      isDisabled: false,
-      swipeToClose: true,
       subscribersCount: this.props.eventInfo.subscribersCount
     }
   }
@@ -66,13 +61,14 @@ export default class Event extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props
     const usersPreview = [
       this.state.subscribers ? this.state.subscribers[0].photoURL : null,
       this.state.subscribers ? this.state.subscribers[1].photoURL : null,
     ]
     
     const bubbleImg = (
-        <TouchableOpacity style={styles.bubbleContainer} onPress={() => this.refs.modal.open()}>
+        <TouchableOpacity style={styles.bubbleContainer} onPress={() => navigation.navigate('Subscribers', {subs: this.state.subscribers})}>
             <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[0]}` }} />
             <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[1]}` }} />
             <View style={styles.bubble}>
@@ -82,7 +78,7 @@ export default class Event extends React.Component {
       )
 
      const bubble = (
-        <TouchableOpacity style={styles.bubblContainer} onPress={() => this.refs.modal.open()}>
+        <TouchableOpacity style={styles.bubblContainer} onPress={() => navigation.navigate('Subscribers', {subs: this.state.subscribers})}>
           <View style={styles.bubble}>
             <Text style={styles.bubbleText}>{this.state.subscribersCount || 0}</Text>
           </View>
@@ -122,12 +118,6 @@ export default class Event extends React.Component {
                   <Icon name={'account-plus'} size={28} style={styles.buttonIconInner} />
                 </TouchableOpacity>
               </View>
-              <Modal
-                ref={"modal"}
-                style={styles.modal}
-                position={"top"}>
-                <SubscribersList items={this.state.subscribers} back={() => this.refs.modal.close()} />
-              </Modal>
             </View>
             ) : (
               <Loading fullscreen={false} />

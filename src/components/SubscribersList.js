@@ -12,19 +12,22 @@ export default class SubscribersList extends React.Component {
   }
 
   render() {
+    let { navigation } = this.props
+    let items = navigation.getParam('subs', null)
+    
     return (
       <React.Fragment>
         <View style={styles.headerSimple}>
-          <TouchableOpacity style={styles.back} onPress={this.props.back}>
+          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
             <Icon name={"chevron-left"} size={25} style={styles.icons} />
             <Text style={styles.backText}>back</Text>
           </TouchableOpacity>
           <Text style={styles.title}>{this.state.screen}</Text>
         </View>
-        <FlatList data={this.props.items} renderItem={({ item }) => (
-          <TouchableOpacity style={styles.container}>
+        <FlatList data={items} renderItem={({ item }) => (
+          <TouchableOpacity style={styles.container} onPress={() => this.props.navigation.navigate('User', {user: item})}>
             <Image style={styles.image} source={{ uri: `${item.photoURL}` }} />
-            <Text style={styles.name}>{item.displayName}</Text>
+            <Text style={styles.name}>{item.displayName.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</Text>
           </TouchableOpacity>
         )}
           keyExtractor={(item, index) => index.toString()}

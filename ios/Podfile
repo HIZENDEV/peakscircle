@@ -5,6 +5,9 @@ target 'peakscircle' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Functions'
+  pod 'Firebase/Storage'
+  
   pod 'GoogleSignIn'
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 

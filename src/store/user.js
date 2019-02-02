@@ -12,8 +12,7 @@ class UserStore {
     this.user = user
     this.loading = false
     console.log("user: ", this.user, "loading: ", this.loading);
-  });
-
+  })
 
   getAllUsers = async () => {
     this.loading = true

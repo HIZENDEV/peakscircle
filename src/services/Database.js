@@ -74,8 +74,50 @@ class Database {
     })
   }
 
+  uploadMemories = (uri, imageName, mime = 'image/jpg') => {
+    const Blob = RNFetchBlob.polyfill.Blob
+    const fs = RNFetchBlob.fs
+    window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+    window.Blob = Blob
+
+    return new Promise((resolve, reject) => {
+      const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+        let uploadBlob = null
+        const imageRef = firebase.storage().ref('events/memories').child(imageName)
+        fs.readFile(uploadUri, 'base64')
+        .then((data) => {
+          return Blob.build(data, { type: `${mime};BASE64` })
+        })
+        .then((blob) => {
+          uploadBlob = blob
+          return imageRef.put(blob._ref, { contentType: mime })
+        })
+        .then(() => {
+          uploadBlob.close()
+          console.log(imageRef.getDownloadURL())
+          return imageRef.getDownloadURL()
+        })
+        .then((url) => {
+          resolve(url)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  pushMemories = async (photoURL, id) => {
+    firebase.database().ref(`events/${id}`).update({
+      memories: [
+        photoURL
+      ]
+    })
+    return true
+  }
+
   subscribeUser = (user, event) => {
   }
+
   unsubscribeUser = (user, event) => {
   }
 

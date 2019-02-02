@@ -37,7 +37,7 @@ export default class Events extends React.Component {
                 add={true} 
                 action={true}
                 navigation={this.props.navigation}  />
-              <EventsList events={store.eventStore.events} uid={store.userStore.user.uid} />
+              <EventsList events={store.eventStore.events} uid={store.userStore.user.uid} navigation={this.props.navigation} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />
               <ArchivesList events={store.eventStore.events} navigation={this.props.navigation} />
             </ScrollView>

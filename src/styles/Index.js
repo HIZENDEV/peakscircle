@@ -5,10 +5,19 @@ const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 export const header = StyleSheet.create({
+  headerAdd: {
+    paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT * 2 : 0,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: 'center',
+    paddingHorizontal: theme.DEVICE_WIDTH * (10 / 100),
+    backgroundColor: theme.BACKGROUND
+  },
   header: {
     paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT * 2 : 0,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: 'center',
     paddingHorizontal: "4%",
     backgroundColor: theme.BACKGROUND
   },
@@ -43,8 +52,47 @@ export const header = StyleSheet.create({
     shadowRadius: 6,
     elevation: 4
   },
+  searchSectionAdd: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    marginRight: 0,
+    marginBottom: 30,
+    borderRadius: 5,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    backgroundColor: theme.LIGHT_BLUE,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
   searchIcon: {
     padding: 8,
+    color: theme.WHITE
+  },
+  addButton: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 30,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 4.6,
+    backgroundColor: theme.PINK,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  addIcon: {
+    borderRadius: 5,
     color: theme.WHITE
   },
   input: {

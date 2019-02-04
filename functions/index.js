@@ -1,36 +1,34 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-// initializes application
+
+// initializes your application
 admin.initializeApp(functions.config().firebase);
 
-exports.sendPushNotification = functions.database
-  .ref("users/{userID}/")
-  .onCreate(event => {
+exports.sendPushNotification = functions.database.ref("events/{eventId}")
+  .onCreate((event) => {
     // gets standard JavaScript object from the new write
-    const writeData = event.data.data();
+    const eventInfo = event.data.data();
     // access data necessary for push notification 
-    const sender = writeData.uid;
-    const senderName = writeData.name;
-    const recipient = writeData.recipient;
+    const title = eventInfo.title;
     // the payload is what will be delivered to the device(s)
     let payload = {
       notification: {
-        title: 'title',
-        body: 'body'
+        title: 'New Event',
+        body: title
       }
     }
-    // either store the recepient tokens in the document write
-    const tokens = writeData.tokens;
 
     // or collect them by accessing your database
-    let pushToken = "";
-    return functions
-      .database
-      .ref("user_data_collection/recipient")
-      .get()
-      .then(doc => {
-        pushToken = doc.data().token;
-        // sendToDevice can also accept an array of push tokens
+    let pushToken = [];
+    return functions.database.ref("users")
+      .on("value", function(snapshot) {
+        const user = snapshot.val();
+        const array = Object.values(user);
+        array.forEach(element => {
+          pushToken.push(element.fcmToken)
+        })
         return admin.messaging().sendToDevice(pushToken, payload);
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
       });
-  });
+})

@@ -6,9 +6,10 @@ import {
   createSwitchNavigator,
   createAppContainer
 } from 'react-navigation';
-
+import store from '@store/index'
+import { Provider } from 'mobx-react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import FlashMessage from "react-native-flash-message"
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message"
 // Appstack screens
 import Home from '@appstack/Home.js'
 import Events from '@appstack/Events.js'
@@ -118,8 +119,9 @@ export default class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <AppContainer/>
-        <FlashMessage ref="myLocalFlashMessage" />
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
       </React.Fragment>
     )
   }

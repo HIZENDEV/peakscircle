@@ -1,18 +1,17 @@
 import {observable, action, autorun} from 'mobx'
 import firebase from "react-native-firebase"
 
-class UserStore {
-  @observable user = {};
+class User {
+  @observable current = {};
   @observable mates = {};
   @observable loading = true;
   @observable counter = 0;
 
-  reaction = autorun(async () => {
-    const user = await firebase.auth().currentUser;
-    this.user = user
+  constructor() {
+    this.current = firebase.auth().currentUser
     this.loading = false
-    console.log("user: ", this.user, "loading: ", this.loading);
-  })
+    console.log("user: ", this.current, "loading: ", this.loading);
+  }
 
   getAllUsers = async () => {
     this.loading = true
@@ -22,8 +21,6 @@ class UserStore {
     this.loading = false
     return this.mates
   }
-
-  constructor() {}
 
   increment() {
     this.counter++;
@@ -35,8 +32,8 @@ class UserStore {
 
   @action
   setUser = userInfo => {
-    this.user = userInfo;
+    this.current = userInfo;
   };
 }
 
-export default new UserStore()
+export default new User()

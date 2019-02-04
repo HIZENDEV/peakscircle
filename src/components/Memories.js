@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ImagePicker from 'react-native-image-picker'
 import Database from '@services/Database'
 import { memories as styles } from '@styles/Index'
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 import store from "@store/index"
 
 const options = {
@@ -15,6 +15,7 @@ const options = {
   },
 }
 
+@inject('store')
 @observer
 export default class Memories extends React.Component {
   constructor(props) {
@@ -47,15 +48,29 @@ export default class Memories extends React.Component {
       } else {
         const name = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2)
         Database.uploadMemories(response.uri, name).then(async function(result) {
-          await store.eventStore.addMemories(result, eventId)
+          await store.events.addMemories(result, eventId)
         })
       }
     })
   }
 
+  _renderMemories = () => {
+    let { store } = this.props
+    let events = store.events.memories
+    let picArr = []
 
+    events.forEach(memories => {
+      if (memories.key === this.props.id) {
+        for (let i = 0; i < memories.pictures.length; i++) {
+          picArr.push({id: i, src: memories.pictures[i]})
+        }
+      }
+    });
+    return picArr
+  }
 
   render() {
+    console.log(this._renderMemories(), this.state.items)
     return (
       <React.Fragment> 
         <View style={styles.container}>
@@ -65,7 +80,7 @@ export default class Memories extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
-          <FlatList data={this.state.items} renderItem={({ item }) => (
+          <FlatList data={this._renderMemories()} renderItem={({ item }) => (
             <TouchableOpacity style={styles.image} key={item.id}
               onPress={() => {
                 this.props.navigation.navigate('Image', { item })

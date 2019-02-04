@@ -2,8 +2,10 @@ import React from "react";
 import { FlatList, RefreshControl, View, Text } from "react-native";
 import { eventsList as styles } from "@styles/Index";
 import Event from "@components/Event";
-import { nextEvents } from '@services/Events'
+import { observer, inject } from "mobx-react/native";
 
+@inject('store')
+@observer
 export default class EventsList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ export default class EventsList extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ items: nextEvents(this.props.events) })
+    this.setState({ items: this.props.store.events.next })
   }
 
   async refreshData() {
@@ -25,8 +27,9 @@ export default class EventsList extends React.Component {
   }
 
   render() {
+    let { store } = this.props
     return (
-      <FlatList data={this.state.items} renderItem={({ item }) => (
+      <FlatList data={store.events.next} extraData={store.events} renderItem={({ item }) => (
         <Event eventInfo={item} user={this.props.uid} navigation={this.props.navigation} />
       )}
         refreshControl={

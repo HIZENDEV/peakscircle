@@ -1,6 +1,5 @@
 import firebase from 'react-native-firebase'
 import { Platform } from 'react-native'
-import store from "@store/index"
 import RNFetchBlob from 'rn-fetch-blob'
 
 class Database {
@@ -107,10 +106,18 @@ class Database {
   }
 
   pushMemories = async (photoURL, id) => {
-    firebase.database().ref(`events/${id}`).update({
-      memories: [
-        photoURL
-      ]
+    let memories = []
+    await firebase.database().ref(`events/${id}`).child('memories').once("value", function(snapshot) {
+      if (snapshot.exists()) {
+        memories = snapshot.val()
+        memories.unshift(photoURL)
+      } else {
+        memories.push(photoURL)
+      }
+    })
+    firebase.database().ref(`events/${id}`)
+    .update({
+      memories
     })
     return true
   }

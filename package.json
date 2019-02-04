@@ -9,9 +9,12 @@
     "ios": "open ios/peakscircle,xcworkspace"
   },
   "dependencies": {
+    "firebase-nest": "^0.7.1",
     "jsc-android": "236355.x.x",
+    "lodash": "^4.17.11",
     "lottie-react-native": "^2.5.11",
     "mobx": "^4.8.0",
+    "mobx-firebase-store": "^1.2.1",
     "mobx-react": "^5.4.3",
     "moment": "^2.23.0",
     "react": "16.6.1",

@@ -1,19 +1,19 @@
-import { autorun, observable } from "mobx"
+import { observable } from "mobx"
 import firebase from 'react-native-firebase'
 
-class threadStore {
-  @observable threads = {};
+class Threads {
+  @observable all = {};
   @observable loading = true;
 
-  reaction = autorun(async () => {
-    const threads = await firebase
-      .database()
-      .ref("threads")
-      .once("value");
-    this.threads = threads.val();
-    this.loading = false;
-    console.log("threads: ", this.threads, "loading: ", this.loading);
-  });
+  constructor() {
+    this.loading = true
+    firebase.database().ref('threads').on('value', (snapshot) => {
+      this.all = snapshot.val()
+      this.loading = false
+      console.log("threads: ", this.all, "loading: ", this.loading)
+    })
+  }
+
 }
 
-export default new threadStore()
+export default new Threads()

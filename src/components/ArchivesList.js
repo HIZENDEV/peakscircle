@@ -3,7 +3,10 @@ import { FlatList, View, Text } from "react-native";
 import { archivesList as styles } from "@styles/Index";
 import Archive from "@components/Archive";
 import { previousEvents, userPreviousEvents } from "@services/Events";
+import { observer, inject } from "mobx-react/native";
 
+@inject('store')
+@observer
 export default class ArchivesList extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,11 @@ export default class ArchivesList extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
-      this.props.user ? this.setState({ items: userPreviousEvents(this.props.events, nextProps.user) }) : this.setState({ items: previousEvents(this.props.events) })
+      if (this.props.user) {
+        this.setState({ items: userPreviousEvents(this.props.events, nextProps.user) })
+      } else {
+        this.setState({ items: this.props.store.events.previous })
+      }
     }
   }
   componentWillMount() {
@@ -21,6 +28,7 @@ export default class ArchivesList extends React.Component {
   }
 
   render() {
+    let { store } = this.props
     let emptyString = null
     if (this.props.name) {
       const nameArr = this.props.name.split(/\s+/)
@@ -28,7 +36,7 @@ export default class ArchivesList extends React.Component {
       emptyString = firstName
     }
     return (
-      <FlatList data={this.state.items} renderItem={({ item }) => (
+      <FlatList data={this.state.items} extraData={this.state} renderItem={({ item }) => (
         <Archive archiveInfo={item} navigation={this.props.navigation} />
       )}
         keyExtractor={(item, index) => index.toString()}

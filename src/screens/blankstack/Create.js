@@ -79,13 +79,13 @@ export default class Create extends React.Component {
         location: this.state.location,
         startDate: this.state.startDate,
         duration: this.state.timer,
-        submitter: store.userStore.user.uid,
+        submitter: store.user.current.uid,
         maxSubs: this.state.maxSubs || null
       }
       const name = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2)
       await Database.uploadPic(this.state.picUri, name).then(async function(result) {
         event.picUrl = result
-        await store.eventStore.addEvent(event)
+        await store.events.addEvent(event)
       })
       this.setState({ loading: false })
       this.props.navigation.goBack()
@@ -100,8 +100,8 @@ export default class Create extends React.Component {
       if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        this.setState({
-          picUrl: { base64: `data:image/jpeg;base64${response.data}`},
+        this.setState({    
+          picUrl: { base64: 'data:image/jpeg;base64,' + response.data},
           picUri: response.uri,
           active: true,
         })

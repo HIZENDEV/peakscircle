@@ -1,13 +1,17 @@
-import userStore from "./user"
-import eventStore from "./events"
-import threadStore from "./threads"
-import surveyStore from "./survey"
+import user from "./user"
+import events from "./events"
+import threads from "./threads"
+import survey from "./survey"
+import alert from "./alert"
+import data from "./data"
 
 const store = {
-    userStore,
-    eventStore,
-    threadStore,
-    surveyStore
+    user,
+    events,
+    threads,
+    survey,
+    alert,
+    data
 }
 
 export default store

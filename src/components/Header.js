@@ -13,7 +13,26 @@ export default class Header extends React.Component {
   }
 
   render() {
-    if (this.props.search) {
+    if (this.props.add) {
+      {/* SearchBar header */}
+      return (
+        <View style={styles.headerAdd}>
+          <Status backgroundColor="#323160" barStyle="light-content" />
+            <View style={styles.searchSectionAdd}>
+              <Icon name={'magnify'} size={24} style={styles.searchIcon}/>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="#FFFFFF"
+                placeholder={this.props.search}
+                onChangeText={(searchString) => {this.setState({searchString})}}
+                underlineColorAndroid="transparent" />
+          </View>
+          <TouchableOpacity style={styles.addButton}  onPress={() => this.props.navigation.navigate("Create")}>
+            <Icon name={'plus'} size={30} style={styles.addIcon}/>
+          </TouchableOpacity>
+        </View>
+      )
+    } else if (this.props.search) {
       {/* SearchBar header */}
       return (
         <View style={styles.header}>

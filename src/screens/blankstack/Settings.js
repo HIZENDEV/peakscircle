@@ -18,7 +18,7 @@ export default class Settings extends React.Component {
 
   componentWillMount() {
     this.setState({
-      user: store.userStore.currentUser
+      user: store.user.currentUser
     })
   }
 

@@ -16,16 +16,16 @@ export default class Mates extends React.Component {
     this.back = this.props.navigation.goBack();
   }
   async componentWillMount() {
-    await store.userStore.getAllUsers()
-    this.setState({ user: Object.values(store.userStore.mates) });
+    await store.user.getAllUsers()
+    this.setState({ user: Object.values(store.user.mates) });
   }
   render() {
-    if (!store.userStore.loading) {
+    if (!store.user.loading) {
       return (
         <React.Fragment>
           <Header search={'Search for a user'} />
           <ScrollView style={{ backgroundColor: '#323160' }} >
-            <MatesList items={store.userStore.mates} navigation={this.props.navigation} />
+            <MatesList items={store.user.mates} navigation={this.props.navigation} />
           </ScrollView>
         </React.Fragment>)
     }

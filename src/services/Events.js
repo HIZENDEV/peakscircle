@@ -76,3 +76,17 @@ export const userPreviousEvents = (events, uid) => {
   })
   return items.length < 1 ? null : items
 }
+
+export const getMomories = (events) => {
+  let memories = []
+  events = Object.values(events)
+  events.forEach(event => {
+    if (event.memories) {
+      memories.push({
+        key: event.key,
+        pictures: event.memories.slice()
+      })
+    }
+  })
+  return memories
+}

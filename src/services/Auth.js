@@ -19,7 +19,8 @@ export async function signIn(callback) {
     const currentUser = await firebase.auth().signInWithCredential(credential);
     // Get the current user information
     const user = firebase.auth().currentUser;
-    await store.userStore.setUser(user);
+    const fcmToken = await firebase.messaging().getToken();
+    await store.user.setUser(user);
     await firebase
       .database()
       .ref("users/" + user.uid)
@@ -28,7 +29,8 @@ export async function signIn(callback) {
         displayName: user.displayName || null,
         email: user.email || null,
         photoURL: user.photoURL || null,
-        phoneNumber: user.phoneNumber || null
+        phoneNumber: user.phoneNumber || null,
+        fcmToken: fcmToken || null,
       });
   } catch (e) {
     console.error(e);

@@ -23,7 +23,7 @@ export default class Profile extends React.Component {
     if (user){
       this.setState({ user: user });
     } else {
-      this.setState({ user: store.userStore.user });
+      this.setState({ user: store.user.current });
     }
   }
 
@@ -39,12 +39,12 @@ export default class Profile extends React.Component {
     let user = navigation.getParam('user', null)
     if (this.state.updated) {
       return <IncommingList
-        events={store.eventStore.events}
+        events={store.events.all}
         user={user.uid}
         name={user.displayName} />
     } else {
       return <IncommingList
-        events={store.eventStore.events}
+        events={store.events.all}
         user={this.state.user.uid}
         name={this.state.user.displayName} />
     }
@@ -55,13 +55,13 @@ export default class Profile extends React.Component {
     let user = navigation.getParam('user', null)
     if (this.state.updated) {
       return <ArchivesList
-        events={store.eventStore.events}
+        events={store.events.all}
         user={user.uid}
         navigation={this.props.navigation}
         name={user.displayName} />
     } else {
       return <ArchivesList
-        events={store.eventStore.events}
+        events={store.events.all}
         user={this.state.user.uid}
         navigation={this.props.navigation}
         name={this.state.user.displayName} />
@@ -71,7 +71,7 @@ export default class Profile extends React.Component {
   render() {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
-    if (!store.surveyStore.loading && !store.threadStore.loading && !store.userStore.loading && !store.eventStore.loading) {
+    if (!store.survey.loading && !store.threads.loading && !store.user.loading && !store.events.loading) {
       return (
         <React.Fragment>
           <Header screen={this.state.screen} back={() => this.props.navigation.goBack()} settings={() => this.props.navigation.navigate('Settings')}/>

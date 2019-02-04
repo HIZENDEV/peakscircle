@@ -24,7 +24,7 @@ export default class User extends React.Component {
     if (user) {
       this.setState({ user: user });
     } else {
-      this.setState({ user: store.userStore.user });
+      this.setState({ user: store.user.current });
     }
   }
 
@@ -32,19 +32,19 @@ export default class User extends React.Component {
   _renderIncomming = () => {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
-    return <IncommingList events={store.eventStore.events} name={this.state.user.displayName} user={this.state.user.uid} />
+    return <IncommingList events={store.events.all} name={this.state.user.displayName} user={this.state.user.uid} />
   }
 
   _renderArchives = () => {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
-    return <ArchivesList events={store.eventStore.events} name={this.state.user.displayName} user={this.state.user.uid} navigation={this.props.navigation} />
+    return <ArchivesList events={store.events.all} name={this.state.user.displayName} user={this.state.user.uid} navigation={this.props.navigation} />
   }
 
   render() {
     let { navigation } = this.props
     let user = navigation.getParam('user', null)
-    if (!store.surveyStore.loading && !store.threadStore.loading && !store.userStore.loading && !store.eventStore.loading) {
+    if (!store.survey.loading && !store.threads.loading && !store.user.loading && !store.events.loading) {
       return (
         <React.Fragment>
           <Header screen={this.state.screen} back={() => this.props.navigation.goBack()} />

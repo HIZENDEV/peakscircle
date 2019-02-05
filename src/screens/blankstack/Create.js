@@ -13,7 +13,7 @@ import ImagePicker from 'react-native-image-picker'
 
 import store from "@store/index"
 import moment from 'moment'
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 
 const options = {
   title: 'Select Cover',
@@ -23,6 +23,7 @@ const options = {
   },
 }
 
+@inject('store')
 @observer
 export default class Create extends React.Component {
   constructor(props) {
@@ -88,9 +89,18 @@ export default class Create extends React.Component {
         await store.events.addEvent(event)
       })
       this.setState({ loading: false })
+      this.props.store.alert.show = {
+        message: 'Your event has been added',
+        type: 'success',
+        display: true
+      }
       this.props.navigation.goBack()
     } else {
-      alert('You should fill all fields')
+      this.props.store.alert.show = {
+        message: 'You should fill all fields',
+        type: 'danger',
+        display: true
+      }
     }
   }
 
@@ -120,7 +130,7 @@ export default class Create extends React.Component {
       return (
         <React.Fragment>
           <Header back={() => this.props.navigation.goBack()} screen={this.state.screen} />
-          <ScrollView style={{ backgroundColor: '#323160' }} >
+          <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
             <Title name={'Basic details'} />
             {/* Title */}
             <View style={styles.fieldSection}>
@@ -128,7 +138,7 @@ export default class Create extends React.Component {
               <TextInput
                 style={styles.input}
                 maxLength={17}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#707070"
                 placeholder={'Event name'}
                 onChangeText={(name) => { this.setState({ name }) }}
                 underlineColorAndroid="transparent" />
@@ -139,7 +149,7 @@ export default class Create extends React.Component {
               <TextInput
                 style={styles.input}
                 maxLength={148}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#707070"
                 placeholder={'Event Description'}
                 onChangeText={(description) => { this.setState({ description }) }}
                 underlineColorAndroid="transparent" />
@@ -148,7 +158,7 @@ export default class Create extends React.Component {
               <Icon name={'map-marker'} size={24} style={styles.fieldIcon} />
               <TextInput
                 style={styles.input}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#707070"
                 placeholder={'Location'}
                 onChangeText={(location) => { this.setState({ location }) }}
                 underlineColorAndroid="transparent" />
@@ -181,7 +191,7 @@ export default class Create extends React.Component {
               <Icon name={'heart'} size={24} style={styles.fieldIcon} />
               <TextInput
                 style={styles.input}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#707070"
                 placeholder={'Maximum subscription'}
                 onChangeText={(maxSub) => { this.setState({ maxSub }) }}
                 keyboardType={'numeric'}
@@ -221,7 +231,7 @@ export default class Create extends React.Component {
               <TextInput
                 style={styles.modalInput}
                 keyboardType={'numeric'}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#707070"
                 placeholder={'Duration'}
                 onChangeText={(duration) => { this.setState({ duration }) }}
                 underlineColorAndroid="transparent" />

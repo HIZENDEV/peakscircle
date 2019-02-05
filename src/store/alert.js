@@ -1,18 +1,25 @@
 import { autorun, observable} from "mobx"
-import { showMessage, hideMessage } from "react-native-flash-message"
+import { showMessage } from "react-native-flash-message"
 
 class alert {
-  @observable message = 'Hello World';
-  @observable type = 'info';
+  @observable show = {
+    message: '',
+    type: '',
+    display: ''
+  }
 
   reaction = autorun(async () => {
-    showMessage({
-        message: this.message,
-        description: "This is our second message",
-        type: this.type,
+    if (this.show.display) {
+      showMessage({
+        message: this.show.message,
+        type: this.show.type,
       })
+      this.show.display = false
+    }
   })
+
+
 
 }
 
-export default new alert();
+export default new alert()

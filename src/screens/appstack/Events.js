@@ -32,7 +32,7 @@ export default class Events extends React.Component {
       return (
         <React.Fragment>
           <Header search={'Search for an event or a place'} add={true} navigation={this.props.navigation} />
-            <ScrollView style={{ backgroundColor: '#323160' }} >
+            <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
               <Title name={"Discover"}
                 action={() => alert('Service is temporarily disabled')}
                 navigation={this.props.navigation}/>

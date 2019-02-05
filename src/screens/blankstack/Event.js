@@ -29,7 +29,7 @@ export default class Event extends React.Component {
       return (
         <React.Fragment>
           <Header back={() => this.props.navigation.goBack()} />
-          <ScrollView style={{ backgroundColor: '#323160' }} >
+          <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
             <EventInfo info={eventInfo} />
             <Memories memories={eventInfo.memories} id={eventInfo.key} navigation={this.props.navigation} />
           </ScrollView>

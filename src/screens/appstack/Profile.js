@@ -76,7 +76,7 @@ export default class Profile extends React.Component {
         <React.Fragment>
           <Header screen={this.state.screen} back={() => this.props.navigation.goBack()} settings={() => this.props.navigation.navigate('Settings')}/>
           <UserInfo user={user !== null ? user : this.state.user} />
-          <ScrollView style={{ backgroundColor: '#323160' }} >
+          <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
             <Title name={"Incoming events"} />
             {this._renderIncomming()}
             <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />

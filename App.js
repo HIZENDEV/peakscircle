@@ -9,7 +9,7 @@ import {
 import store from '@store/index'
 import { Provider } from 'mobx-react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message"
+import FlashMessage from "react-native-flash-message"
 // Appstack screens
 import Home from '@appstack/Home.js'
 import Events from '@appstack/Events.js'
@@ -25,6 +25,9 @@ import Settings from '@blankstack/Settings.js'
 import Subscribers from '@blankstack/Subscribers.js'
 // Authstack screens
 import Sign from '@authstack/Sign.js'
+import SelectPic from '@authstack/SelectPic.js'
+import LoginInfo from '@authstack/LoginInfo.js'
+import LoginConfirm from '@authstack/LoginConfirm.js'
 import AuthLoading from '@authstack/AuthLoading.js'
 
 // ignore specific yellowbox warnings
@@ -83,24 +86,27 @@ const AppStack = createBottomTabNavigator({
       } else if (routeName === 'Mates') {
         iconName = `account-multiple`;
       }
-      return <Icon name={iconName} size={horizontal ? 20 : 25} color='#DEDEEB' />;
+      return <Icon name={iconName} size={horizontal ? 20 : 25} color='#000000' />;
     }
   }),
   initialRouteName: 'Home',
   tabBarOptions: {
     style: {
-      backgroundColor: '#343363',
+      backgroundColor: '#FFFFFF',
       borderTopWidth: 0
     },
-    activeTintColor: '#DEDEEB',
-    inactiveTintColor: '#494A66',
+    activeTintColor: '#000000',
+    inactiveTintColor: '#707070',
     showLabel: false,
     }
   }
 )
 
 const Authstack = createStackNavigator({
-  Sign: Sign
+  Sign: { screen: Sign },
+  SelectPic: { screen: SelectPic },
+  LoginInfo: { screen: LoginInfo },
+  LoginConfirm: { screen: LoginConfirm },
 }, {
   headerMode: 'none'
 })
@@ -122,6 +128,7 @@ export default class App extends React.Component {
         <Provider store={store}>
           <AppContainer />
         </Provider>
+        <FlashMessage position="top" />
       </React.Fragment>
     )
   }

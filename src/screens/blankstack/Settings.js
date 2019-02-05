@@ -53,7 +53,7 @@ export default class Settings extends React.Component {
     return (
       <React.Fragment>
         <Header back={() => this.props.navigation.goBack()} screen={this.state.screen} />
-        <ScrollView style={{ backgroundColor: '#323160' }} >
+        <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
           <TouchableOpacity
             style={styles.logout}
             onPress={() => this._signOut()} >

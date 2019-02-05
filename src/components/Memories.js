@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ImagePicker from 'react-native-image-picker'
 import Database from '@services/Database'
+import Loading from '@components/Loading'
 import { memories as styles } from '@styles/Index'
 import { observer, inject } from "mobx-react"
 import store from "@store/index"
@@ -40,6 +41,8 @@ export default class Memories extends React.Component {
   }
 
   _addMemories = () => {
+    this.setState({isLoading: true})
+    let $this = this
     const eventId = this.props.id
     ImagePicker.launchImageLibrary(options, (response) => {
       console.log('Response = ', response)
@@ -49,6 +52,7 @@ export default class Memories extends React.Component {
         const name = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2)
         Database.uploadMemories(response.uri, name).then(async function(result) {
           await store.events.addMemories(result, eventId)
+          $this.setState({isLoading: false})
         })
       }
     })
@@ -75,11 +79,14 @@ export default class Memories extends React.Component {
       <React.Fragment> 
         <View style={styles.container}>
           <Text style={styles.title}>Memories</Text>
-          <TouchableOpacity style={styles.action} onPress={() => this._addMemories()} >
+          <TouchableOpacity style={styles.action} onPress={() =>
+            !this.state.isLoading ? this._addMemories() : null
+          }>
             <Icon name={'image-multiple'} size={24} style={styles.icons} />
           </TouchableOpacity>
         </View>
         <View style={styles.container}>
+        { this.state.isLoading ? (<Loading fullscreen={false} />) : (
           <FlatList data={this._renderMemories()} renderItem={({ item }) => (
             <TouchableOpacity style={styles.image} key={item.id}
               onPress={() => {
@@ -94,6 +101,7 @@ export default class Memories extends React.Component {
             style={styles.list}
             ListEmptyComponent={_renderEmpty(this.props.type)}
           />
+        )}
         </View>
       </React.Fragment>
     )

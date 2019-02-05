@@ -37,6 +37,34 @@ export async function signIn(callback) {
   }
 }
 
+export async function signInWithEmailAndPassword(email, password, pre, callback) {
+  try {
+    const currentUser = await firebase.auth().createUserWithEmailAndPassword(email, password)
+    // Get the current user information
+    firebase.database().ref('pending').equalTo(email).remove()
+    const user = firebase.auth().currentUser
+    user.updateProfile({
+      displayName: pre.displayName,
+      photoURL: pre.photoURL
+    })
+    const fcmToken = await firebase.messaging().getToken();
+    await store.user.setUser(user);
+    await firebase
+      .database()
+      .ref("users/" + user.uid)
+      .set({
+        uid: user.uid || null,
+        displayName: user.displayName || pre.displayName,
+        email: user.email || pre.email,
+        photoURL: user.photoURL || pre.photoURL,
+        phoneNumber: user.phoneNumber || null,
+        fcmToken: fcmToken || null,
+      });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export async function signOut() {
   firebase.auth().signOut().then(function() {
   // Sign-out successful.

@@ -14,9 +14,9 @@ export default class Loading extends React.Component {
   render() {
     return this.props.fullscreen ? (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#343363" barStyle="light-content"/>
+        <StatusBar backgroundColor="#FFFFFF" barStyle="dark-content"/>
         <LottieView
-        source={require('@assets/load.json')}
+        source={require('@assets/loading.json')}
         autoPlay
         loop
         style={styles.lottie}
@@ -24,9 +24,10 @@ export default class Loading extends React.Component {
       </View>
     ) : (
       <LottieView
-        source={require('@assets/loader.json')}
+        source={require('@assets/loading.json')}
         autoPlay
         loop
+        style={styles.lottie}
       />
     )
   }

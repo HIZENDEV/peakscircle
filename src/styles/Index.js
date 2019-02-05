@@ -1,5 +1,5 @@
 import { StyleSheet, Platform, NativeModules } from "react-native";
-import theme from "@config/theme";
+import theme from "@config/theme.1";
 
 const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
@@ -44,8 +44,8 @@ export const header = StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
-    color: theme.WHITE,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -62,8 +62,8 @@ export const header = StyleSheet.create({
     borderRadius: 5,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-    backgroundColor: theme.LIGHT_BLUE,
-    color: theme.WHITE,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -72,7 +72,7 @@ export const header = StyleSheet.create({
   },
   searchIcon: {
     padding: 8,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   addButton: {
     flexDirection: "row",
@@ -102,7 +102,7 @@ export const header = StyleSheet.create({
     paddingBottom: 8,
     paddingLeft: 0,
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.BACKGROUND,
     color: theme.PRIMARY
   },
   headerLeft: {
@@ -132,7 +132,7 @@ export const header = StyleSheet.create({
     marginTop: -4,
     fontFamily: theme.MEDIUM,
     fontSize: 12,
-    color: theme.LIGHT_BLUE,
+    color: theme.GREY,
     paddingBottom: 7.5
   },
   centeredDefault: {
@@ -172,7 +172,7 @@ export const userInfo = StyleSheet.create({
     fontFamily: theme.MEDIUM,
     fontSize: 12,
     paddingBottom: 7.5,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   },
   social: {
     flexDirection: "row",
@@ -247,7 +247,7 @@ export const eventInfo = StyleSheet.create({
   date: {
     fontFamily: theme.BOLD,
     fontSize: 15,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   },
   opinion: {
     flexDirection: 'row',
@@ -259,11 +259,11 @@ export const eventInfo = StyleSheet.create({
     textAlign: "left",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE,
+    color: theme.GREY,
   },
   opinionIcons: {
     marginLeft: 10,
-    color: theme.LIGHT_BLUE,
+    color: theme.GREY,
   },
   stars: {
     textAlign: "left",
@@ -351,7 +351,7 @@ export const title = StyleSheet.create({
     marginRight: 20
   },
   actionText: {
-    color: theme.LIGHT_BLUE,
+    color: theme.GREY,
     fontFamily: theme.BOLD,
     fontSize: 13
   }
@@ -363,7 +363,7 @@ export const loading = StyleSheet.create({
     alignItems: "center",
     width: theme.DEVICE_WIDTH,
     height: theme.DEVICE_HEIGHT,
-    backgroundColor: "#343363"
+    backgroundColor: theme.BACKGROUND
   },
   lottie: {
     width: theme.DEVICE_WIDTH / 3,
@@ -411,6 +411,10 @@ export const sign = StyleSheet.create({
     height: 25,
     resizeMode: "contain"
   },
+  iconButtonSVG: {
+    color: theme.PINK,
+    marginBottom: -1,
+  },
   textButton: {
     color: theme.PRIMARY
   },
@@ -423,7 +427,63 @@ export const sign = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: "10%"
+  },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200,
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    borderRadius: 5,
+  },
+  modalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.BACKGROUND,
+  },
+  fieldSection: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldIcon: {
+    padding: 8,
+    color: theme.PINK
+  },
+  input: {
+    flex: 1,
+    paddingTop: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    paddingLeft: 0,
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY
+  },
+  nextButton: {
+    backgroundColor: theme.PINK,
+    borderRadius: 18,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 36,
+    height: 36,
+  },
+  nextButtonIcon: {
+    color: theme.WHITE
   }
+
 })
 
 export const compactList = StyleSheet.create({
@@ -455,7 +515,7 @@ export const compactList = StyleSheet.create({
     height: theme.DEVICE_HEIGHT / 7,
     borderRadius: 7,
     resizeMode: "cover",
-    backgroundColor: theme.LIGHT_BLUE
+    backgroundColor: theme.PINK
   },
   title: {
     padding: 10,
@@ -471,7 +531,7 @@ export const compactList = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   }
 })
 
@@ -485,7 +545,7 @@ export const eventsList = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   }
 })
 
@@ -512,7 +572,7 @@ export const event = StyleSheet.create({
     height: theme.DEVICE_WIDTH * (65 / 100),
     borderRadius: 7,
     resizeMode: "cover",
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.PINK,
   },
   block: {
     width: theme.DEVICE_WIDTH * (80 / 100),
@@ -548,7 +608,7 @@ export const event = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: theme.PRIMARY,
+    color: theme.WHITE,
     fontFamily: theme.BOLD
   },
   bubbleContainer: {
@@ -587,7 +647,7 @@ export const event = StyleSheet.create({
     textAlign: "left",
     fontSize: 18,
     fontFamily: theme.BOLD,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   info: {
     height: 30,
@@ -595,7 +655,7 @@ export const event = StyleSheet.create({
     textAlign: "left",
     fontSize: 13,
     fontFamily: theme.MEDIUM,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   description: {
     height: 56,
@@ -603,20 +663,70 @@ export const event = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   icons: {
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   buttonIconInner: {
-    color: theme.WHITE,
+    color: theme.PRIMARY,
     paddingRight: 4,
   },
   modal: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 200
+    height: 500,
+    width: theme.DEVICE_WIDTH * (90 / 100),
+    borderRadius: 5,
   },
+  modalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.BACKGROUND,
+  },
+  fieldSection: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldIcon: {
+    padding: 8,
+    color: theme.PINK
+  },
+  input: {
+    flex: 1,
+    paddingTop: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    paddingLeft: 0,
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY
+  },
+  nextButton: {
+    backgroundColor: theme.PINK,
+    borderRadius: 18,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 36,
+    height: 36,
+  },
+  nextButtonIcon: {
+    color: theme.WHITE
+  }
 })
 
 export const archivesList = StyleSheet.create({
@@ -635,7 +745,7 @@ export const archivesList = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   }
 })
 
@@ -682,14 +792,14 @@ export const archive = StyleSheet.create({
     textAlign: "left",
     fontSize: 16,
     fontFamily: theme.BOLD,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   date: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
     textAlign: "left",
     fontSize: 10,
     fontFamily: theme.BOLD,
-    color: theme.WHITE
+    color: theme.GREY
   },
   opinion: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
@@ -702,7 +812,7 @@ export const archive = StyleSheet.create({
   },
   icons: {
     padding: 10,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
 })
 
@@ -722,7 +832,7 @@ export const incommingList = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   }
 })
 
@@ -781,14 +891,14 @@ export const incomming = StyleSheet.create({
     textAlign: "left",
     fontSize: 16,
     fontFamily: theme.BOLD,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   date: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 4),
     textAlign: "left",
     fontSize: 10,
     fontFamily: theme.BOLD,
-    color: theme.WHITE
+    color: theme.GREY
   },
   opinion: {
     height: (theme.DEVICE_WIDTH * (22 / 100)) * (1 / 2.5),
@@ -801,7 +911,7 @@ export const incomming = StyleSheet.create({
   },
   icons: {
     padding: 10,
-    color: theme.WHITE
+    color: theme.PRIMARY
   },
   bubbleContainer: {
     flexDirection: 'row',
@@ -837,57 +947,6 @@ export const incomming = StyleSheet.create({
   }
 })
 
-export const test_matesList = StyleSheet.create({
-  list: {
-    backgroundColor: theme.BACKGROUND,
-    marginLeft: theme.DEVICE_WIDTH * (5 / 100),
-    marginRight: theme.DEVICE_WIDTH * (0 / 100),
-  },
-  container: {
-    justifyContent: "flex-end",
-    marginRight: theme.DEVICE_WIDTH * (7.5 / 100),
-    marginBottom: theme.DEVICE_WIDTH * (7.5 / 100),
-    width: theme.DEVICE_WIDTH * (1 / 4),
-    height: theme.DEVICE_WIDTH * (1 / 4),
-    backgroundColor: theme.WHITE,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4
-  },
-  empty: {
-    justifyContent: "flex-end",
-    margin: theme.DEVICE_WIDTH * (5 / 100),
-    width: theme.DEVICE_WIDTH * (90 / 100),
-    height: theme.DEVICE_HEIGHT / 7,
-  },
-  image: {
-    position: "absolute",
-    width: theme.DEVICE_WIDTH * (1 / 4),
-    height: theme.DEVICE_WIDTH * (1 / 4),
-    resizeMode: "cover",
-    backgroundColor: theme.LIGHT_BLUE
-  },
-  title: {
-    padding: 5,
-    position: "absolute",
-    textAlign: "left",
-    fontSize: 12,
-    elevation: 4,
-    fontFamily: theme.BOLD,
-    color: theme.WHITE
-  },
-  error: {
-    padding: 10,
-    position: "absolute",
-    textAlign: "center",
-    fontSize: 12,
-    fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
-  }
-})
-
 export const matesList = StyleSheet.create({
   list: {
     backgroundColor: theme.BACKGROUND
@@ -920,7 +979,7 @@ export const matesList = StyleSheet.create({
     height: theme.DEVICE_WIDTH * (15 / 100),
     borderRadius: (theme.DEVICE_WIDTH * (15 / 100)) / 2,
     resizeMode: "cover",
-    backgroundColor: theme.LIGHT_BLUE
+    backgroundColor: theme.PINK
   },
   right: {
     marginLeft: 10
@@ -944,7 +1003,7 @@ export const matesList = StyleSheet.create({
     textAlign: "center",
     fontSize: 12,
     fontFamily: theme.MEDIUM,
-    color: theme.LIGHT_BLUE
+    color: theme.GREY
   }
 })
 
@@ -986,10 +1045,169 @@ export const memories = StyleSheet.create({
 
   },
   error: {
-    color: theme.LIGHT_BLUE,
+    color: theme.GREY,
     fontSize: 14,
   }
 
+})
+
+export const selectPic = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: theme.DEVICE_HEIGHT /6,
+    marginHorizontal: theme.DEVICE_WIDTH /8,
+    justifyContent: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 22,
+    backgroundColor: theme.BACKGROUND
+  },
+  title: {
+    fontFamily: theme.EXTRA,
+    fontSize: 20,
+    color: theme.PRIMARY,
+    textAlign: 'left',
+  },
+  subtitle: {
+    marginTop: 10,
+    fontSize: 11,
+    color: theme.PRIMARY,
+    textAlign: 'left',
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
+  image: {
+    borderRadius: 35,
+    width: 70,
+    height: 70,
+    margin: 5,
+  },
+  pic: {
+    borderRadius: 35,
+    width: 70,
+    height: 70,
+  },
+  blur: {
+    borderRadius: 35,
+    width: 70,
+    height: 70,
+    opacity: .2
+  },
+  button: {
+    alignSelf: 'center',
+    backgroundColor: theme.PINK,
+    borderRadius: 3,
+    width: theme.DEVICE_WIDTH * (1 / 5)
+  },
+  buttonInner: {
+    color: theme.WHITE,
+    fontFamily: theme.BOLD,
+    textAlign: 'center',
+    padding: 4,
+  },
+  list: {
+    width: theme.DEVICE_WIDTH,
+    marginVertical: 50,
+  }
+})
+
+export const loginInfo = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: theme.DEVICE_HEIGHT /6,
+    marginHorizontal: theme.DEVICE_WIDTH /10,
+    justifyContent: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 22,
+    backgroundColor: theme.BACKGROUND
+  },
+  fieldSection: {
+    marginHorizontal: theme.DEVICE_WIDTH * (4 / 100),
+    marginVertical: 6,
+    paddingLeft: 10,
+    paddingVertical: 2,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldIcon: {
+    padding: 8,
+    color: theme.PINK
+  },
+  input: {
+    flex: 1,
+    paddingTop: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    paddingLeft: 0,
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY
+  },
+  title: {
+    fontFamily: theme.EXTRA,
+    fontSize: 20,
+    color: theme.PRIMARY,
+    textAlign: 'left',
+  },
+  subtitle: {
+    marginTop: 10,
+    fontSize: 11,
+    color: theme.PRIMARY,
+    textAlign: 'left',
+  },
+  icons: {
+    color: theme.PRIMARY
+  },
+  image: {
+    borderRadius: 35,
+    width: 70,
+    height: 70,
+    margin: 5,
+  },
+  picContainer: {
+    alignSelf: 'center',
+    marginBottom: 20,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  pic: {
+    borderRadius: 40,
+    width: 80,
+    height: 80,
+  },
+  button: {
+    alignSelf: 'center',
+    backgroundColor: theme.PINK,
+    borderRadius: 3,
+    width: theme.DEVICE_WIDTH * (1 / 5)
+  },
+  disabled: {
+    alignSelf: 'center',
+    backgroundColor: theme.DISABLE,
+    borderRadius: 3,
+    width: theme.DEVICE_WIDTH * (1 / 5)
+  },
+  buttonInner: {
+    color: theme.WHITE,
+    fontFamily: theme.BOLD,
+    textAlign: 'center',
+    padding: 4,
+  },
+  list: {
+    marginVertical: 80,
+  }
 })
 
 export const image = StyleSheet.create({
@@ -1054,7 +1272,7 @@ export const create = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.BACKGROUND,
     color: theme.WHITE,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
@@ -1075,8 +1293,8 @@ export const create = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
-    color: theme.WHITE,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -1099,7 +1317,7 @@ export const create = StyleSheet.create({
     paddingBottom: 8,
     paddingLeft: 0,
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.BACKGROUND,
     color: theme.PRIMARY
   },
   inputDate: {
@@ -1108,7 +1326,7 @@ export const create = StyleSheet.create({
     paddingRight: 1,
     paddingBottom: 2.1,
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE
+    backgroundColor: theme.BACKGROUND
   },
   inputTag: {
     flex: 1,
@@ -1117,7 +1335,7 @@ export const create = StyleSheet.create({
     paddingBottom: 2.1,
     borderRadius: 5,
     width: theme.DEVICE_WIDTH - theme.DEVICE_WIDTH * (20 / 100),
-    backgroundColor: theme.LIGHT_BLUE
+    backgroundColor: theme.BACKGROUND
   },
   fieldImage: {
     marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
@@ -1128,8 +1346,8 @@ export const create = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
-    color: theme.WHITE,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -1152,8 +1370,8 @@ export const create = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     borderRadius: 5,
-    backgroundColor: theme.LIGHT_BLUE,
-    color: theme.WHITE,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.16,
@@ -1177,7 +1395,7 @@ export const create = StyleSheet.create({
     elevation: 4
   },
   submitText: {
-    color: theme.PRIMARY,
+    color: theme.WHITE,
     fontFamily: theme.BOLD,
   },
   placeholder: {
@@ -1187,7 +1405,7 @@ export const create = StyleSheet.create({
     backgroundColor: theme.PINK
   },
   disable: {
-    backgroundColor: theme.CONTAINER
+    backgroundColor: theme.GREY
   },
   modal: {
     justifyContent: 'center',
@@ -1204,13 +1422,18 @@ export const create = StyleSheet.create({
   },
   modalInput: {
     width: theme.DEVICE_WIDTH * (30 / 100),
-    backgroundColor: theme.LIGHT_BLUE,
+    backgroundColor: theme.BACKGROUND,
     color: theme.PRIMARY,
     paddingHorizontal: 20,
     textAlign: 'right',
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
     height: 50,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
   },
   modalPicker: {
     width: theme.DEVICE_WIDTH * (60 / 100),
@@ -1218,7 +1441,12 @@ export const create = StyleSheet.create({
     backgroundColor: theme.CONTAINER,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
-    color: theme.PRIMARY
+    color: theme.PRIMARY,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
   },
   modalPickerInner: {
     flex: 1,
@@ -1233,7 +1461,7 @@ export const create = StyleSheet.create({
     backgroundColor: theme.PINK,
   },
   modalBtnTxt: {
-    color: theme.PRIMARY,
+    color: theme.WHITE,
     fontFamily: theme.BOLD,
   }
 })

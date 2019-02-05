@@ -27,6 +27,35 @@ class Database {
     return events
   }
 
+  requestPendingUsers = async (email) => {
+    const users = await firebase.database().ref("pending").once("value")
+    const list = users.val()
+    return list
+  } 
+
+  addPendingUser = async (email) => {
+    let pending = []
+    await firebase.database().ref(`pending`).once("value", function(snapshot) {
+      if (snapshot.exists()) {
+        pending = snapshot.val()
+        pending.push(email)
+      } else {
+        pending.push(email)
+      }
+    })
+    firebase.database().ref()
+    .update({
+      pending
+    })
+    return true
+  }
+
+  requestRegisterPic = async () => {
+    const pics = await firebase.database().ref("images").once("value")
+    const list = pics.val()
+    return list
+  }
+
   pushEvent = async (event) => {
     firebase.database().ref('events').push({
       description: event.description,
@@ -122,10 +151,36 @@ class Database {
     return true
   }
 
-  subscribeUser = (user, event) => {
+  subscribeUser = async (user, event) => {
+    let subscribers = []
+    await firebase.database().ref(`events/${event}`).child('subscribers').once("value", function(snapshot) {
+      if (snapshot.exists()) {
+        subscribers = snapshot.val()
+        subscribers.unshift(user)
+      } else {
+        subscribers.push(user)
+      }
+    })
+    firebase.database().ref(`events/${event}`)
+    .update({
+      subscribers
+    })
+    firebase.database().ref(`events/${event}/subscribersCount`).transaction(function (count) {return count + 1})
+    return true
   }
 
-  unsubscribeUser = (user, event) => {
+  unsubscribeUser = async (user, event) => {
+    let subscribers = []
+    await firebase.database().ref(`events/${event}`).child('subscribers').once("value", function(snapshot) {
+      subscribers = snapshot.val()
+      subscribers = subscribers.filter(item => item !== user)
+    })
+    firebase.database().ref(`events/${event}`)
+    .update({
+      subscribers
+    })
+    firebase.database().ref(`events/${event}/subscribersCount`).transaction(function (count) {return count - 1})
+    return true
   }
 
 }

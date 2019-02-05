@@ -17,12 +17,12 @@ export default class Header extends React.Component {
       {/* SearchBar header */}
       return (
         <View style={styles.headerAdd}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
             <View style={styles.searchSectionAdd}>
               <Icon name={'magnify'} size={24} style={styles.searchIcon}/>
               <TextInput
                 style={styles.input}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#212121"
                 placeholder={this.props.search}
                 onChangeText={(searchString) => {this.setState({searchString})}}
                 underlineColorAndroid="transparent" />
@@ -36,12 +36,12 @@ export default class Header extends React.Component {
       {/* SearchBar header */}
       return (
         <View style={styles.header}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
             <View style={styles.searchSection}>
               <Icon name={'magnify'} size={24} style={styles.searchIcon}/>
               <TextInput
                 style={styles.input}
-                placeholderTextColor="#FFFFFF"
+                placeholderTextColor="#212121"
                 placeholder={this.props.search}
                 onChangeText={(searchString) => {this.setState({searchString})}}
                 underlineColorAndroid="transparent" />
@@ -54,7 +54,7 @@ export default class Header extends React.Component {
       const firstName = nameArr.slice(0, -1).join(" ")
       return (
         <View style={styles.headerLeft}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
           <Image source={{uri: this.props.user.photoURL}} style={styles.profilePic} />
           <View style={styles.rightText}>
             <Text style={styles.welcome}>{this.props.user.displayName ? 'Welcome ' + firstName + '!': 'Welcome user'}</Text>
@@ -66,7 +66,7 @@ export default class Header extends React.Component {
       {/* Named header */}
       return (
         <View style={styles.headerSimple}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
             <TouchableOpacity style={styles.back} onPress={this.props.back}>
               <Icon name={"chevron-left"} size={25} style={styles.icons} />
             </TouchableOpacity>
@@ -80,7 +80,7 @@ export default class Header extends React.Component {
       {/* Named header */ }
       return (
         <View style={styles.headerSimple}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
           <TouchableOpacity style={styles.back} onPress={this.props.back}>
             <Icon name={"chevron-left"} size={25} style={styles.icons} />
             <Text style={styles.backText}>back</Text>
@@ -92,7 +92,7 @@ export default class Header extends React.Component {
       {/* Default header */ }
       return (
         <View style={styles.headerSimple}>
-          <Status backgroundColor="#323160" barStyle="light-content" />
+          <Status backgroundColor="#FFFFFF" barStyle="dark-content" />
           <TouchableOpacity style={styles.back} onPress={this.props.back}>
             <Icon name={"chevron-left"} size={25} style={styles.icons} />
             <Text style={styles.backText}>back</Text>

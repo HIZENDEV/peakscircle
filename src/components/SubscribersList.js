@@ -17,13 +17,6 @@ export default class SubscribersList extends React.Component {
     
     return (
       <React.Fragment>
-        <View style={styles.headerSimple}>
-          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
-            <Icon name={"chevron-left"} size={25} style={styles.icons} />
-            <Text style={styles.backText}>back</Text>
-          </TouchableOpacity>
-          <Text style={styles.title}>{this.state.screen}</Text>
-        </View>
         <FlatList data={items} renderItem={({ item }) => (
           <TouchableOpacity style={styles.container} onPress={() => this.props.navigation.navigate('User', {user: item})}>
             <Image style={styles.image} source={{ uri: `${item.photoURL}` }} />

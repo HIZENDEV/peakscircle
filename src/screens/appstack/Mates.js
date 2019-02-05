@@ -24,7 +24,7 @@ export default class Mates extends React.Component {
       return (
         <React.Fragment>
           <Header search={'Search for a user'} />
-          <ScrollView style={{ backgroundColor: '#323160' }} >
+          <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
             <MatesList items={store.user.mates} navigation={this.props.navigation} />
           </ScrollView>
         </React.Fragment>)

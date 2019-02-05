@@ -4,7 +4,7 @@ import Header from '@components/Header'
 import CompactList from "@components/CompactList";
 import Title from '@components/Title'
 import store from "@store/index";
-import { observer, inject, componentByNodeRegistery } from "mobx-react/native";
+import { observer, inject } from "mobx-react/native";
 import { ScrollView } from 'react-native-gesture-handler';
 import Notification from '@services/Notification'
 import { userNextEvents, nextEvents } from "@services/Events"
@@ -22,7 +22,7 @@ export default class Home extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ user: store.user.current });
+    this.setState({ user: store.user.current })
   }
 
   async componentDidMount() {
@@ -51,12 +51,13 @@ export default class Home extends React.Component {
 
   render() {
     const store = this.props.store
+    console.log(store)
     if (!store.survey.loading && !store.threads.loading && !store.user.loading && !store.events.loading) {
       const upcomming = userNextEvents(store.events.all, store.user.current.uid)
       return (
         <React.Fragment>
           <Header user={store.user.current} upcoming={upcomming ? upcomming.length : 0} />
-          <ScrollView style={{ backgroundColor: '#323160'}}>
+          <ScrollView style={{ backgroundColor: '#FFFFFF'}}>
             {/* Events */}
             <Title name={"Events"} action={() => this.navigate("Events")} />
             <CompactList items={store.events.json} type={'events'} />

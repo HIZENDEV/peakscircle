@@ -20,7 +20,7 @@ const slides = [
     text: 'Create, share, and subscribe to personalized events quickly and easily',
     image: require('@assets/i01.png'),
     imageStyle: styles.image,
-    backgroundColor: '#323160',
+    backgroundColor: '#EC4467',
   },
   {
     key: 'somethun-dos',
@@ -28,7 +28,7 @@ const slides = [
     text: 'Let your friends share good times with your teammates',
     image: require('@assets/i02.png'),
     imageStyle: styles.image,
-    backgroundColor: '#323160',
+    backgroundColor: '#EC4467',
   },
   {
     key: 'somethun1',
@@ -36,7 +36,7 @@ const slides = [
     text: 'Because we never finish learning, and we like to share our thoughts',
     image: require('@assets/i03.png'),
     imageStyle: styles.image,
-    backgroundColor: '#323160',
+    backgroundColor: '#EC4467',
   }
 ]
 

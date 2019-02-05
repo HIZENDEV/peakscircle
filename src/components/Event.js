@@ -1,31 +1,53 @@
 import React from "react"
-import { View, Text, Image, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity, TextInput } from "react-native"
+import Modal from 'react-native-modalbox'
+import Title from '@components/Title'
 import { event as styles } from "@styles/Index"
 import Database from '@services/Database'
 import Loading from '@components/Loading'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import moment from 'moment'
 
+@inject('store')
 @observer
 export default class Event extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false,
-      subscribersCount: this.props.eventInfo.subscribersCount
+      subscribersCount: this.props.eventInfo.subscribersCount,
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3,
     }
   }
+
   async componentDidMount() {
     await this.getSubscribers(this.props.eventInfo.key)
     this.isUserSubscribed()
   }
 
+  _onClose = () => {
+  }
+
+  async inviteOutsider() {
+    if (this.state.email) {
+      await Database.addPendingUser(this.state.email)
+      this.refs.modal.close()
+      alert(`An invitation has been send to ${this.state.email}`)
+    }
+  }
+
+
   async toggleSubscribe(user) {
-    if (this.state.isSubscribed) {
-      await Database.subscribeUser(user, event)
+    if (!this.state.isSubscribed) {
+      await Database.subscribeUser(user, this.props.eventInfo.key)
+      this.setState({isSubscribed: true})
     } else {
-      await Database.unsubscribeUser(user, event)
+      await Database.unsubscribeUser(user, this.props.eventInfo.key)
+      this.setState({isSubscribed: false})
     }
   } 
 
@@ -36,14 +58,14 @@ export default class Event extends React.Component {
   }
 
   isUserSubscribed() {
-    if (this.state.subscribers) {
-      this.state.subscribers.forEach(user => {
-        if (user === this.props.user)
-          this.setState({ isSubscribed: true })
-        else
-          this.setState({ isSubscribed: false })
-      })
-    }
+    const rig = Object.values(this.props.store.events.all)
+    rig.forEach(event => {
+      if (event.key === this.props.eventInfo.key) {
+        const subscribers = event.subscribers.slice()
+        subscribers.includes(this.props.store.user.current.uid) ?
+        this.setState({isSubscribed: true}) : this.setState({isSubscribed: false})
+      }
+    })
   }
 
   async getSubscribers(key) {
@@ -110,14 +132,44 @@ export default class Event extends React.Component {
               </View>
 
               <View style={styles.bottomBlock}>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText}>Subscribe</Text>
+                <TouchableOpacity style={styles.button} onPress={() => this.toggleSubscribe(this.props.user)}>
+                  <Text style={styles.buttonText}>{this.state.isSubscribed ? 'Unsubscribe' : 'Subscribe'}</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.buttonIcon} onPress={() => this.toggleSubscribe(this.props.user)}>
-                  <Icon name={'account-plus'} size={28} style={styles.buttonIconInner} />
-                </TouchableOpacity>
+                { this.props.store.user.current.email.includes('@peaks.fr') ?  
+                  (<TouchableOpacity style={styles.buttonIcon} onPress={() => this.refs.modal.open()}>
+                    <Icon name={'account-plus'} size={28} style={styles.buttonIconInner} />
+                  </TouchableOpacity>)
+                  : null
+                }
               </View>
+              <Modal
+                ref={"modal"}
+                style={styles.modal}
+                position={"center"}
+                onClosed={() => this._onClose()}>
+                <Title name="Invite a friend"/>
+                <View style={styles.modalContainer}>
+                <View style={styles.fieldSection}>
+                    <Icon name={'email'} size={24} style={styles.fieldIcon} />
+                    <TextInput
+                      style={styles.input}
+                      autoComplete={'email'}
+                      keyboardType={'email-address'}
+                      textContentType={'emailAddress'}
+                      maxLength={256}
+                      placeholderTextColor="#707070"
+                      placeholder={'Email'}
+                      onChangeText={(email) => { this.setState({ email }) }}
+                      underlineColorAndroid="transparent" />
+                  </View>
+                </View>
+                <TouchableOpacity
+                  onPress={() => this.inviteOutsider()}
+                  style={styles.nextButton}
+                >
+                  <Icon name={'arrow-right'} size={20} style={styles.nextButtonIcon} />
+                </TouchableOpacity>
+              </Modal>
             </View>
             ) : (
               <Loading fullscreen={false} />

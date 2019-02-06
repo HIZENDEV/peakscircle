@@ -45,14 +45,17 @@ export default class Memories extends React.Component {
     let $this = this
     const eventId = this.props.id
     ImagePicker.launchImageLibrary(options, (response) => {
-      console.log('Response = ', response)
       if (response.error) {
-        console.log('ImagePicker Error: ', response.error)
       } else {
         const name = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2)
         Database.uploadMemories(response.uri, name).then(async function(result) {
           await store.events.addMemories(result, eventId)
           $this.setState({isLoading: false})
+          $this.props.store.alert.show = {
+            display: true,
+            message: 'Event memories updated',
+            type: 'success'
+          }
         })
       }
     })
@@ -74,7 +77,6 @@ export default class Memories extends React.Component {
   }
 
   render() {
-    console.log(this._renderMemories(), this.state.items)
     return (
       <React.Fragment> 
         <View style={styles.container}>

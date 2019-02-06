@@ -22,7 +22,6 @@ export default class Threads extends React.Component {
       picArr.forEach(photoURL => {
         photoURLs.push(photoURL)
       })
-      console.log(picArr)
     })
     return photoURLs
   }
@@ -40,8 +39,7 @@ export default class Threads extends React.Component {
 
   render() {
     let { navigation } = this.props
-    let user = navigation.getParam('user', null)    
-    console.log(this.state)
+    let user = navigation.getParam('user', null)
     return (
       this.state.isReady ? (
         <View style={styles.container}>

@@ -36,7 +36,7 @@ export default class ArchivesList extends React.Component {
       emptyString = firstName
     }
     return (
-      <FlatList data={this.state.items} extraData={this.state} renderItem={({ item }) => (
+      <FlatList data={this.state.items} extraData={store.events} renderItem={({ item }) => (
         <Archive archiveInfo={item} navigation={this.props.navigation} />
       )}
         keyExtractor={(item, index) => index.toString()}

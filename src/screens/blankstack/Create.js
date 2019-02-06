@@ -106,7 +106,6 @@ export default class Create extends React.Component {
 
   _selectCover = () => {
     ImagePicker.launchImageLibrary(options, (response) => {
-      console.log('Response = ', response);
       if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {

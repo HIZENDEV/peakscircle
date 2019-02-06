@@ -2,6 +2,8 @@ import { GoogleSignin } from 'react-native-google-signin';
 import firebase from 'react-native-firebase';
 import store from "@store/index";
 
+import { observer, inject } from 'mobx-react';
+
 export async function signIn(callback) {
   try {
     // Add any configuration settings here:
@@ -74,7 +76,7 @@ export async function signOut() {
   }).catch(function(error) {
   // An error happened.
     alert('Something goes wrong!!!')
-    console.log(e)
+    console.log(error)
   });
 }
 

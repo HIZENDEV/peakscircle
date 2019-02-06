@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList, Text, Switch, TouchableOpacity } from 'react-native'
+import { View, FlatList, Text, Switch, TouchableOpacity, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { settings as styles } from '@styles/Index'
 
@@ -22,7 +22,10 @@ export default class SettingsPan extends React.Component {
   _renderSelect(item) {
     if (item.type !== 'switch') {
       return (
-        <TouchableOpacity style={styles.row}>
+        <TouchableOpacity style={styles.row} onPress={
+          item.value === 'displayName' ?
+          this.props.editName : this.props.editSocial
+        }>
           <Text style={styles.title}>{item.title}</Text>
           {this._renderType(item.type)}
         </TouchableOpacity>

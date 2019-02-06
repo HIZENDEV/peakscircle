@@ -66,7 +66,7 @@ const UserStack = createStackNavigator({
 })
 
 const AppStack = createBottomTabNavigator({
-  Home: Home,
+  // Home: Home,
   Events: { screen: EventsStack },
   Mates: { screen: UserStack },
   Profile: { screen: ProfileStack },
@@ -89,7 +89,7 @@ const AppStack = createBottomTabNavigator({
       return <Icon name={iconName} size={horizontal ? 20 : 25} color='#000000' />;
     }
   }),
-  initialRouteName: 'Home',
+  initialRouteName: 'Events',
   tabBarOptions: {
     style: {
       backgroundColor: '#FFFFFF',

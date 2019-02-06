@@ -6,10 +6,10 @@ import { userNextEvents, nextEvents } from "@services/Events"
 
 export default class IncommingList extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       items: []
-    };
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
@@ -29,7 +29,7 @@ export default class IncommingList extends React.Component {
     }
     return (
       <FlatList data={this.state.items} renderItem={({ item }) => (
-        <Incomming nextInfo={item} />
+        <Incomming nextInfo={item} user={this.props.user} navigation={this.props.navigation} />
       )}
         keyExtractor={(item, index) => index.toString()}
         showsScrollIndicator={false}

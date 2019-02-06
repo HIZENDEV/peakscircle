@@ -12,23 +12,34 @@ export default class Incommig extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false
+      loading: false,
+      subscribersCount: this.props.nextInfo.subscribersCount,
     }
   }
 
   async componentDidMount() {
-    await this.getSubscribersPic(this.props.nextInfo.key)
+    await this.getSubscribers(this.props.nextInfo.key)
+    this.isUserSubscribed(this.props.nextInfo)
   }
 
-  async getSubscribersPic(key) {
-    if (this.props.nextInfo.subscribersCount >= 3) {
+  async getSubscribers(key) {
+    if (this.state.subscribersCount >= 1) {
       this.setState({ loading: true })
-      const usersPic = await Database.PicRequest(key, true)
+      const subscribersList = await Database.requestSubscribers(key, false)
+      const temp = await Database.requestSubscribersProfile(subscribersList)
+      const subscribers = Object.values(temp)
       this.setState({
-        usersPic,
+        subscribersList,
+        subscribers,
         loading: false
       })
     }
+  }
+
+  async isUserSubscribed(event) {
+    event.subscribers.includes(this.props.user) ||
+    event.submitter === this.props.user ?
+    this.setState({isSubscribed: true}) : this.setState({isSubscribed: false})
   }
 
   eventDate(timestamp) {
@@ -36,29 +47,28 @@ export default class Incommig extends React.Component {
   }
 
   render() {
+    const usersPreview = [
+      this.state.subscribers ? this.state.subscribers[0].photoURL : null,
+      this.state.subscribers ? this.state.subscribers[1].photoURL : null,
+    ]
 
     const bubbleImg = (
-      <View style={styles.bubbleContainer}>
-        <View style={styles.bubbleImage}>
-
-        </View>
-        <View style={styles.bubbleImage}>
-          <Text style={styles.bubbleText}>B</Text>
-        </View>
-        <View style={styles.bubble}>
-          <Text style={styles.bubbleText}>+{this.props.nextInfo.subscribersCount - 2}</Text>
-        </View>
-      </View>
+      <TouchableOpacity style={styles.bubbleContainer} onPress={() => this.props.navigation.navigate('Subscribers', {subs: this.state.subscribers})}>
+          <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[0]}` }} />
+          <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[1]}` }} />
+          <View style={styles.bubble}>
+            <Text style={styles.bubbleText}>+{this.state.subscribersCount - 2}</Text>
+          </View>
+      </TouchableOpacity>
     )
 
-    const bubble = (
-      <View style={styles.bubblContainer}>
+   const bubble = (
+      <TouchableOpacity style={styles.bubblContainer} onPress={() => this.props.navigation.navigate('Subscribers', {subs: this.state.subscribers})}>
         <View style={styles.bubble}>
-          <Text style={styles.bubbleText}>{this.props.nextInfo.subscribersCount}</Text>
+          <Text style={styles.bubbleText}>{this.state.subscribersCount || 0}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
-
     return (
       <View style={styles.container}>
         {!this.state.loading ? (
@@ -69,12 +79,14 @@ export default class Incommig extends React.Component {
               <View style={styles.info}>
                 <Text style={styles.title}>{this.props.nextInfo.title}</Text>
                 <Text style={styles.date}>{this.eventDate(this.props.nextInfo.startDate)}</Text>
-                {bubbleImg}
+                {this.state.subscribersCount >= 3 ? bubbleImg : bubble }
               </View>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.right}>
-              <Text style={styles.buttonText}>Subscribe</Text>
+            <TouchableOpacity style={this.state.isSubscribed ? styles.rightDisable : styles.right} onPress={() => 
+              this.props.navigation.navigate('Events')
+            }>
+              <Text style={styles.buttonText}>{this.state.isSubscribed ? 'Unsubscribe' : 'Subscribe'}</Text>
             </TouchableOpacity>
 
           </View>

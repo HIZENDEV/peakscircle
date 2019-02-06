@@ -27,7 +27,7 @@ class notification {
       this.getToken();
     } catch (error) {
       // User has rejected permissions
-      console.log('permission rejected');
+      console.log('permission rejected', error);
     }
   }
   async createNotificationListeners() {

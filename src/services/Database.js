@@ -90,7 +90,6 @@ class Database {
         })
         .then(() => {
           uploadBlob.close()
-          console.log(imageRef.getDownloadURL())
           return imageRef.getDownloadURL()
         })
         .then((url) => {
@@ -122,7 +121,6 @@ class Database {
         })
         .then(() => {
           uploadBlob.close()
-          console.log(imageRef.getDownloadURL())
           return imageRef.getDownloadURL()
         })
         .then((url) => {

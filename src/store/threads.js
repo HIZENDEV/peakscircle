@@ -10,7 +10,6 @@ class Threads {
     firebase.database().ref('threads').on('value', (snapshot) => {
       this.all = snapshot.val()
       this.loading = false
-      console.log("threads: ", this.all, "loading: ", this.loading)
     })
   }
 

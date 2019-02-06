@@ -7,7 +7,9 @@ import EventsList from '@components/EventsList'
 import ArchivesList from '@components/ArchivesList'
 import * as auth from '@services/Auth'
 import store from "@store/index";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
+
+@inject('store')
 @observer
 export default class Events extends React.Component {
   constructor(props) {
@@ -34,7 +36,13 @@ export default class Events extends React.Component {
           <Header search={'Search for an event or a place'} add={true} navigation={this.props.navigation} />
             <ScrollView style={{ backgroundColor: '#FFFFFF' }} >
               <Title name={"Discover"}
-                action={() => alert('Service is temporarily disabled')}
+                action={() =>
+                  this.props.store.alert.show = {
+                    message: 'Service is temporarily disabled',
+                    type: 'warning',
+                    display: true
+                  }
+                }
                 navigation={this.props.navigation}/>
               <EventsList events={store.events.all} uid={store.user.current.uid} navigation={this.props.navigation} />
               <Title name={"Previous Events"} actionText={'Show more'} action={() => this.navigate("Events")} />

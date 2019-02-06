@@ -29,7 +29,6 @@ class Events {
       const temp = Object.assign({}, sortable)
       this.all = temp
       this.loading = false
-      console.log('events: ', this.all, 'loading: ', this.loading)
     })
   }
 
@@ -55,9 +54,6 @@ class Events {
     const result = await Database.pushEvent(event)
     runInAction(() => {
       this.loading = false
-      if (result) {
-        console.log(result)
-      }
     })
   }
 
@@ -67,9 +63,6 @@ class Events {
     const result = await Database.pushMemories(photoURL, eventId)
     runInAction(() => {
       this.loading = false
-      if (result) {
-        console.log(result)
-      }
     })
   }
 

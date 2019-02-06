@@ -20,8 +20,7 @@ export default class Threads extends React.Component {
 
   render() {
     let { navigation } = this.props
-    let user = navigation.getParam('user', null)    
-    console.log(this.state)
+    let user = navigation.getParam('user', null)
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Please tell us your name</Text>

@@ -10,7 +10,6 @@ class survey {
     firebase.database().ref('survey').on('value', (snapshot) => {
       this.polls = snapshot.val()
       this.loading = false
-      console.log("survey: ", this.polls, "loading: ", this.loading)
     })
   }
 }

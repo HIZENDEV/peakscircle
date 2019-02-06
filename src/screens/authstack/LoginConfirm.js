@@ -2,8 +2,9 @@ import React from 'react'
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native'
 import { loginInfo as styles } from "@styles/Index"
 import * as auth from "@services/Auth"
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 
+@inject('store')
 @observer
 export default class Threads extends React.Component {
   constructor(props) {
@@ -16,7 +17,11 @@ export default class Threads extends React.Component {
       if (this.state.password === this.state.repeat) {
         this._signIn(user.email, this.state.password, user)
       } else {
-        alert('Your passwords do not match')
+        this.props.store.alert.show = {
+          display: true,
+          message: 'Your passwords do not match',
+          type: 'danger'
+        }
       }
     }
   }
@@ -25,21 +30,23 @@ export default class Threads extends React.Component {
       return false
     }
   try {
-    console.log(email, password, user)
     this.setState({ isSigninInProgress: true })
     await auth.signInWithEmailAndPassword(email, password, user)
     this.props.navigation.navigate("App")
   } catch (e) {
     this.setState({ isSigninInProgress: false })
-    alert("Something goes wrong!")
+    this.props.store.alert.show = {
+      display: true,
+      message: 'Something goes wrong!',
+      type: 'danger'
+    }
   }
 }
 
 
   render() {
     let { navigation } = this.props
-    let user = navigation.getParam('user', null)    
-    console.log(this.state)
+    let user = navigation.getParam('user', null)
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Fill your password</Text>

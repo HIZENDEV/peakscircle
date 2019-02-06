@@ -27,7 +27,6 @@ export default class Home extends React.Component {
 
   async componentDidMount() {
     const fcmToken = await firebase.messaging().getToken()
-    console.log(fcmToken)
     Notification.checkPermission();
     Notification.createNotificationListeners()
   }
@@ -39,10 +38,6 @@ export default class Home extends React.Component {
 
   navigate(route) {
     this.props.navigation.navigate(route);
-  }
-
-  delete = () => {
-      console.log(this.props.store)
   }
 
   add = () => {

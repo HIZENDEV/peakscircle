@@ -31,7 +31,7 @@ export const currentEvent = (events) => {
   return items.length < 1 ? null : items
 }
 
-export const previousEvents = (events) => {
+export const previousEvents = (events) => {{}
   let AllItems = Object.values(events)
   let items = []
 
@@ -51,13 +51,9 @@ export const userNextEvents = (events, uid) => {
   let items = []
   const user = uid
   const next = nextEvents(events)
-
   next.forEach(event => {
-    for (var userId in event.subscribers) {
-      if (userId === user) {
-        items.push(event)
-      }
-    }
+    if (event.submitter === user || event.subscribers.includes(user))
+      items = [event, ...items]
   })
   return items.length < 1 ? null : items
 }
@@ -68,11 +64,8 @@ export const userPreviousEvents = (events, uid) => {
   const previous = previousEvents(events)
 
   previous.forEach(event => {
-    for (let userId in event.subscribers) {
-      if (userId === user ) {
-        items.unshift(event)
-      }
-    }
+    if (event.submitter === user || event.subscribers.includes(user))
+      items = [event, ...items]
   })
   return items.length < 1 ? null : items
 }

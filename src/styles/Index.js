@@ -1,8 +1,8 @@
-import { StyleSheet, Platform, NativeModules } from "react-native";
-import theme from "@config/theme.1";
+import { StyleSheet, Platform, NativeModules } from "react-native"
+import theme from "@config/theme.1"
 
-const { StatusBarManager } = NativeModules;
-const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
+const { StatusBarManager } = NativeModules
+const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT
 
 export const header = StyleSheet.create({
   headerAdd: {
@@ -60,8 +60,7 @@ export const header = StyleSheet.create({
     marginRight: 0,
     marginBottom: 30,
     borderRadius: 5,
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
+    marginRight: 16,
     backgroundColor: theme.BACKGROUND,
     color: theme.PRIMARY,
     shadowColor: "#000000",
@@ -80,10 +79,9 @@ export const header = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
     marginBottom: 30,
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
+    borderRadius: 5,
     paddingHorizontal: 5,
-    paddingVertical: 4.6,
+    paddingVertical: 4,
     backgroundColor: theme.PINK,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 3 },
@@ -217,6 +215,16 @@ export const userInfo = StyleSheet.create({
     width: 30,
     height: 30,
     backgroundColor: theme.DRIBBBLE
+  },
+  signOut: {
+    backgroundColor: theme.PINK,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 2
+  },
+  signOutText: {
+    color: theme.WHITE,
+    fontSize: 11,
   }
 })
 
@@ -366,6 +374,7 @@ export const loading = StyleSheet.create({
     backgroundColor: theme.BACKGROUND
   },
   lottie: {
+    alignSelf: 'center',
     width: theme.DEVICE_WIDTH / 3,
     height: theme.DEVICE_WIDTH / 3
   }
@@ -600,6 +609,17 @@ export const event = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.PINK,
+    width: 118,
+    height: 32,
+    borderRadius: 3,
+    marginLeft: (theme.DEVICE_WIDTH * (80 / 100)) * (1 / 3.06),
+    marginBottom: 10,
+  },
+  disabled: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.DISABLE,
     width: 118,
     height: 32,
     borderRadius: 3,
@@ -876,6 +896,17 @@ export const incomming = StyleSheet.create({
     fontFamily: theme.BOLD,
     color: theme.WHITE,
     fontSize: 12
+  },
+  rightDisable:{
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: 'center',
+    backgroundColor: theme.DISABLE,
+    width: 86,
+    height: 26,
+    borderRadius: 3,
+    marginRight: 8,
+    marginBottom: 12,
   },
   image: {
     width: (theme.DEVICE_WIDTH * (90 / 100)) * (1 / 4),
@@ -1225,14 +1256,18 @@ export const image = StyleSheet.create({
 
 export const settings = StyleSheet.create({
   container: {
-    backgroundColor: theme.BACKGROUND,
+    backgroundColor: theme.BACKGROUND
   },
   list: {
     marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
     marginVertical: theme.DEVICE_WIDTH * (4 / 100),
     borderRadius: 7,
-    backgroundColor: theme.CONTAINER,
-    elevation: 4
+    backgroundColor: theme.COMTAINER,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
   row: {
     flexDirection: 'row',
@@ -1260,6 +1295,61 @@ export const settings = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: theme.CONTAINER,
     elevation: 4
+  },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: theme.DEVICE_HEIGHT * (90 / 100),
+    width: theme.DEVICE_WIDTH,
+    borderRadius: 5,
+  },
+  modalContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.BACKGROUND,
+  },
+  fieldSection: {
+    marginHorizontal: theme.DEVICE_WIDTH * (5 / 100),
+    marginVertical: theme.DEVICE_WIDTH * (4 / 100),
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.WHITE,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6,
+    elevation: 4
+  },
+  fieldIcon: {
+    padding: 8,
+    color: theme.PRIMARY
+  },
+  input: {
+    flex: 1,
+    paddingTop: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    paddingLeft: 0,
+    borderRadius: 5,
+    backgroundColor: theme.BACKGROUND,
+    color: theme.PRIMARY
+  },
+  nextButton: {
+    marginTop: 30,
+    backgroundColor: theme.PINK,
+    borderRadius: 18,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 36,
+    height: 36,
+  },
+  nextButtonIcon: {
+    color: theme.WHITE
   }
 })
 

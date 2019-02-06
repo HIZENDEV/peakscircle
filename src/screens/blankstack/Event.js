@@ -25,7 +25,6 @@ export default class Event extends React.Component {
   render() {
     if (this.props) {
       const eventInfo = this.props.navigation.getParam('eventInfo', null)
-      console.log(this.props)
       return (
         <React.Fragment>
           <Header back={() => this.props.navigation.goBack()} />

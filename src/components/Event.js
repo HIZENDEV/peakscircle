@@ -36,18 +36,35 @@ export default class Event extends React.Component {
     if (this.state.email) {
       await Database.addPendingUser(this.state.email)
       this.refs.modal.close()
-      alert(`An invitation has been send to ${this.state.email}`)
+      this.props.store.alert.show = {
+        message: `An invitation has been send to ${this.state.email}`,
+        type: 'success',
+        display: true
+      }
     }
   }
 
 
   async toggleSubscribe(user) {
+    if (this.props.eventInfo.submitter !== user)
+      return false
+
     if (!this.state.isSubscribed) {
       await Database.subscribeUser(user, this.props.eventInfo.key)
       this.setState({isSubscribed: true})
+      this.props.store.alert.show = {
+        message: 'Successfully subscribed',
+        type: 'success',
+        display: true
+      }
     } else {
       await Database.unsubscribeUser(user, this.props.eventInfo.key)
       this.setState({isSubscribed: false})
+      this.props.store.alert.show = {
+        message: 'Successfully unsubscribed',
+        type: 'success',
+        display: true
+      }
     }
   } 
 
@@ -58,14 +75,10 @@ export default class Event extends React.Component {
   }
 
   isUserSubscribed() {
-    const rig = Object.values(this.props.store.events.all)
-    rig.forEach(event => {
-      if (event.key === this.props.eventInfo.key) {
-        const subscribers = event.subscribers.slice()
-        subscribers.includes(this.props.store.user.current.uid) ?
-        this.setState({isSubscribed: true}) : this.setState({isSubscribed: false})
-      }
-    })
+    const event = this.props.eventInfo
+    event.subscribers.includes(this.props.store.user.current.uid) ||
+    event.submitter === this.props.user ?
+    this.setState({isSubscribed: true}) : this.setState({isSubscribed: false})
   }
 
   async getSubscribers(key) {
@@ -94,7 +107,7 @@ export default class Event extends React.Component {
             <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[0]}` }} />
             <Image style={styles.bubbleImage} source={{ uri: `${usersPreview[1]}` }} />
             <View style={styles.bubble}>
-              <Text style={styles.bubbleText}>+{this.state.subscribersCount - 2}</Text>
+              <Text style={styles.bubbleText}>+{this.props.eventInfo.subscribersCount - 2}</Text>
             </View>
         </TouchableOpacity>
       )
@@ -102,7 +115,7 @@ export default class Event extends React.Component {
      const bubble = (
         <TouchableOpacity style={styles.bubblContainer} onPress={() => navigation.navigate('Subscribers', {subs: this.state.subscribers})}>
           <View style={styles.bubble}>
-            <Text style={styles.bubbleText}>{this.state.subscribersCount || 0}</Text>
+            <Text style={styles.bubbleText}>{this.props.eventInfo.subscribersCount || 0}</Text>
           </View>
         </TouchableOpacity>
       )
@@ -132,7 +145,9 @@ export default class Event extends React.Component {
               </View>
 
               <View style={styles.bottomBlock}>
-                <TouchableOpacity style={styles.button} onPress={() => this.toggleSubscribe(this.props.user)}>
+                <TouchableOpacity style={this.props.eventInfo.submitter === this.props.user ? styles.disabled : styles.button} onPress={() => 
+                  this.props.eventInfo.submitter === this.props.user ? null : this.toggleSubscribe(this.props.user)
+                }>
                   <Text style={styles.buttonText}>{this.state.isSubscribed ? 'Unsubscribe' : 'Subscribe'}</Text>
                 </TouchableOpacity>
                 { this.props.store.user.current.email.includes('@peaks.fr') ?  

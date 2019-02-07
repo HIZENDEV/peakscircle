@@ -1,7 +1,8 @@
 import { observable, computed, action, runInAction, toJS } from "mobx"
 import firebase from 'react-native-firebase'
 import Database from "@services/Database"
-import { nextEvents, getMomories } from "@services/Events";
+import { nextEvents, getMomories } from "@services/Events"
+import alert from './alert'
 
 class Events {
   @observable initialState = {};

@@ -71,7 +71,7 @@ export default class Profile extends React.Component {
   render() {
     let { navigation, store } = this.props
     let user = navigation.getParam('user', null)
-    if (!store.survey.loading && !store.threads.loading && !store.user.loading && !store.events.loading) {
+    if (!store.user.loading && !store.events.loading) {
       return (
         <React.Fragment>
           <Header screen={this.state.screen} back={() => navigation.navigate('Events')} />

@@ -5,7 +5,6 @@ import Header from '@components/Header'
 import Title from '@components/Title'
 import EventsList from '@components/EventsList'
 import ArchivesList from '@components/ArchivesList'
-import * as auth from '@services/Auth'
 import store from "@store/index";
 import { observer, inject } from "mobx-react";
 
@@ -30,6 +29,7 @@ export default class Events extends React.Component {
   }
 
   render() {
+      console.log(this.props.store)
       if (!store.user.loading && !store.events.loading) {
       return (
         <React.Fragment>

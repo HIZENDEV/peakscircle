@@ -70,7 +70,7 @@ export async function signInWithEmailAndPassword(email, password, pre, callback)
 export async function signOut() {
   firebase.auth().signOut().then(function() {
   // Sign-out successful.
-    GoogleSignin.revokeAccess();
+    // GoogleSignin.revokeAccess();
     console.log('access has been revoked, the user is signed out')
     return true
   }).catch(function(error) {
